@@ -2,10 +2,10 @@
 import { Link } from 'react-router-dom'
 
 // React BootStrap
-import { Form, InputGroup } from 'react-bootstrap';
+// import { Form, InputGroup } from 'react-bootstrap';
 
 // Custom Component
-import SMbuttons from '../Components/SMButton'; 
+// import SMbuttons from '../Components/SMButton'; 
 
 // Images
 // import Image from '../images/rounded.png'
@@ -27,11 +27,11 @@ import SMbuttons from '../Components/SMButton';
 // import applogo from '../images/flogoz.png'
 
 // Icons
-import SearchIcon from '@mui/icons-material/Search';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import GoogleIcon from '@mui/icons-material/Google';
-import YouTubeIcon from '@mui/icons-material/YouTube';
-import InstagramIcon from '@mui/icons-material/Instagram';
+// import SearchIcon from '@mui/icons-material/Search';
+// import FacebookIcon from '@mui/icons-material/Facebook';
+// import GoogleIcon from '@mui/icons-material/Google';
+// import YouTubeIcon from '@mui/icons-material/YouTube';
+// import InstagramIcon from '@mui/icons-material/Instagram';
 const Home = () => {
   return (
     <div>Hello</div>
