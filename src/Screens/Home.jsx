@@ -27,11 +27,11 @@ import Arrow from '../images/arrow.png'
 import applogo from '../images/flogoz.png'
 
 // Icons
-import SearchIcon from '@mui/icons-material/Search';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import GoogleIcon from '@mui/icons-material/Google';
-import YouTubeIcon from '@mui/icons-material/YouTube';
-import InstagramIcon from '@mui/icons-material/Instagram';
+// import SearchIcon from '@mui/icons-material/Search';
+// import FacebookIcon from '@mui/icons-material/Facebook';
+// import GoogleIcon from '@mui/icons-material/Google';
+// import YouTubeIcon from '@mui/icons-material/YouTube';
+// import InstagramIcon from '@mui/icons-material/Instagram';
 const Home = () => {
   return (
     
@@ -41,7 +41,9 @@ const Home = () => {
                 <h1 className='banner-heading white-color fontWeight textAlign marginTop75px'>Get to , live in our <br></br> Exclusvies Student Housing</h1>
                 <div className='alignSelf withFull'>
                     <InputGroup id='inputss' >
-                        <InputGroup.Text className='backgroundColor' style={{ borderEndStartRadius: "33px", borderTopLeftRadius: "33px" }}><SearchIcon id="searchicooons" /></InputGroup.Text>
+                        <InputGroup.Text className='backgroundColor' style={{ borderEndStartRadius: "33px", borderTopLeftRadius: "33px" }}>
+                            {/* <SearchIcon id="searchicooons" /> */}
+                            </InputGroup.Text>
                         <Form.Control type='text' placeholder="Search by city, neighborhood or unversity" aria-label="Search" />
                         <InputGroup.Text className='banner-search-btn fontSize fontWeight backgroundColor' style={{ borderTopRightRadius: "33px", borderEndEndRadius: "33px", cursor: "pointer" }}>Search</InputGroup.Text>
                     </InputGroup>
@@ -291,10 +293,10 @@ const Home = () => {
                                 <p style={{ color: "white", fontSize: "85%", marginTop: "5px" }}>namadroofsupport</p>
                             </div>
                             <div style={{ display: "flex", margin: "auto" }}>
-                                <FacebookIcon id="fabk-icon" />
+                                {/* <FacebookIcon id="fabk-icon" />
                                 <GoogleIcon id="google-icon" />
                                 <YouTubeIcon id="youtube-icon" />
-                                <InstagramIcon id="gram-icon" />
+                                <InstagramIcon id="gram-icon" /> */}
                             </div>
                             
 
