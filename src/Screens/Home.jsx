@@ -27,11 +27,11 @@ import Arrow from '../images/arrow.png'
 import applogo from '../images/flogoz.png'
 
 // Icons
-import SearchIcon from '@mui/icons-material/Search';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import GoogleIcon from '@mui/icons-material/Google';
-import YouTubeIcon from '@mui/icons-material/YouTube';
-import InstagramIcon from '@mui/icons-material/Instagram';
+// import SearchIcon from '@mui/icons-material/Search';
+// import FacebookIcon from '@mui/icons-material/Facebook';
+// import GoogleIcon from '@mui/icons-material/Google';
+// import YouTubeIcon from '@mui/icons-material/YouTube';
+// import InstagramIcon from '@mui/icons-material/Instagram';
 const Home = () => {
   return (
     
