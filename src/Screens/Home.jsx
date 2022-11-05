@@ -86,9 +86,9 @@ const Home = () => {
         <div className='container-fluid  margin paddiing'>
             <div className='col-12 ' >
                 <div className='row'>
-                    <video poster={Posta} className="marrrgin paddiing" width="100%" height="100%" controls>
-                        {/* <source src={Player} /> */}
-                    </video>
+                    {/* <video poster={Posta} className="marrrgin paddiing" width="100%" height="100%" controls>
+                        <source src={Player} />
+                    </video> */}
 
                 </div>
             </div>
