@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom'
 
 // React BootStrap
-// import { Form, InputGroup } from 'react-bootstrap';
+import { Form, InputGroup } from 'react-bootstrap';
 
 // Custom Component
 // import SMbuttons from '../Components/SMButton'; 
