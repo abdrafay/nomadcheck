@@ -157,7 +157,7 @@ a.dropdown-item {
 
 
 #main-containe {
-	/* background-image: url("/public/images/background.jpg"); */
+	background-image: url(./images/background.jpg);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -172,7 +172,7 @@ a.dropdown-item {
 
 
 #secondLast-image {
-	/* background-image: url("/public/images/background.jpg"); */
+	background-image: url(./images/background.jpg);
 	justify-content: center;
 	align-items: center;
 	height: 100%;
