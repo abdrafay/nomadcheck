@@ -7,6 +7,7 @@ import Axios from "axios";
 // Cookie utils
 import { getCookie, setCookie, erase } from "./utils/cookies";
 import Home from './Screens/Home';
+import Navbar from './Components/Navbar';
 
 
 function App() {
@@ -76,6 +77,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Navbar />
         <Route path="/" element={<Home />} />        
       </Routes>
     </BrowserRouter>
