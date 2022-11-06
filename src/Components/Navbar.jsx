@@ -19,7 +19,7 @@ import Image from '../images/logo.jpg'
 // import LockIcon from '@mui/icons-material/Lock';
 // import AddIcon from '@mui/icons-material/Add';
 // import DropDwon from "./dropDown";
-import SMbuttons from "./SMbuttons";
+import SMbuttons from "./SMButton";
 // import Modals from "./modal";
 import { Route, Routes, useNavigate } from "react-router-dom";
 // import Otherlisting from "../screens/navbscreens/otherlisting";
