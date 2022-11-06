@@ -35,6 +35,7 @@ export default function Navbar() {
   const [chaange, setChnaage] = useState(false);
   const navigate = useNavigate()
   const navRef = useRef();
+  console.log(appState)
 
   const showNavbar = () => {
       navRef.current.classList.toggle("responsive_nav");

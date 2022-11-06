@@ -8,6 +8,8 @@ import Axios from "axios";
 import { getCookie, setCookie, erase } from "./utils/cookies";
 import Home from './Screens/Home';
 import Navbar from './Components/Navbar';
+import StateContext from './StateContext';
+import DispatchContext from './DispatchContext';
 
 
 function App() {
@@ -75,12 +77,16 @@ function App() {
     }
   })
   return (
+    <StateContext.Provider value={state}>
+      <DispatchContext.Provider value={dispatch}>
     <BrowserRouter>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />        
       </Routes>
     </BrowserRouter>
+    </DispatchContext.Provider>
+    </StateContext.Provider>
   );
 }
 
