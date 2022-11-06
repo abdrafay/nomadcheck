@@ -76,8 +76,8 @@ function App() {
   })
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
-        <Navbar />
         <Route path="/" element={<Home />} />        
       </Routes>
     </BrowserRouter>
