@@ -127,7 +127,7 @@ const handleLogout = () => {
 
 
 </div></header>
-          <NavModal open={open} setOpen={setOpen} chaange={chaange} handleClose={handleClose} />
+          {/* <NavModal open={open} setOpen={setOpen} chaange={chaange} handleClose={handleClose} /> */}
           
       </>
   );
