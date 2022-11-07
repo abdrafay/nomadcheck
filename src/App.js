@@ -1,4 +1,4 @@
-import './App.css';
+// import './App.css';
 // sass
 // import "./sass/App.scss";
 // React Functionns
