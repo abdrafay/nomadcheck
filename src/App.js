@@ -82,10 +82,11 @@ function App() {
     <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
     <BrowserRouter>
+    <div>Hello</div>
       {/* <Navbar /> */}
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<Home />} />        
-      </Routes>
+      </Routes> */}
     </BrowserRouter>
     </DispatchContext.Provider>
     </StateContext.Provider>
