@@ -20,8 +20,8 @@ import Image from '../images/logo.jpg'
 // import AddIcon from '@mui/icons-material/Add';
 // import DropDwon from "./dropDown";
 import SMbuttons from "./SMButton";
-// import Modals from "./modal";
 import { Route, Routes, useNavigate } from "react-router-dom";
+import NavModal from './NavModal';
 // import Otherlisting from "../screens/navbscreens/otherlisting";
 // import SubmitProperty from "../screens/navbscreens/submitproperty";
 // import Myproperty from "../screens/navbscreens/myproperty";
@@ -200,7 +200,7 @@ const handleLogout = () => {
 
 
 </div></header>
-          {/* <Modals open={open} setOpen={setOpen} chaange={chaange} handleClose={handleClose} /> */}
+          <NavModal open={open} setOpen={setOpen} chaange={chaange} handleClose={handleClose} />
           
       </>
   );

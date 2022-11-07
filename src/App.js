@@ -1,4 +1,6 @@
 import './App.css';
+// sass
+import "./sass/App.scss";
 // React Functionns
 import { useEffect, useReducer } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
