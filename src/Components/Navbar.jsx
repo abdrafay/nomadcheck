@@ -61,10 +61,6 @@ const OtherListings = () => {
     navigate("/otherlisting")
 }
 
-const PropertyNext = () => {
-    navigate("/submitlisting")
-}
-
 const handleLogout = () => {
     navigate('/')
     appDispatch({type: "LOGOUT"})
@@ -119,7 +115,7 @@ const handleLogout = () => {
             </li>
             </>
             }
-            <SMbuttons onClick={PropertyNext} id="nav-button" label="Submit Property" />
+            <SMbuttons id="nav-button" label="Submit Property" />
         </ul>
     </div>
   </div>
