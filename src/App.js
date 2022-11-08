@@ -86,7 +86,7 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />        
+        <Route exact path="/" element={<Home />} />        
         {state.loggedIn ? ( 
         <>
               <Route path='/properties' element={<MyProperties />}/>
