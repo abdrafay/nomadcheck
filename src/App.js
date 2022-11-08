@@ -1,6 +1,6 @@
-// import './App.css';
+import './App.css';
 // sass
-// import "./sass/App.scss";
+import "./sass/App.scss";
 // React Functionns
 import { useEffect, useReducer } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -8,10 +8,12 @@ import Axios from "axios";
 
 // Cookie utils
 import { getCookie, setCookie, erase } from "./utils/cookies";
-// import Home from './Screens/Home';
-// import Navbar from './Components/Navbar';
+import Home from './Screens/Home';
+import Navbar from './Components/Navbar';
 import StateContext from './StateContext';
 import DispatchContext from './DispatchContext';
+import MyProperties from './Screens/MyProperties';
+import MyProfile from './Screens/MyProfile';
 
 
 function App() {
@@ -77,16 +79,20 @@ function App() {
     if(state.roles) {
       localStorage.setItem("roles", JSON.stringify(state.roles));
     }
-  })
+  },[state.role])
   return (
     <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
     <BrowserRouter>
-    <div>Hello</div>
       {/* <Navbar /> */}
-      {/* <Routes>
+      <Routes>
         <Route path="/" element={<Home />} />        
-      </Routes> */}
+        {/* {state.loggedIn ? ( 
+        <>
+              <Route  path="/property/add" element={<MyProperties />}/>
+              <Route path="/profile" element={<MyProfile />}/>
+              </>) : ''} */}
+      </Routes>
     </BrowserRouter>
     </DispatchContext.Provider>
     </StateContext.Provider>

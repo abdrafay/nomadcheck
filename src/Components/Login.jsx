@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { Axios } from 'axios';
+import Axios from 'axios';
 import {useState, useContext, useEffect} from 'react'
 import DispatchContext from '../DispatchContext';
 import StateContext from '../StateContext';
@@ -37,7 +37,7 @@ const Login = ({setAlert, setOpen}) => {
             }
             
           } catch (error) {
-            alert(error.error)
+            console.log(error)
           }
         } else {
             setAlert({

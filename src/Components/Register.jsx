@@ -1,5 +1,5 @@
 import { Box } from '@mui/system'
-import { Axios } from 'axios'
+import Axios from 'axios'
 import {useState, useContext, useEffect} from 'react'
 import DispatchContext from '../DispatchContext'
 import StateContext from '../StateContext'
