@@ -19,6 +19,7 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { Alert, Button, TextField } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -58,6 +59,10 @@ const ProfileLayout =({children}) => {
     setOpen(!open);
   };
 
+  const navitems = [{name: 'Profile', route: '/profile'}, {name: 'My Properties', route: '/properties'}, 
+//   {name: 'Add Property', route: 'properties/add'}
+]
+
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -83,36 +88,28 @@ const ProfileLayout =({children}) => {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding>
+          {navitems.map((item, index) => (
+            <ListItem key={index} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {/* {index % 2 === 0 ?  */}
+                  <InboxIcon /> 
+                  {/* : <MailIcon />} */}
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                {/* <ListItemText primary={item.name} /> */}
+                <Link to={item.route}>{item.name}</Link>
               </ListItemButton>
             </ListItem>
           ))}
         </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+        
       </Drawer>
-      <Main open={open} style={{marginTop: "20vh"}}>
+      <Main open={open} className="profilelayout">
       <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawer}
+            className="DrawerIcon"
             edge="start"
             sx={{ mr: 2 }}
           >

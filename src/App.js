@@ -9,11 +9,11 @@ import Axios from "axios";
 // Cookie utils
 import { getCookie, setCookie, erase } from "./utils/cookies";
 import Home from './Screens/Home';
-// import Navbar from './Components/Navbar';
+import Navbar from './Components/Navbar';
 import StateContext from './StateContext';
 import DispatchContext from './DispatchContext';
-// import MyProperties from './Screens/MyProperties';
-// import MyProfile from './Screens/MyProfile';
+import MyProperties from './Screens/MyProperties';
+import MyProfile from './Screens/MyProfile';
 
 
 function App() {
@@ -84,14 +84,15 @@ function App() {
     <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
     <BrowserRouter>
-      {/* <Navbar /> */}
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />        
-        {/* {state.loggedIn ? ( 
+        {state.loggedIn ? ( 
         <>
-              <Route  path="/property/add" element={<MyProperties />}/>
+              <Route path='/properties' element={<MyProperties />}/>
+              {/* <Route  path="/properties/add" element={}/> */}
               <Route path="/profile" element={<MyProfile />}/>
-              </>) : ''} */}
+              </>) : ''}
       </Routes>
     </BrowserRouter>
     </DispatchContext.Provider>
