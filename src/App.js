@@ -9,11 +9,11 @@ import Axios from "axios";
 // Cookie utils
 import { getCookie, setCookie, erase } from "./utils/cookies";
 import Home from './Screens/Home';
-import Navbar from './Components/Navbar';
+// import Navbar from './Components/Navbar';
 import StateContext from './StateContext';
 import DispatchContext from './DispatchContext';
-import MyProperties from './Screens/MyProperties';
-import MyProfile from './Screens/MyProfile';
+// import MyProperties from './Screens/MyProperties';
+// import MyProfile from './Screens/MyProfile';
 
 
 function App() {
