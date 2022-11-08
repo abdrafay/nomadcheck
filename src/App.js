@@ -4,6 +4,7 @@ import { useEffect, useReducer } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Axios from "axios";
 
+import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 // Cookie utils
 import { getCookie, setCookie, erase } from "./utils/cookies";
 import Home from './Screens/Home';
@@ -80,6 +81,7 @@ function App() {
     <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
     <BrowserRouter>
+    <AccessTimeFilledIcon />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />        
