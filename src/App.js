@@ -15,6 +15,7 @@ import DispatchContext from './DispatchContext';
 import MyProperties from './Screens/MyProperties';
 import MyProfile from './Screens/MyProfile';
 import NewProperty from './Screens/NewProperty';
+import Otherlisting from './Screens/OtherListing';
 
 
 function App() {
@@ -90,6 +91,7 @@ function App() {
         <Route exact path="/" element={<Home />} />        
         {state.loggedIn ? ( 
         <>
+            <Route path="/property/listing" element={<Otherlisting />} />
               <Route path="/property/add" element={<NewProperty />} />
               <Route path='/properties' element={<MyProperties />}/>
               {/* <Route  path="/properties/add" element={}/> */}
