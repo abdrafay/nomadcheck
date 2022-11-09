@@ -8,7 +8,7 @@ import card from '../config/images/card-01.jpg'
 import BathroomIcon from '@mui/icons-material/Bathroom';
 import BedroomParentIcon from '@mui/icons-material/BedroomParent';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import InputSlider from '../Components/slider';
+import InputSlider from '../Components/Slider';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
