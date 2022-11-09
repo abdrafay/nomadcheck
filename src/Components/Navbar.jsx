@@ -20,7 +20,7 @@ import Image from '../images/logo.jpg'
 // import AddIcon from '@mui/icons-material/Add';
 // import DropDwon from "./dropDown";
 import SMbuttons from "./SMButton";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import NavModal from './NavModal';
 // import Otherlisting from "../screens/navbscreens/otherlisting";
 // import SubmitProperty from "../screens/navbscreens/submitproperty";
@@ -96,11 +96,20 @@ const handleLogout = () => {
       </ul>
         <ul className="navbar-nav me-autoz my-2 my-lg-0 navbar-nav-scroll">
         {appState.loggedIn ? 
-            <li className="nav-item">
-            <a className="nav-link" onClick={handleLogout}>
+
+            <>
+             <li className="nav-item">
+              <Link className="nav-link" to="/profile">
+                {/* <LockIcon className="logo" /> */}
+                Profile</Link>
+            </li>
+              <li className="nav-item">
+              <a className="nav-link" onClick={handleLogout}>
                 {/* <LockIcon className="logo" /> */}
                 Logout</a>
-        </li>
+            </li>
+            </>
+            
             : 
             <>
             <li className="nav-item">

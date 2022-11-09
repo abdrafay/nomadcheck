@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 // import {Form, InputGroup} from 'react-bootstrap'
 import SearchIcon from '@mui/icons-material/Search';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
@@ -15,10 +15,13 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import ManIcon from '@mui/icons-material/Man';
-import {Slider, Typography} from '@mui/material';
+import {Button, Slider, Typography} from '@mui/material';
 import {Box} from '@mui/system';
 import Cards from '../Components/Cards';
 import { Link } from 'react-router-dom';
+import Axios from 'axios';
+import StateContext from '../StateContext';
+import DispatchContext from '../DispatchContext'
 
 function valuetext(value) {
   return `${value}°C`;
@@ -30,24 +33,62 @@ export default function Otherlisting() {
     var color = e.value;
     e.style.color = color;
   }
-
+  const appState = useContext(StateContext)
+  const appDispatch = useContext(DispatchContext)
   const [value,
-    setValue] = React.useState([0, 0]);
+    setValue] = useState([0, 0]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const [newList, setNewList] = useState([])
+  const [search, setSearch] = useState('')
+
+
+    // call get method to /api/featured using axios
+    const getNewList = async () => {
+        try {
+            const {data} = await Axios.get(`${appState.apiEndPoint}/api/list`)
+            console.log(data)
+            setNewList(data.rooms)
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+    useEffect(() => {
+        getNewList();
+    },[])
+    const handleSearchSubmit = async (e) => {
+        e.preventDefault()
+        try {
+            const {data} = await Axios.post(`${appState.apiEndPoint}/api/searches`, {
+                search: {
+                    text: search,
+                    start_date: '12/12/2022'
+                }
+            })
+            setNewList(data.rooms)
+            console.log(data)
+            
+        } catch (error) {
+            console.log(error)   
+        }
+    }
 
   return (
     <div className='content other-listing'>
     <div className='container'>
       <div className='row content-top'>
         <div className='col-md-5'>
-            <div class="search-form-div">
-                <SearchIcon id="color-mistake"/>
-                <input placeholder='Search listing' id='other-search'/>
-                <SMbuttons id="nav-button" label="Search" />
-            </div>
+            <form onSubmit={handleSearchSubmit}>
+                <div class="search-form-div">
+                    <SearchIcon id="color-mistake" />
+                    <input placeholder='Search listing' value={search} onChange={ e => setSearch(e.target.value)} id='other-search'/>
+                    <Button variant="contained" type="submit" className="round-border-button ms-2">Search</Button>
+                </div>
+            </form>
+            
         </div>
         <div className='col-md-4'>
           <div>
@@ -85,10 +126,7 @@ export default function Otherlisting() {
       </div>
       <div className='row'>
         <div className='col-lg-8'>
-            <Cards/>
-            <Cards/>
-            <Cards/>
-            <Cards/>
+            {newList.length > 0 ? newList.map((item, ind) => <Cards key={ind} item={item} />) : <h1>No Item Found</h1> }
         </div>
 
         <div className='col-lg-4'>

@@ -227,7 +227,7 @@ const MyProfile = () => {
         message={alert.message}
         setOpen={setAlertOpen}
       />
-      <div className="container profile-container">
+      <div className="profile-wrapper">
         <div>
           <Alert className="mb-2" severity="info">
             <strong>Fill out Personal Details!</strong> Make sure to enter all
@@ -245,7 +245,7 @@ const MyProfile = () => {
         <form onSubmit={handleUpdateSubmit}>
           <h2>Your details</h2>
           <div className="border w-80 p-5">
-            <div className="row px-0 mx-0">
+            <div className="row px-0 mx-0 align-items-start">
               <div className="col-md-8">
                 <div>
                   <TextField
@@ -308,11 +308,10 @@ const MyProfile = () => {
                   />
                 </div>
               </div>
-              <div className="col-md-4 text-center m-auto">
-                {/* <img src={image} alt="" /> */}
+              <div className="col-md-4 text-center ">
                 <img src={imageURL} width={100} height={100} alt="" />
                 <div className="mt-2">
-                  <Button variant="contained" component="label">
+                  <Button variant="contained" className="uploadButton" component="label">
                     Upload Image
                     <input
                       hidden
@@ -395,10 +394,10 @@ const MyProfile = () => {
                 {/* <div className='col-md-6 px-1'>
                     <TextField type="number" className='w-100' id="mobile" label="*Mobile (*Add the country code format Ex: +1 232 3322" variant="standard" />
                     </div> */}
-                <SMbuttons
-                  type="submit"
-                  label={"Save user Profile"}
-                ></SMbuttons>
+                    <div>
+                      <Button variant="contained" className="round-border-button mt-2">Save user Profile</Button>
+
+                    </div>
               </div>
             </div>
           </div>
@@ -475,7 +474,10 @@ const MyProfile = () => {
                     />
                   </FormGroup>
                 </div>
-                <Button>Save</Button>
+                <div>
+                  <Button variant="contained" className="round-border-button mt-3">Save</Button>
+
+                </div>
               </div>
             </div>
           </div>
@@ -537,7 +539,9 @@ const MyProfile = () => {
                     number.
                   </p>
                 </div>
-                <Button>Delete account</Button>
+                <div>
+                  <Button variant="contained" className="round-border-button mt-3">Delete account</Button>
+                </div>
               </div>
             </div>
           </div>

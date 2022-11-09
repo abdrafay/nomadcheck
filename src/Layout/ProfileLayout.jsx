@@ -106,6 +106,7 @@ const ProfileLayout =({children}) => {
         
       </Drawer>
       <Main open={open} className="profilelayout">
+      <div className="container profile-container">
       <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -116,7 +117,10 @@ const ProfileLayout =({children}) => {
           >
             <MenuIcon />
           </IconButton>
+          
             {children}
+      </div>
+      
         </Main>
         </Box>
     );

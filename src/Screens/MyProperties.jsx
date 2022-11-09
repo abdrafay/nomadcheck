@@ -1,30 +1,14 @@
 import {useContext, useEffect, useState} from 'react'
 
 
-import { Form, InputGroup } from 'react-bootstrap'
+
 import SearchIcon from '@mui/icons-material/Search';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import SMbuttons from '../Components/SMButton';
-import AirlineStopsIcon from '@mui/icons-material/AirlineStops';
-import card from '../images/card-01.jpg'
-import BathroomIcon from '@mui/icons-material/Bathroom';
-import BedroomParentIcon from '@mui/icons-material/BedroomParent';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-// import InputSlider from '../components/slider';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
-import ManIcon from '@mui/icons-material/Man';
-import { Slider, Typography } from '@mui/material';
-import { Box } from '@mui/system'; 
-// import Cards from '../components/cards';
-// import property1 from '../images/property1.jpg'
 import MyPropertyCard from '../Components/MyPropertyCard';
 import ProfileLayout from '../Layout/ProfileLayout';
 import StateContext from '../StateContext';
 import Axios from 'axios';
+import { Button } from '@mui/material';
 
 const MyProperties = () => {
   const appState = useContext(StateContext);
@@ -49,13 +33,13 @@ const MyProperties = () => {
     }, []);
   return (
       <ProfileLayout>
-        <div className='content'>
-        <div className='container'>
           <div className='row'>
-              <div className='col-12'>
-                  <SearchIcon id="color-mistake" />
-                  <input placeholder='Search listing' id='other-search' />
-                  <SMbuttons id="nav-button" label="Search" />
+              <div className='col-md-7 col-12'>
+                  <div className='search-form-div'>
+                    <SearchIcon id="color-mistake" />
+                    <input placeholder='Search listing' id='other-search' />
+                    <Button label="Search" className='ms-3 round-border-button' variant="contained">Search</Button>
+                  </div>
               </div>
           </div>    
 
@@ -70,8 +54,6 @@ const MyProperties = () => {
                 </div>}
               
           </div>
-        </div>
-      </div>
       </ProfileLayout>
   )
 }

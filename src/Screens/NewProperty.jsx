@@ -1,7 +1,6 @@
 import { FormControl, InputLabel, MenuItem, Select, TextareaAutosize, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { Stepper, Step } from "react-form-stepper";
-// import { MdDescription } from "react- icons/md";
 import StepWizard from "react-step-wizard";
 import { Row, Col, Button, FormGroup, Label, Input } from "reactstrap";
 import ProfileLayout from "../Layout/ProfileLayout";
@@ -9,7 +8,6 @@ import countries from "i18n-iso-countries";
 import enLocale from "i18n-iso-countries/langs/en.json"
 
 countries.registerLocale(enLocale);
-// countries.registerLocale(itLocale);
 
 const countryObj = countries.getNames("en", {select: "official" });
 
@@ -287,7 +285,7 @@ const Sample = () => {
   };
 
   const handleComplete = () => {
-    alert("You r done. TQ");
+    alert("You r done.");
   };
 
   return (
