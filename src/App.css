@@ -229,7 +229,26 @@ a.dropdown-item {
 .content-add-new-property .Mui-active{
 	color: #f3694aad!important;
 }
-
+.account-verfication {
+    padding: 35px 0;
+}
+.account-verfication .border {
+    border-radius: 12px;
+}
+.account-verfication .p-number, .account-verfication .e-mail {
+    justify-content: space-between;
+}
+.MuiButton-root, button.btn.btn-secondary {
+    background: #F3684A;
+    border: 1px solid;
+    padding: 12px 25px!important;
+	color: #fff!important;
+    border-radius: 8px;
+	background-color: #F3684A!important;
+}
+ .MuiButton-root:hover {
+    background: #e45e40;
+}
 .logo {
 	color: #F3684A;height: 70px;
 }

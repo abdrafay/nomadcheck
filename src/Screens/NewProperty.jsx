@@ -1,10 +1,24 @@
-import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select, TextareaAutosize, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { Stepper, Step } from "react-form-stepper";
 // import { MdDescription } from "react- icons/md";
 import StepWizard from "react-step-wizard";
 import { Row, Col, Button, FormGroup, Label, Input } from "reactstrap";
 import ProfileLayout from "../Layout/ProfileLayout";
+import countries from "i18n-iso-countries";
+import enLocale from "i18n-iso-countries/langs/en.json"
+
+countries.registerLocale(enLocale);
+// countries.registerLocale(itLocale);
+
+const countryObj = countries.getNames("en", {select: "official" });
+
+const countryArr = Object.entries(countryObj).map(([key, value]) => {
+    return {
+      label: value,
+      value:key
+    };
+  });
 
 const ActionButtons = (props) => {
   const handleBack = () => {
@@ -68,9 +82,9 @@ const One = (props) => {
       <span style={{ color: "red" }}>{error}</span>
       <h1>This is step 1 content</h1>
       <FormGroup>
-      <TextField id="first-name" className='w-100' name="title" label="Title" variant="standard" onChange={onInputChanged} />
+      <TextField id="first-name" className='w-100' name="title" label="*Title (mandatory)" variant="standard" onChange={onInputChanged} />
 <FormControl fullWidth>
-  <InputLabel id="category">Category</InputLabel>
+  <InputLabel id="category">*Category (mandatory)</InputLabel>
   <Select
     labelId="category"
     id="category"
@@ -88,7 +102,84 @@ const One = (props) => {
     <MenuItem value={'Villa'}>Villa</MenuItem>    
   </Select>
 </FormControl>
-      <TextField className='w-100' name="title" label="Title" variant="standard" onChange={onInputChanged} />
+
+<FormControl fullWidth>
+  <InputLabel id="prop_action_category">*Listed In/Room Type (mandatory)</InputLabel>
+  <Select
+    labelId="prop_action_category"
+    id="prop_action_category"
+    label="prop_action_category"
+  >
+    <MenuItem value={'none'}>None</MenuItem>
+    <MenuItem value={'Entire home'}>Entire home</MenuItem>
+    <MenuItem value={'Private room'}>Private room</MenuItem>
+    <MenuItem value={'Shared room'}>Shared room</MenuItem> 
+  </Select>
+</FormControl>
+
+<FormControl fullWidth>
+  <InputLabel id="guest_no">*Guest No (mandatory)</InputLabel>
+  <Select
+    labelId="guest_no"
+    id="guest_no"
+    label="guest_no"
+  >
+    <MenuItem value={'0'}>0</MenuItem>
+    <MenuItem value={'1'}>1</MenuItem>
+    <MenuItem value={'2'}>2</MenuItem>
+    <MenuItem value={'3'}>3</MenuItem>
+    <MenuItem value={'4'}>4</MenuItem>
+    <MenuItem value={'5'}>5</MenuItem>
+    <MenuItem value={'6'}>6</MenuItem>
+    <MenuItem value={'7'}>7</MenuItem>
+    <MenuItem value={'8'}>8</MenuItem>
+    <MenuItem value={'9'}>9</MenuItem>    
+    <MenuItem value={'10'}>10</MenuItem>    
+    <MenuItem value={'11'}>11</MenuItem>    
+    <MenuItem value={'12'}>12</MenuItem>    
+    <MenuItem value={'13'}>13</MenuItem>    
+    <MenuItem value={'14'}>14</MenuItem>    
+  </Select>
+</FormControl>
+
+      <TextField className='w-100' name="property_city_front" label="*City (mandatory)" placeholder="Type the city name" variant="standard" onChange={onInputChanged} />
+      <TextField className='w-100' name="property_city_front" label="District/Area" placeholder="Type the District/Area name" variant="standard" onChange={onInputChanged} />
+
+<FormControl fullWidth>
+  <InputLabel id="property_country">Country</InputLabel>
+  <Select
+    labelId="property_country"
+    id="property_country"
+    label="property_country"
+  >
+    {!!countryArr?.length &&
+countryArr.map(({label, value }) => (
+<MenuItem value={value}>{label}</MenuItem>
+))}
+  </Select>
+</FormControl>
+
+<FormControl fullWidth>
+<TextareaAutosize
+  aria-label="property_description"
+  minRows={3}
+  placeholder="Describe your property"
+  style={{padding:"10px"}}
+/>
+</FormControl>
+
+<FormControl fullWidth>
+  <InputLabel id="cancellation_policy">Cancellation Policy</InputLabel>
+  <Select
+    labelId="cancellation_policy"
+    id="cancellation_policy"
+    label="cancellation_policy"
+  >
+    <MenuItem value={'Strict'}>Strict</MenuItem>
+    <MenuItem value={'Moderate'}>Moderate</MenuItem>
+    <MenuItem value={'Flexible'}>Flexible</MenuItem>
+  </Select>
+</FormControl>
       
         {/* <Label>Name: </Label>
         <Input
@@ -171,7 +262,7 @@ const Three = (props) => {
   );
 };
 
-const NewProperty = () => {
+const Sample = () => {
   const [stepWizard, setStepWizard] = useState(null);
   const [user, setUser] = useState({});
   const [activeStep, setActiveStep] = useState(0);
@@ -229,4 +320,4 @@ const NewProperty = () => {
   );
 };
 
-export default NewProperty;
+export default Sample;
