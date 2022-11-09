@@ -77,6 +77,8 @@ const MyProfile =() => {
   const [timezonez, settimezone] = useState('')
   const [checked, setChecked] = useState(false)
   const [checked1, setChecked1] = useState(false)
+  const [imageURL, setImageURL] = useState('')
+  const [image, setImage] = useState(null)
   const [alert, setAlert]= useState({
     open: false,
     message: "",
@@ -104,8 +106,11 @@ const MyProfile =() => {
     setTwitterURL(appState.user.twitter !== null ? appState.user.twitter : '')
     setLinkedInURL(appState.user.linkedin !== null ? appState.user.linkedin : '')
     setCountry(appState.user.country !== null ? appState.user.country : '')
+    setImageURL(appState.user.image_url ? (appState.apiEndPoint + appState.user.image_url) : '')
+    // setImage(appState.user.image_url ? (appState.apiEndPoint + appState.user.image_url) : '')
   },[appState.user])
   const handleUpdateSubmit = async e => {
+    console.log("myimage", image)
     e.preventDefault()
     try {
       const {data} = await Axios.put(`${appState.apiEndPoint}/api/profiles/${appState.user.id}`,{
@@ -130,6 +135,21 @@ const MyProfile =() => {
           Authorization: `Bearer ${appState.token}`
       }
       })
+      const dataImage = await Axios.post(`${appState.apiEndPoint}/api/user/image`, {
+        image: {
+          image
+        }
+        
+      }, {
+        headers: {
+          Authorization: `Bearer ${appState.token}`
+      }
+        
+      })
+      console.log(dataImage, "image")
+      console.log(data , "data")
+      
+      
       if(data.success) {
         setAlert({
           open: true,
@@ -148,7 +168,14 @@ const MyProfile =() => {
       console.log(error)
     }
   }
-
+  const handleImage = (e) => {
+    setImageURL(URL.createObjectURL(e.target.files[0]))
+    setImage({
+      name: e.target.files[0].name,
+      base: "base64",
+      type: e.target.files[0].type
+    }); 
+  }
   return (
     <ProfileLayout>
         <MyAlert open={alert.open} type={alert.type} message={alert.message} setOpen={setAlertOpen} />
@@ -187,11 +214,12 @@ const MyProfile =() => {
                     
                 </div>
                 <div className="col-md-4 text-center m-auto">
-                    <img src="https://p.kindpng.com/picc/s/105-1055656_account-user-profile-avatar-avatar-user-profile-icon.png" width={100} height={100} alt="" />
+                    {/* <img src={image} alt="" /> */}
+                    <img src={imageURL} width={100} height={100} alt="" />
                     <div className='mt-2'>
                         <Button variant="contained" component="label">
                         Upload Image
-                        <input hidden accept="image/*" multiple type="file" />
+                        <input hidden accept="image/*" onChange={handleImage} type="file" />
                         </Button>
                     </div>
                 </div>

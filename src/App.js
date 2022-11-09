@@ -35,11 +35,17 @@ function App() {
           user: action.payload,
           token: action.token,
         };
+        case "UPDATE_USER":
+        return {
+          ...state,
+          user: action.payload
+        }
         case "UPDATE_ROLES":
           return {
             ...state,
             roles: action.payload,
           };
+      
       case "LOGOUT":
         return {
           ...state,
@@ -67,6 +73,28 @@ function App() {
     }
     getRoles();
   },[])
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        console.log(state.token)
+        const {data} = await Axios.get(`${state.apiEndPoint}/api/profiles?user_id=${state.user.id}`, {
+          headers: {
+            Authorization: `Bearer ${state.token}`
+        }
+        })
+        
+        if(data.success) {
+          dispatch({type: "UPDATE_USER", payload: data.user})
+          console.log("UPDATED", data.user)
+        }
+      }catch(err) {
+        console.log(err)
+      }
+    }
+    if(state.token) {
+      getUserData()
+    }
+  },[state.token])
   useEffect(()  => {
     if(state.loggedIn) {
       localStorage.setItem("user", JSON.stringify(state.user));
@@ -89,11 +117,11 @@ function App() {
       <Navbar />
       <Routes>
         <Route exact path="/" element={<Home />} />        
+        <Route path="/properties" element={<Otherlisting />} />
         {state.loggedIn ? ( 
         <>
-            <Route path="/property/listing" element={<Otherlisting />} />
               <Route path="/property/add" element={<NewProperty />} />
-              <Route path='/properties' element={<MyProperties />}/>
+              <Route path='/profile/my-properties' element={<MyProperties />}/>
               {/* <Route  path="/properties/add" element={}/> */}
               <Route path="/profile" element={<MyProfile />}/>
               </>) : ''}
