@@ -59,8 +59,8 @@ const ProfileLayout =({children}) => {
     setOpen(!open);
   };
 
-  const navitems = [{name: 'Profile', route: '/profile'}, {name: 'My Properties', route: '/properties'},
-  {name: 'Add Property', route: '/property/add'}, {name: "Other Listing", route: '/property/listing'} 
+  const navitems = [{name: 'Profile', route: '/profile'}, {name: 'My Properties', route: '/profile/my-properties'},
+  {name: 'Add Property', route: '/property/add'}, {name: "Other Listing", route: '/properties'} 
 //   {name: 'Add Property', route: 'properties/add'}
 ]
 

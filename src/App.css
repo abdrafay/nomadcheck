@@ -175,7 +175,7 @@ a.dropdown-item {
 		opacity: 1;
 	}
 
-	header nav {
+	/* header nav {
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -193,7 +193,7 @@ a.dropdown-item {
 
 	header .responsive_nav {
 		transform: none;
-	}
+	} */
 
 	nav .nav-close-btn {
 		position: absolute;
