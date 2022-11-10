@@ -16,6 +16,8 @@ import MyProperties from './Screens/MyProperties';
 import MyProfile from './Screens/MyProfile';
 import NewProperty from './Screens/NewProperty';
 import Otherlisting from './Screens/OtherListing';
+import OtherlistingMap from './Screens/OtherListingMap';
+import AccountVerification from './Screens/AccountVerification';
 
 
 function App() {
@@ -122,6 +124,8 @@ function App() {
         <>
               <Route path="/property/add" element={<NewProperty />} />
               <Route path='/profile/my-properties' element={<MyProperties />}/>
+              <Route path="/other-listing-map" element={<OtherlistingMap />} />
+              <Route path="/account-verification" element={<AccountVerification />} />
               {/* <Route  path="/properties/add" element={}/> */}
               <Route path="/profile" element={<MyProfile />}/>
               </>) : ''}

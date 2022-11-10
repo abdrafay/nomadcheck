@@ -24,6 +24,9 @@ header {
 	background-color: rgb(255, 255, 255);
 	color: black;
 }
+a.navbar-brand {
+    margin: 0 15px 0 0;
+}
 
 nav a {
 	margin: 0 1rem;
@@ -165,6 +168,9 @@ a.dropdown-item {
     padding-top: 100px;	
 	text-align: center;
 }
+#testimonials img {
+    width: 100%;
+}
 #testimonials h1{
 	font-weight: bold;
 }
@@ -255,7 +261,7 @@ a.dropdown-item {
 	color: #F3684A!important;
 }
 .logo {
-	color: #F3684A;height: 70px;
+	color: #F3684A;
 }
 /* .MuiButtonBase-root {
 	padding: 7px 30px !important;
@@ -330,6 +336,7 @@ a.dropdown-item {
 #wrow {
 	background-color: #282D33;
 	text-align: center;
+	padding-bottom: 80px;
 }
 
 #next-row {
@@ -342,7 +349,7 @@ a.dropdown-item {
 
 #SIMPLE-ROW {
 	background-color: #F3684A;
-	/* width: 100%; */
+	padding-bottom: 50px;
 
 }
 
@@ -464,8 +471,8 @@ a.dropdown-item {
 }
 .footer-logo {
     position: absolute;
-    left: 25px;
-    top: -111px;
+	right: 17%;
+    top: -34px;
 }
 .copyright {
     color: #fff;
@@ -512,6 +519,12 @@ h6{
     background: #fee5ce;
 	padding-bottom: 50px;
 }
+#how-works .new-bgcolor {
+    padding-bottom: 10px;
+}
+#how-works h3 {
+    font-size: 22px;
+}
 .blackback {
     background-color: black;
     opacity: .7;
@@ -527,7 +540,7 @@ h6{
     border-radius: 12px;
 }
 .profile-container label {
-    font-weight: bold!important;
+    font-weight: bold!important;    background: #fff;
 }
 .MuiFormControl-root {
     margin: 10px 0!important;

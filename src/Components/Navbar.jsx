@@ -6,9 +6,9 @@ import { erase } from '../utils/cookies';
 // import { useNavigate } from 'react-router-dom';
 
 //Zain
-// import Container from 'react-bootstrap/Container';
-// import Nav from 'react-bootstrap/Nav';
-// import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 // Hasnain
@@ -16,8 +16,10 @@ import { useRef, useState } from "react";
 // import { Nav, NavLink } from "react-bootstrap";
 // import { FaBars, FaTimes } from "react-icons/fa";
 import Image from '../images/logo.jpg'
-// import LockIcon from '@mui/icons-material/Lock';
-// import AddIcon from '@mui/icons-material/Add';
+import AddIcon from '@mui/icons-material/Add';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
+import PersonIcon from '@mui/icons-material/Person';
+import LogoutIcon from '@mui/icons-material/Logout';
 // import DropDwon from "./dropDown";
 import SMbuttons from "./SMButton";
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
@@ -28,7 +30,7 @@ import NavModal from './NavModal';
 
 
 // Hasnain
-export default function Navbar() {
+export default function Navbarz() {
     const appState = useContext(StateContext)
     const appDispatch = useContext(DispatchContext)
   const [open, setOpen] = useState(false);
@@ -57,9 +59,9 @@ const SgnUpUser = () => {
 }
 
 //Zain
-const OtherListings = () => {
-    navigate("/otherlisting")
-}
+// const OtherListings = () => {
+//     navigate("/otherlisting")
+// }
 
 const handleLogout = () => {
     navigate('/')
@@ -69,43 +71,34 @@ const handleLogout = () => {
 
   return (
       <>
-          <header id="nav-header">
-          <div className="container">
-              
-          
-<nav className="navbar navbar-expand-lg navbar-light bg-lightz">
-  <div className="container-fluid">
-    <a className="navbar-brand" href="/"><img className="logo" src={Image} width={120} height={92} alt="Compnay-logo" /></a>
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
-        <NavDropdown title="Exclusives" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#">Lima</NavDropdown.Item>
-              <NavDropdown.Item href="#">Bogota</NavDropdown.Item>
-              <NavDropdown.Item href="#">Medellin</NavDropdown.Item>
-              <NavDropdown.Item href="#">Quito</NavDropdown.Item>
-        </NavDropdown>
-        <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="#">Talk to an Agent</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">Namadroof Life</a>
-        </li>
-      </ul>
-        <ul className="navbar-nav me-autoz my-2 my-lg-0 navbar-nav-scroll">
+          <header id="nav-header">       
+    <Navbar bg="lightz" expand="lg">
+      <Container>
+        <Navbar.Brand href="/"><img className="logo" src={Image} width={120} height={92} alt="Compnay-logo" /></Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <NavDropdown title="Exclusives" id="basic-nav-dropdown">
+                  <NavDropdown.Item href="#">Lima</NavDropdown.Item>
+                  <NavDropdown.Item href="#">Bogota</NavDropdown.Item>
+                  <NavDropdown.Item href="#">Medellin</NavDropdown.Item>
+                  <NavDropdown.Item href="#">Quito</NavDropdown.Item>
+            </NavDropdown>
+            <Nav.Link href="#">Talk to an Agent</Nav.Link>
+            <Nav.Link href="#link">Namadroof Life</Nav.Link>
+          </Nav>
+          <ul className="navbar-nav me-autoz my-2 my-lg-0 navbar-nav-scroll">
         {appState.loggedIn ? 
 
             <>
              <li className="nav-item">
               <Link className="nav-link" to="/profile">
-                {/* <LockIcon className="logo" /> */}
+                <PersonIcon className="logo" />
                 Profile</Link>
             </li>
               <li className="nav-item">
               <a className="nav-link" onClick={handleLogout}>
-                {/* <LockIcon className="logo" /> */}
+                <LogoutIcon className="logo" />
                 Logout</a>
             </li>
             </>
@@ -114,24 +107,24 @@ const handleLogout = () => {
             <>
             <li className="nav-item">
                 <a className="nav-link" onClick={LoginUser}>
-                    {/* <LockIcon className="logo" /> */}
+                    <LockOpenIcon className="logo" />
                     Login</a>
             </li>
             <li className="nav-item">
                 <a className="nav-link" onClick={SgnUpUser}>
-                    {/* <AddIcon fontSize="34" className="logo" /> */}
+                    <AddIcon fontSize="34" className="logo" />
                     Signup</a>
             </li>
             </>
             }
+            <Link to="/property/add">
             <SMbuttons id="nav-button" label="Submit Property" />
+            </Link>
         </ul>
-    </div>
-  </div>
-</nav>
-
-
-</div></header>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>          
+</header>
           <NavModal open={open} setOpen={setOpen} chaange={chaange} handleClose={handleClose} />
           
       </>

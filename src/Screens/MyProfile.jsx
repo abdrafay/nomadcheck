@@ -168,25 +168,22 @@ const MyProfile = () => {
           },
         }
       );
-      if(image != null) {
-        const dataImage = await Axios.post(
-          `${appState.apiEndPoint}/api/user/image`,
-          {
-            image: {
-              name: image.name,
-              type: image.type,
-              base64: image.base,
-            },
+      const dataImage = await Axios.post(
+        `${appState.apiEndPoint}/api/user/image`,
+        {
+          image: {
+            name: image.name,
+            type: image.type,
+            base64: image.base,
           },
-          {
-            headers: {
-              Authorization: `Bearer ${appState.token}`,
-            },
-          }
-        );
-      }
-      
-        console.log('Updated')
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${appState.token}`,
+          },
+        }
+      );
+
       if (data.success) {
         setAlert({
           open: true,
@@ -232,16 +229,16 @@ const MyProfile = () => {
       />
       <div className="profile-wrapper">
         <div>
-          <Alert className="mb-2" severity="info">
+          {/* <Alert className="mb-2" severity="info">
             <strong>Fill out Personal Details!</strong> Make sure to enter all
             your personal details as well as a profile picture, as this would
             help us confirm you as a Verified Tenant/Host
-          </Alert>
-          <Alert className="mb-2" severity="warning">
+          </Alert> */}
+          {/* <Alert className="mb-2" severity="warning">
             <strong>For Tenants:</strong> Hosts prefer tenants who provide
             detailed, accurate information. Please, tell as us much as you can
             in About Me'ection, specially about where you will work or study
-          </Alert>
+          </Alert> */}
         </div>
 
         {/* <DrawerHeader /> */}
@@ -398,7 +395,7 @@ const MyProfile = () => {
                     <TextField type="number" className='w-100' id="mobile" label="*Mobile (*Add the country code format Ex: +1 232 3322" variant="standard" />
                     </div> */}
                     <div>
-                      <Button variant="contained" type="submit" className="round-border-button mt-2">Save user Profile</Button>
+                      <Button variant="contained" className="round-border-button mt-2">Save user Profile</Button>
 
                     </div>
               </div>

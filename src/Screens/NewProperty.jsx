@@ -78,7 +78,7 @@ const One = (props) => {
   return (
     <div>
       <span style={{ color: "red" }}>{error}</span>
-      <h1>This is step 1 content</h1>
+      {/* <h1>This is step 1 content</h1> */}
       <FormGroup>
       <TextField id="first-name" className='w-100' name="title" label="*Title (mandatory)" variant="standard" onChange={onInputChanged} />
 <FormControl fullWidth>

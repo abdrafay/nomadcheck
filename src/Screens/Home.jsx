@@ -11,9 +11,9 @@ import SMbuttons from '../Components/SMButton';
 import Image from '../images/rounded.png'
 import SecondImg from '../images/net.png'
 import BedImg from '../images/rest.png'
-import first2 from '../images/FIRST1.png'
-import second2 from '../images/ssecond2.png'
-import third2 from '../images/third2.png'
+import t1 from '../images/t1.jpg'
+import t2 from '../images/t2.jpg'
+import t3 from '../images/t3.jpg'
 import Heart from '../images/heart-icon.png'
 import Star from '../images/star.png'
 import Like from '../images/like.png'
@@ -27,7 +27,7 @@ import Arrow from '../images/arrow.png'
 import applogo from '../images/flogoz.png'
 
 // Icons
-// import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from '@mui/icons-material/Search';
 // import FacebookIcon from '@mui/icons-material/Facebook';
 // import GoogleIcon from '@mui/icons-material/Google';
 // import YouTubeIcon from '@mui/icons-material/YouTube';
@@ -36,29 +36,30 @@ const Home = () => {
   return (
     
         <section id='Home'>
-        <div className='row' id='main-containe'>
+        <div className='rowz' id='main-containe'>
+            <div className='container'>
             <div className='col-12' id='bear-pic' >
-                <h1 className='banner-heading white-color fontWeight textAlign marginTop75px'>Get to , live in our <br></br> Exclusvies Student Housing</h1>
+                <h1 className='banner-heading white-color fontWeight textAlign marginTop75pxz'>Get to , live in our <br></br> Exclusvies Student Housing</h1>
                 <div className='alignSelf withFull'>
                     <InputGroup id='inputss' >
                         <InputGroup.Text className='backgroundColor' style={{ borderEndStartRadius: "33px", borderTopLeftRadius: "33px" }}>
-                            {/* <SearchIcon id="searchicooons" /> */}
+                            <SearchIcon id="searchicooons" />
                             </InputGroup.Text>
                         <Form.Control type='text' placeholder="Search by city, neighborhood or unversity" aria-label="Search" />
                         <InputGroup.Text className='banner-search-btn fontSize fontWeight backgroundColor' style={{ borderTopRightRadius: "33px", borderEndEndRadius: "33px", cursor: "pointer" }}>Search</InputGroup.Text>
                     </InputGroup>
                 </div>
             </div>
+            </div>
         </div>
-        <div className='row' id="wrow">
-            <div className='row marginBottom80 textAlign' >
+        <div className='rowz' id="wrow">
+            <div className='container'>
+            <div className='row textAlign' >
                 <div className='col-12  Marrginttop50 ' >
                     <h2 className='bigfont fontWeight white-color textAlign justifyContent letterspacing textJustify marginBottom30' >Best co-living experience for your <br></br> exchange semester in south America </h2>
                 </div>
-
                 <div className='row' id="next-row">
                     <div className='row marginBottom20 marginTOp25'>
-
                         <div className='col-md-6 textAlign' >
                             <img src={SecondImg} width="29%" className='marginbottom10' alt="" />
                             <h4>Worldwide Roommates</h4>
@@ -84,15 +85,15 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+            </div>
         </div>
 
-        <div className='container-fluid  margin paddiing'>
+        <div className='container-fluid'>
             <div className='col-12 ' >
                 <div className='row'>
                     {/* <video poster={Posta} className="marrrgin paddiing" width="100%" height="100%" controls>
                         <source src={Player} />
                     </video> */}
-
                 </div>
             </div>
         </div>
@@ -105,49 +106,47 @@ const Home = () => {
                         <p className='newcolr textAlign' ></p>
                     </div>
                 </div>
-
                 <div className='row textAlign marginbottom140z marginTop10' >
                     <div className='col-md-4 ' >
                         <div>
-                            <div className='row width50 height125 new-bgcolor borderRaduis boxshaodow ' style={{ marginLeft: "260px" }} >
+                            <div className='rowz width50z height125z new-bgcolor borderRaduis boxshaodow '>
                                 <div>
                                     <img src={HomeIcon} width="53%" style={{ position: "relative", top: -9 }} />
                                     <div className='white-color marginauto with-24 heihgt24 border-radeoios70 backgroundColor' >
                                         <p className='textAlign newcoloradd' >1</p>
                                     </div>
                                 </div>
-                                <h3 className='color-black fontSize fontfamily01 fontWeight marginTOp25 ' >Search For A Verified Roof</h3>
-                                <p className='marginBottom30 white-color fontsize11  textAlign textJustify fontfamily01' >
+                                <h3 className='color-black fontfamily01 fontWeight marginTOp25 ' >Search For A Verified Roof</h3>
+                                <p className='marginBottom30 white-color   textAlign textJustify fontfamily01' >
                                     Search Through multiple flats, <br></br>rooms, appartments all verified<br></br> by our Nomadroof Team.
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div className='col-md-4  ' >
-                        <div className='row with70 new-bgcolor  borderRaduis boxshaodow ' style={{ marginLeft: "100px" }} >
+                        <div className='rowz with70z new-bgcolor  borderRaduis boxshaodow '>
                             <div>
                                 <img src={Building} width="53%" style={{ position: "relative", top: -9 }} />
                                 <div className='white-color marginauto with-24 heihgt24 border-radeoios70 backgroundColor'>
                                     <p className='textAlign newcoloradd'>2</p>
                                 </div>
                             </div>
-                            <h3 className='color-black fontSize fontfamily01 fontWeight marginTOp25 '>Send A Booking Request</h3>
-                            <p className='marginBottom30 white-color fontsize11 textAlign textJustify fontfamily01' >
+                            <h3 className='color-black fontfamily01 fontWeight marginTOp25 '>Send A Booking Request</h3>
+                            <p className='marginBottom30 white-color  textAlign textJustify fontfamily01' >
                                 When you find a match, send a <br></br>booking request and Host will <br></br> give you a respond within 48  <br></br>hour. We have also a Live Chat  <br></br>Center to guide you.
                             </p>
                         </div>
                     </div>
                     <div className='col-md-4 '>
-
-                        <div className='row width50 height125 new-bgcolor borderRaduis boxshaodow ' style={{ marginRight: "190px" }} >
+                        <div className='rowz width50z height125z new-bgcolor borderRaduis boxshaodow'>
                             <div>
                                 <img src={handSake} width="53%" style={{ position: "relative", top: -9 }} />
                                 <div className='white-color marginauto with-24 heihgt24 border-radeoios70 backgroundColor'>
                                     <p className='textAlign newcoloradd'>3</p>
                                 </div>
                             </div>
-                            <h3 className='color-black fontSize fontfamily01 fontWeight marginTOp25'>All  Set! Go Nomad</h3>
-                            <p className='marginBottom30 white-color fontsize11 textAlign textJustify fontfamily01' >
+                            <h3 className='color-black fontfamily01 fontWeight marginTOp25'>All  Set! Go Nomad</h3>
+                            <p className='marginBottom30 white-color  textAlign textJustify fontfamily01' >
                                 Search Through multiple flats, <br></br>rooms, appartments all verified<br></br> by our Nomadroof Team.</p>
                         </div>
                     </div>
@@ -158,35 +157,37 @@ const Home = () => {
         <div className='container'>
         <div className='row' >
             <div className='col-12'>
-                <h1 className='bigfont' >TESTIMONIALS</h1>
+                <h1 className='bigfont'>TESTIMONIALS</h1>
                 <p>What same of our Namadroof students tenants are saying</p>
             </div>
         </div>
             <div className='row' >
                 <div className='col-md-4'>
-                    <img src={second2} alt='' />
+                    <img src={t1} alt='' />
                 </div>
                 <div className='col-md-4' >
-                    <img src={first2} alt='' />
+                    <img src={t2} alt='' />
                 </div>
                 <div className='col-md-4'>
-                    <img src={third2} alt='' />
+                    <img src={t3} alt='' />
                 </div>
             </div>
         </div>
 </section>
 
-    <div className='row' id='SIMPLE-ROW'>
+    <div className='rowz' id='SIMPLE-ROW'>
+        <div className='container'>
         <div className='row'>
             <h2 className='bigfont fontWeight textAlign marginTop-65' >OTHER LISTINGS</h2>
         </div>
         <div className='row' id='second-row'>
             <p style={{ textAlign: "center", fontSize: "18px", letterSpacing: 0.4, textJustify: "auto", marginTop: "30px", marginBottom: "24px", textJustify: "auto" }}>Check the listings from independent verified host, there are awesome as well and <br></br> you still will get the same benefits like 24 hours tenant'sprotection that let you <br></br> confirm within this time period of your check in date that everything is ok with your <br></br> new home</p>
         </div>
-        <div className='row' style={{ marginTop: "36px", marginBottom: "50px", textAlign: "center" }}>
+        <div className='row' style={{ marginTop: "36px", textAlign: "center" }}>
             <div className='col-12'>
                 <SMbuttons label="See All" id="seee-all-button" />
             </div>
+        </div>
         </div>
     </div>
     
@@ -221,6 +222,7 @@ const Home = () => {
         <div className='footer'>
             <div className='footer-inner'>
                           
+                        <img className='footer-logo' src={applogo} alt='footer-Logo' /> 
                 <div className='container' id='next-bordr'>
                     <div className='row'>
                         <div className='col-md-3'>
@@ -280,7 +282,6 @@ const Home = () => {
                             </div>
                         </div>
                         <div className='col-md-3' style={{ position: "relative" }}>
-                        <img className='footer-logo' src={applogo} alt='footer-Logo' /> 
                             <h6>FOLLOW US</h6>
                             <div style={{ display: "flex" }}>
                                 <img src={Arrow} width="9%" height="12%" alt="arrow-icon" />
