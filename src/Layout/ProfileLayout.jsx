@@ -90,7 +90,7 @@ const ProfileLayout =({children}) => {
         <Divider />
         <List>
           {/* {navitems.map((item, index) => ( */}
-            <ListItem key={index} disablePadding>
+            <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
                   <InboxIcon /> 
@@ -98,7 +98,7 @@ const ProfileLayout =({children}) => {
                 <Link to="/profile">Profile</Link>
               </ListItemButton>
             </ListItem>
-            <ListItem key={index} disablePadding>
+            <ListItem  disablePadding>
               <ListItemButton>
                 <ListItemIcon>
                   <InboxIcon /> 
@@ -106,7 +106,7 @@ const ProfileLayout =({children}) => {
                 <Link to="/profile/my-properties">My Properties</Link>
               </ListItemButton>
             </ListItem>
-            <ListItem key={index} disablePadding>
+            <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
                   <InboxIcon /> 
@@ -114,7 +114,7 @@ const ProfileLayout =({children}) => {
                 <Link to="/property/add">Add Property</Link>
               </ListItemButton>
             </ListItem>
-            <ListItem key={index} disablePadding>
+            <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
                   <InboxIcon /> 
