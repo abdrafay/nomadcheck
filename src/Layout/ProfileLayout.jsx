@@ -89,19 +89,39 @@ const ProfileLayout =({children}) => {
         </DrawerHeader>
         <Divider />
         <List>
-          {navitems.map((item, index) => (
+          {/* {navitems.map((item, index) => ( */}
             <ListItem key={index} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
-                  {/* {index % 2 === 0 ?  */}
                   <InboxIcon /> 
-                  {/* : <MailIcon />} */}
                 </ListItemIcon>
-                {/* <ListItemText primary={item.name} /> */}
-                <Link to={item.route}>{item.name}</Link>
+                <Link to="/profile">Profile</Link>
               </ListItemButton>
             </ListItem>
-          ))}
+            <ListItem key={index} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <InboxIcon /> 
+                </ListItemIcon>
+                <Link to="/profile/my-properties">My Properties</Link>
+              </ListItemButton>
+            </ListItem>
+            <ListItem key={index} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <InboxIcon /> 
+                </ListItemIcon>
+                <Link to="/property/add">Add Property</Link>
+              </ListItemButton>
+            </ListItem>
+            <ListItem key={index} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <InboxIcon /> 
+                </ListItemIcon>
+                <Link to="/properties">Other Listing</Link>
+              </ListItemButton>
+            </ListItem>
         </List>
         
       </Drawer>

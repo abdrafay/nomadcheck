@@ -395,7 +395,7 @@ const MyProfile = () => {
                     <TextField type="number" className='w-100' id="mobile" label="*Mobile (*Add the country code format Ex: +1 232 3322" variant="standard" />
                     </div> */}
                     <div>
-                      <Button variant="contained" className="round-border-button mt-2">Save user Profile</Button>
+                      <Button variant="contained" type="submit" className="round-border-button mt-2">Save user Profile</Button>
 
                     </div>
               </div>
