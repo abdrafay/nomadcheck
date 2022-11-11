@@ -332,21 +332,22 @@ const MyProfile = () => {
                 <div>
                   <TextField
                     id="uni"
+                    variant="outlined"
                     value={cruniversity}
                     onChange={(e) => setCRUniversity(e.target.value)}
                     className="w-100"
                     label="Current University"
-                    variant="standard"
+                    
                   />
                 </div>
                 <div>
                   <TextField
                     id="uni2"
                     value={abroad_university}
+                    variant="outlined"
                     onChange={(e) => setAbroadUniversity(e.target.value)}
                     className="w-100"
                     label="Abroad University"
-                    variant="standard"
                   />
                 </div>
                 <div>
@@ -356,7 +357,7 @@ const MyProfile = () => {
                     onChange={(e) => setCountry(e.target.value)}
                     className="w-100"
                     label="Country"
-                    variant="standard"
+                    variant="outlined"
                   />
                 </div>
                 <div>
