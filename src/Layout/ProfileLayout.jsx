@@ -119,7 +119,7 @@ const ProfileLayout =({children}) => {
                 <Link to="/profile/my-properties">My Properties</Link>
               </ListItemButton>
             </ListItem>
-            {appState.user.role === "host" && (
+            {appState.user.role === "Host" && (
               <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
