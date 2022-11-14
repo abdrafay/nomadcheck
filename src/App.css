@@ -626,8 +626,8 @@ option:hover {
 	width: 20px;
 	height: 34px;
 	position: absolute;
-	top: 171px;
-	left: 87px;
+	top: 17px;
+    left: 50px;
 	z-index: 1;
 }
 
@@ -660,8 +660,8 @@ option:hover {
 	width: 32px;
 	height: 34px;
 	position: absolute;
-	top: 227px;
-	left: 89px;
+	top: 5px;
+    left: 50px;
 	z-index: 1;
 }
 

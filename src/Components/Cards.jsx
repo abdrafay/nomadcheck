@@ -2,10 +2,12 @@ import React from 'react'
 import card from '../images/card-01.jpg'
 import SingleBedIcon from '@mui/icons-material/SingleBed';
 import BathtubIcon from '@mui/icons-material/Bathtub';
+import { Link } from 'react-router-dom';
 
 export default function Cards({item}) {
     
     return (
+        <Link to={`/properties/${item.id}`}>
         <div className='property'>
             <div className='left' >
                 <img src={card} alt="" />
@@ -33,5 +35,6 @@ export default function Cards({item}) {
             </div>
             <div className='price'>$400</div>
         </div>
+        </Link>
     )
 }

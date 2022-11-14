@@ -18,6 +18,7 @@ import NewProperty from './Screens/NewProperty';
 import Otherlisting from './Screens/OtherListing';
 import OtherlistingMap from './Screens/OtherListingMap';
 import AccountVerification from './Screens/AccountVerification';
+import SingleListing from './Screens/SingleListing';
 
 
 function App() {
@@ -120,6 +121,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />        
         <Route path="/properties" element={<Otherlisting />} />
+        <Route path="/properties/:id" element={<SingleListing />} />
         {state.loggedIn ? ( 
         <>
               <Route path="/property/add" element={<NewProperty />} />

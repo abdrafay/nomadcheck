@@ -73,7 +73,9 @@ export default function NavModal({open, handleClose, setOpen, chaange}) {
                         <Box sx={{ marginRight: "7px" }}>
                             <h4 style={{ fontWeight: "bold", textAlign: "center", marginTop: "7px" }}>Start Listing Properties</h4>
                             <p style={{ textAlign: "center", marginBottom: "0PX" }}>Please fill the login or register forms</p>
+                            <h4 style={{ textAlign: "center", marginTop: "10px", marginBottom:"-20px" }}>Sign Up</h4>
                         </Box>
+                        
                         <Box sx={{ width: '100%', marginRight: "7px", marginTop: "15px" }}>
                             <Tabs
                                 value={value}
@@ -85,12 +87,12 @@ export default function NavModal({open, handleClose, setOpen, chaange}) {
                             </Tabs>
                         </Box>
 
-                        <Box sx={{ marginRight: "7px" }} >
+                        <Box sx={{ marginRight: "7px", position:"relative" }} >
                             <img id='bt-faccc' src={Icon} alt="facebook-icon" />
                             <SMbuttons label="Login with Facebook" id="modal-faceee" />
                         </Box>
 
-                        <Box style={{ marginTop: "10px", marginRight: "7px" }}>
+                        <Box style={{ marginTop: "10px", marginRight: "7px",  position:"relative" }}>
                             <img id='bt-goooo' src={SecondGoogle} alt="facebook-icon" />
                             <SMbuttons label="Login with Google" id="modal-facaa" />
                         </Box>

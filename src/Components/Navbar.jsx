@@ -90,7 +90,7 @@ export default function Navbarz() {
                   <NavDropdown.Item href="#">Quito</NavDropdown.Item>
                 </NavDropdown>
                 <Nav.Link href="#">Talk to an Agent</Nav.Link>
-                <Nav.Link href="#link">Namadroof Life</Nav.Link>
+                <Link className="nav-link" to="/properties">Other Listing</Link>
               </Nav>
               <ul className="navbar-nav me-autoz my-2 my-lg-0 navbar-nav-scroll">
                 {appState.loggedIn ? (
