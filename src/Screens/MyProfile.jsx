@@ -115,6 +115,17 @@ const MyProfile = () => {
 
     // country: Yup.string().required("Country is required"),
   });
+  const vdSchema = Yup.object().shape({
+    aborad_university: Yup.string().required("Abroad University is required"),
+    education_major: Yup.string().required("Education Major is required"),
+    current_university: Yup.string().required("Current University is required"),
+    fname: Yup.string().required("First name is required"),
+    lname: Yup.string().required("Last name is required"),
+    email: Yup.string().email("Email is invalid").required("Email is required"),
+    phone: Yup.string().required("Phone number is required"),
+    country: Yup.string().required("Country is required"),
+  });
+
   const {
     register,
     control,
@@ -124,7 +135,7 @@ const MyProfile = () => {
     setFocus,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(validationSchema),
+    resolver: yupResolver(appState.user.role === "Host" ? validationSchema : vdSchema),
     defaultValues: {
       fname: fname,
     },
@@ -242,45 +253,34 @@ const MyProfile = () => {
   //     // validateTenant();
   //   }
   // },[fname, lname, email, phone, country, cruniversity, edMajor, abroad_university])
-  const onSubmit = async (data) => {
-    // e.preventDefault();
-    console.log("hello");
-    console.log(data);
-    return;
+  const onSubmit = async (submitData) => {
+    console.log(submitData)
+    let user = {
+      first_name: submitData.fname,
+      last_name: submitData.lname,
+      phone_number: submitData.phone,
+      username: appState.username,
+      country: submitData.country,
+      language: "en",
+      timezone: "ATC",
+      linkedin: submitData.linkedInURL,
+      twitter: submitData.twitter
+    }
+
+    if(appState.user.role === "Tenant") {
+      user = {
+        ...user,
+        current_university: submitData.current_university,
+        aborad_unversity: submitData.aborad_university,
+        education_major: submitData.education_major,
+      }
+    }
     try {
       const { data } = await Axios.put(
         `${appState.apiEndPoint}/api/profiles/${appState.user.id}`,
         {
           token: appState.token,
-          user: {
-            first_name: fname,
-            last_name: lname,
-            phone_number: phone,
-            username: appState.username,
-            country: country,
-            current_university: cruniversity,
-            aborad_unversity: abroad_university,
-            education_major: edMajor,
-            language: "en",
-            timezone: "ATC",
-            linkedin: linkedInURL,
-            twitter: twitterURL,
-          },
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${appState.token}`,
-          },
-        }
-      );
-      const dataImage = await Axios.post(
-        `${appState.apiEndPoint}/api/user/image`,
-        {
-          image: {
-            name: image.name,
-            type: image.type,
-            base64: image.base,
-          },
+          user: user
         },
         {
           headers: {
@@ -289,6 +289,24 @@ const MyProfile = () => {
         }
       );
 
+      if(image !== null) {
+        const dataImage = await Axios.post(
+          `${appState.apiEndPoint}/api/user/image`,
+          {
+            image: {
+              name: image.name,
+              type: image.type,
+              base64: image.base,
+            },
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${appState.token}`,
+            },
+          }
+          );
+          console.log(dataImage)
+      }
       if (data.success) {
         setAlert({
           open: true,
@@ -482,6 +500,8 @@ const MyProfile = () => {
                     render={({ field }) => (
                   <TextField
                     id="uni"
+                    error={errors.current_university}
+                    helperText={errors.current_university?.message}
                     className="w-100"
                     label="Current University"
                     variant="standard"
@@ -493,10 +513,12 @@ const MyProfile = () => {
                 <div>
                   <Controller
                     control={control}
-                    name="aborad_unversity"
+                    name="aborad_university"
                     render={({ field }) => (
                   <TextField
                     id="uni2"
+                    error={errors.aborad_university}
+                    helperText={errors.aborad_university?.message}
                     className="w-100"
                     label="Abroad University"
                     variant="standard"
@@ -535,6 +557,8 @@ const MyProfile = () => {
                   <TextField
                     id="educationMajor"
                     className="w-100"
+                    error={errors.education_major}
+                    helperText={errors.education_major?.message}
                     label="Education Major"
                     variant="standard"
                     {...field}
