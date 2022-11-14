@@ -39,7 +39,7 @@ const Home = () => {
         <div className="container">
           <div className="col-12" id="bear-pic">
             <h1 className="banner-heading white-color fontWeight textAlign marginTop75pxz">
-              Get to , live in our <br></br> Exclusvies Student Housing
+              Get to live in our <br></br> Exclusvies Student Housing
             </h1>
             <div className="alignSelf withFull">
               <InputGroup id="inputss">
@@ -148,7 +148,7 @@ const Home = () => {
             </div>
           </div>
           <div className="row textAlign ">
-            <div className="col-md-4">
+            <div className="col-md-4 px-4">
               <div>
                 <div className="rowz new-bgcolor borderRaduis boxshaodow">
                   <div>
@@ -167,10 +167,9 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-4 px-4">
               <div
                 className="rowz new-bgcolor borderRaduis boxshaodow"
-                style={{ marginTop: "50px" }}
               >
                 <div>
                   <img src={Building} />
@@ -188,7 +187,7 @@ const Home = () => {
                 </p>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-4 px-4">
               <div className="rowz width50z height125z new-bgcolor borderRaduis boxshaodow">
                 <div>
                   <img src={handSake} />
