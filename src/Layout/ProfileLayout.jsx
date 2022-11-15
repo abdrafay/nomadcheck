@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {useContext, useState, useEffect} from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -15,12 +15,17 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
+import PersonIcon from '@mui/icons-material/Person';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { Alert, Button, TextField } from '@mui/material';
-import { Link } from 'react-router-dom';
-import PersonIcon from '@mui/icons-material/Person';
+import { Link, useNavigate } from 'react-router-dom';
+import HomeIcon from '@mui/icons-material/Home';
+import AddHomeIcon from '@mui/icons-material/AddHome';
+import DispatchContext from '../DispatchContext';
+import StateContext from '../StateContext';
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const drawerWidth = 240;
 
@@ -53,14 +58,21 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 const ProfileLayout =({children}) => {
+  const navigate = useNavigate();
+  const appState = useContext(StateContext)
+  const appDispatch = useContext(DispatchContext)
+  const handleLogout = () => {
+    appDispatch({ type: "LOGOUT" });
+    navigate("/");
+  };
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleDrawer = () => {
     setOpen(!open);
   };
 
-  const navitems = [{name: 'Profile', route: '/profile', icon: 'PersonIcon'}, {name: 'My Properties', route: '/profile/my-properties'},
+  const navitems = [{name: 'Profile', route: '/profile'}, {name: 'My Properties', route: '/profile/my-properties'},
   {name: 'Add Property', route: '/property/add'}, {name: "Other Listing", route: '/properties'} 
 //   {name: 'Add Property', route: 'properties/add'}
 ]
@@ -83,26 +95,51 @@ const ProfileLayout =({children}) => {
         anchor="left"
         open={open}
       >
-        <DrawerHeader>
+        {/* <DrawerHeader>
           <IconButton onClick={handleDrawer}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
-        </DrawerHeader>
+        </DrawerHeader> */}
         <Divider />
         <List>
-          {navitems.map((item, index) => (
-            <ListItem key={index} disablePadding>
+          {/* {navitems.map((item, index) => ( */}
+            <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
-                  {/* {index % 2 === 0 ?  */}
                   <PersonIcon /> 
-                  {/* : <MailIcon />} */}
                 </ListItemIcon>
-                {/* <ListItemText primary={item.name} /> */}
-                <Link to={item.route}>{item.name}</Link>
+                <Link to="/profile">Profile</Link>
               </ListItemButton>
             </ListItem>
-          ))}
+            {appState.user.role === "Host" && (
+              <>
+            <ListItem  disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <HomeIcon /> 
+                </ListItemIcon>
+                <Link to="/profile/my-properties">My Properties</Link>
+              </ListItemButton>
+            </ListItem>
+            
+              <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <AddHomeIcon /> 
+                </ListItemIcon>
+                <Link to="/property/add">Add Property</Link>
+              </ListItemButton>
+            </ListItem>
+            </>
+              )}
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                <LogoutIcon />
+                </ListItemIcon>
+                <Link to="/" onClick={handleLogout}>Logout</Link>
+              </ListItemButton>
+            </ListItem>
         </List>
         
       </Drawer>

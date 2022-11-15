@@ -1,6 +1,9 @@
 import * as React from "react";
 import { useState } from "react";
 import { styled, useTheme } from "@mui/material/styles";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -38,6 +41,7 @@ import StateContext from "../StateContext";
 import Axios from "axios";
 import SMbuttons from "../Components/SMButton";
 import MyAlert from "../Components/MyAlert";
+import DispatchContext from "../DispatchContext";
 
 const drawerWidth = 240;
 
@@ -71,6 +75,8 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 const MyProfile = () => {
   const appState = useContext(StateContext);
+  const appDispatch = useContext(DispatchContext);
+  const [loading, setLoading] = useState(true);
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [fname, setFName] = useState("");
@@ -90,6 +96,7 @@ const MyProfile = () => {
   const [checked1, setChecked1] = useState(false);
   const [imageURL, setImageURL] = useState("");
   const [image, setImage] = useState(null);
+  const [error, setError] = useState({});
   const [alert, setAlert] = useState({
     open: false,
     message: "",
@@ -99,7 +106,43 @@ const MyProfile = () => {
   const [checked3, setChecked3] = useState(false);
   const [checked4, setChecked4] = useState(false);
   const [checked5, setChecked5] = useState(false);
+  const validationSchema = Yup.object().shape({
+    fname: Yup.string().required("First name is required"),
+    lname: Yup.string().required("Last name is required"),
+    email: Yup.string().email("Email is invalid").required("Email is required"),
+    // password: Yup.string().min(6, "Password must be at least 6 characters"),
+    phone: Yup.string().required("Phone number is required"),
+    country: Yup.string().required("Country is required"),
+    // linkedInURL: Yup.string(),
+    // twitterURL: Yup.string(),
 
+    // country: Yup.string().required("Country is required"),
+  });
+  const vdSchema = Yup.object().shape({
+    aborad_university: Yup.string().required("Abroad University is required"),
+    education_major: Yup.string().required("Education Major is required"),
+    current_university: Yup.string().required("Current University is required"),
+    fname: Yup.string().required("First name is required"),
+    lname: Yup.string().required("Last name is required"),
+    email: Yup.string().email("Email is invalid").required("Email is required"),
+    phone: Yup.string().required("Phone number is required"),
+    country: Yup.string().required("Country is required"),
+  });
+
+  const {
+    register,
+    control,
+    reset,
+    handleSubmit,
+    setValue,
+    setFocus,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(appState.user.role === "Host" ? validationSchema : vdSchema),
+    defaultValues: {
+      fname: fname,
+    },
+  });
   const handleDrawer = () => {
     setOpen(!open);
   };
@@ -107,75 +150,140 @@ const MyProfile = () => {
     setAlert({ ...alert, open: val });
   };
   useEffect(() => {
-    setFName(appState.user.first_name !== null ? appState.user.first_name : "");
-    setlName(appState.user.last_name !== null ? appState.user.last_name : "");
-    setEmail(appState.user.email !== null ? appState.user.email : "");
-    setPhone(
-      appState.user.phone_number !== null ? appState.user.phone_number : ""
+    setValue(
+      "fname",
+      appState.user.first_name !== null ? appState.user.first_name : ""
     );
-    setCRUniversity(
-      appState.user.current_university !== null
-        ? appState.user.current_university
-        : ""
+    setValue(
+      "lname",
+      appState.user.last_name !== null ? appState.user.last_name : ""
     );
-    setAbroadUniversity(
-      appState.user.aborad_unversity !== null
-        ? appState.user.aborad_unversity
-        : ""
+    setValue("email", appState.user.email !== null ? appState.user.email : "");
+    // setValue(
+    //   "password",
+    //   appState.user.password !== null ? appState.user.password : ""
+    // );
+    setValue("phone", appState.user.phone_number !== null ? appState.user.phone_number : "");
+    setValue(
+      "country",
+      appState.user.country !== null ? appState.user.country : ""
     );
-    setEDMajor(
-      appState.user.education_major !== null
-        ? appState.user.education_major
-        : ""
+    setValue(
+      "language",
+      appState.user.language !== null ? appState.user.language : ""
     );
-    setTwitterURL(appState.user.twitter !== null ? appState.user.twitter : "");
-    setLinkedInURL(
+    setValue(
+      "linkedin",
       appState.user.linkedin !== null ? appState.user.linkedin : ""
     );
-    setCountry(appState.user.country !== null ? appState.user.country : "");
-    setImageURL(
-      appState.user.image_url
-        ? appState.apiEndPoint + appState.user.image_url
-        : ""
+    setValue(
+      "twitter",
+      appState.user.twitter !== null ? appState.user.twitter : ""
     );
-    // setImage(appState.user.image_url ? (appState.apiEndPoint + appState.user.image_url) : '')
+    // setValue('about_me', appState.user.about_me !== null ? appState.user.about_me : "");
+    if (appState.user.role !== "Host") {
+      setValue(
+        "aborad_university",
+        appState.user.abroad_university !== null
+          ? appState.user.abroad_university
+          : ""
+      );
+      setValue(
+        "current_university",
+        appState.user.current_university !== null
+          ? appState.user.current_university
+          : ""
+      );
+      setValue(
+        "education_major",
+        appState.user.education_major !== null
+          ? appState.user.education_major
+          : ""
+      );
+    }
   }, [appState.user]);
-  const handleUpdateSubmit = async (e) => {
-    e.preventDefault();
+  // const validateHost = () => {
+
+  //   if (fname === "") {
+  //     setError((prev) => ({ ...prev, fname: "First name is required" }));
+  //   } else {
+  //     setError((prev) => ({ ...prev, fname: "" }));
+  //   }
+  //   if (lname === "") {
+  //     setError((prev) => ({ ...prev, lname: "Last name is required" }));
+  //   } else {
+  //     setError((prev) => ({ ...prev, lname: "" }));
+  //   }
+  //   if (email === "") {
+  //     setError((prev) => ({ ...prev, email: "Email is required" }));
+  //   } else {
+  //     setError((prev) => ({ ...prev, email: "" }));
+  //   }
+  //   if (phone === "") {
+  //     setError((prev) => ({ ...prev, phone: "Phone number is required" }));
+  //   } else {
+  //     setError((prev) => ({ ...prev, phone: "" }));
+  //   }
+  //   if (country === "") {
+  //     setError((prev) => ({ ...prev, country: "Country is required" }));
+  //   } else {
+  //     setError((prev) => ({ ...prev, country: "" }));
+  //   }
+  //   if (cruniversity === "") {
+  //     setError((prev) => ({ ...prev, cruniversity: "University is required" }));
+  //   } else {
+  //     setError((prev) => ({ ...prev, cruniversity: "" }));
+  //   }
+  //   if (edMajor === "") {
+  //     setError((prev) => ({ ...prev, edMajor: "Major is required" }));
+  //   } else {
+  //     setError((prev) => ({ ...prev, edMajor: "" }));
+  //   }
+  //   if (abroad_university === "") {
+  //     setError((prev) => ({
+  //       ...prev,
+  //       abroad_university: "Abroad university is required",
+  //     }));
+  //   } else {
+  //     setError((prev) => ({ ...prev, abroad_university: "" }));
+  //   }
+  // }
+  // useEffect(()=> {
+  //   // validate all the fields
+  //   if(appState.user.role === "Host") {
+  //     validateHost();
+  //   } else {
+  //     // validateTenant();
+  //   }
+  // },[fname, lname, email, phone, country, cruniversity, edMajor, abroad_university])
+  const onSubmit = async (submitData) => {
+    console.log(submitData)
+    let user = {
+      first_name: submitData.fname,
+      last_name: submitData.lname,
+      phone_number: submitData.phone,
+      username: appState.username,
+      country: submitData.country,
+      language: "en",
+      timezone: "ATC",
+      linkedin: submitData.linkedInURL,
+      twitter: submitData.twitter
+    }
+
+    if(appState.user.role === "Tenant") {
+      user = {
+        ...user,
+        current_university: submitData.current_university,
+        aborad_unversity: submitData.aborad_university,
+        education_major: submitData.education_major,
+      }
+    }
     try {
       const { data } = await Axios.put(
         `${appState.apiEndPoint}/api/profiles/${appState.user.id}`,
         {
           token: appState.token,
-          user: {
-            first_name: fname,
-            last_name: lname,
-            phone_number: phone,
-            username: appState.username,
-            country: country,
-            current_university: cruniversity,
-            aborad_unversity: abroad_university,
-            education_major: edMajor,
-            language: "en",
-            timezone: "ATC",
-            linkedin: linkedInURL,
-            twitter: twitterURL,
-          },
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${appState.token}`,
-          },
-        }
-      );
-      const dataImage = await Axios.post(
-        `${appState.apiEndPoint}/api/user/image`,
-        {
-          image: {
-            name: image.name,
-            type: image.type,
-            base64: image.base,
-          },
+          user: user
         },
         {
           headers: {
@@ -184,6 +292,24 @@ const MyProfile = () => {
         }
       );
 
+      if(image !== null) {
+        const dataImage = await Axios.post(
+          `${appState.apiEndPoint}/api/user/image`,
+          {
+            image: {
+              name: image.name,
+              type: image.type,
+              base64: image.base,
+            },
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${appState.token}`,
+            },
+          }
+          );
+          console.log(dataImage)
+      }
       if (data.success) {
         setAlert({
           open: true,
@@ -219,7 +345,30 @@ const MyProfile = () => {
     };
     reader.readAsDataURL(e.target.files[0]);
   };
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const {data} = await Axios.get(`${appState.apiEndPoint}/api/profiles?user_id=${appState.user.id}`, {
+          headers: {
+            Authorization: `Bearer ${appState.token}`
+        }
+        })
+        
+        if(data.success) {
+          appDispatch({type: "UPDATE_USER", payload: data.user})
+          setLoading(false)
+          console.log("UPDATED", data.user)
+        }
+      }catch(err) {
+        console.log(err)
+      }
+    }
+    if(appState.loggedIn) {
+      getUserData()
+    }
+  },[])
   return (
+    loading ? <h1>Loading..</h1> : (
     <ProfileLayout>
       <MyAlert
         open={alert.open}
@@ -242,76 +391,114 @@ const MyProfile = () => {
         </div>
 
         {/* <DrawerHeader /> */}
-        <form onSubmit={handleUpdateSubmit}>
+        <form>
           <h2>Your details</h2>
-          <div className="border w-80 p-5">
+
+          <div className="border w-80 p-5 bg-fff">
             <div className="row px-0 mx-0 align-items-start">
               <div className="col-md-8">
                 <div>
-                  <TextField
-                    id="first-name"
-                    value={fname}
-                    onChange={(e) => setFName(e.target.value)}
-                    className="w-100"
-                    label="First Name"
-                    variant="standard"
+                  <Controller
+                    control={control}
+                    name="fname"
+                    render={({ field }) => (
+                      <TextField
+                        className="w-100"
+                        label="First Name"
+                        variant="standard"
+                        error={errors.fname}
+                        helperText={errors.fname?.message}
+                        {...field}
+                      />
+                    )}
                   />
                 </div>
                 <div>
-                  <TextField
+                  <Controller 
+                  name="lname"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
                     id="last-name"
-                    value={lname}
-                    onChange={(e) => setlName(e.target.value)}
                     className="w-100"
                     label="Last Name"
                     variant="standard"
+                    error={errors.lname}
+                    helperText={errors.lname?.message}
+                    {...field}
                   />
+                  )}
+                  />
+                  
                 </div>
                 <div>
+                  <Controller
+
+                    control={control}
+                    name="email"
+                    render={({ field }) => (
                   <TextField
                     type="email"
-                    disabled
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    error={errors.email}
+                    helperText={errors.email?.message}
                     className="w-100"
                     id="email"
                     label="Email"
                     variant="standard"
+                    {...field}
                   />
+                      
+                    )}
+                  />
+
+                  {/* {error.email ?? <p className="error">{error.email}</p>} */}
                 </div>
                 <div className="row px-0 mx-0 align-items-center">
                   <div className="col-md-6 px-1">
+                    
+
                     <TextField
                       type="password"
                       disabled
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
                       className="w-100"
                       id="password"
                       label="Password"
                       variant="standard"
+                      
                     />
+                    
                   </div>
                   <div className="col-md-6 px-1">
                     <Button variant="text">Change Password</Button>
                   </div>
                 </div>
                 <div className="col-md-6 px-1">
+                  <Controller
+                    control={control}
+                    name="phone"
+                    render={({ field }) => (
                   <TextField
                     type="number"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    error={errors.phone}
+                    helperText={errors.phone?.message}
                     className="w-100"
                     id="mobile"
-                    label="*Mobile (*Add the country code format Ex: +1 232 3322"
+                    label="*Mobile"
                     variant="standard"
+                    {...field}
+                  />
+                    )}
                   />
                 </div>
               </div>
               <div className="col-md-4 text-center ">
                 <img src={imageURL} width={100} height={100} alt="" />
                 <div className="mt-2">
-                  <Button variant="contained" className="uploadButton" component="label">
+                  <Button
+                    variant="contained"
+                    className="uploadButton"
+                    component="label"
+                  >
                     Upload Image
                     <input
                       hidden
@@ -325,88 +512,142 @@ const MyProfile = () => {
             </div>
           </div>
           {/*  */}
-          <div>
+          <div className="row m-0">
+              <div className="col-md-7 ps-0">
             <h2>Social Media Link</h2>
-            <div className="border w-80 p-5">
+            <div className="border p-5 bg-fff">
               <div className="row px-0 mx-0">
-                <div>
+                {appState.user.role === "Tenant" && (
+                  <>
+                    <div>
+                  <Controller
+                    control={control}
+                    name="current_university"
+                    render={({ field }) => (
                   <TextField
                     id="uni"
-                    value={cruniversity}
-                    onChange={(e) => setCRUniversity(e.target.value)}
+                    error={errors.current_university}
+                    helperText={errors.current_university?.message}
                     className="w-100"
                     label="Current University"
                     variant="standard"
+                      {...field}
+                  />
+                    )}
                   />
                 </div>
                 <div>
+                  <Controller
+                    control={control}
+                    name="aborad_university"
+                    render={({ field }) => (
                   <TextField
                     id="uni2"
-                    value={abroad_university}
-                    onChange={(e) => setAbroadUniversity(e.target.value)}
+                    error={errors.aborad_university}
+                    helperText={errors.aborad_university?.message}
                     className="w-100"
                     label="Abroad University"
                     variant="standard"
+                    {...field}
+
+                  />
+                    )}
                   />
                 </div>
+                  </>
+                  ) }
+                
                 <div>
+                  <Controller
+                    control={control}
+                    name="country"
+                    render={({ field }) => (
                   <TextField
                     id="country"
-                    value={country}
-                    onChange={(e) => setCountry(e.target.value)}
+                    error={errors.country}
+                    helperText={errors.country?.message}
                     className="w-100"
                     label="Country"
                     variant="standard"
+                    {...field}
+                  />
+                    )}
                   />
                 </div>
-                <div>
+                {appState.user.role === "Tenant" && (
+                  <div>
+                  <Controller
+                    control={control}
+                    name="education_major"
+                    render={({ field }) => (
                   <TextField
                     id="educationMajor"
-                    value={edMajor}
-                    onChange={(e) => setEDMajor(e.target.value)}
                     className="w-100"
+                    error={errors.education_major}
+                    helperText={errors.education_major?.message}
                     label="Education Major"
                     variant="standard"
+                    {...field}
+                  />
+                    )}
                   />
                 </div>
+                )  
+                }
+                
                 <div>
+                  <Controller
+                    control={control}
+                    name="twitter"
+                    render={({ field }) => ( 
+
                   <TextField
                     type="text"
-                    value={twitterURL}
-                    onChange={(e) => setTwitterURL(e.target.value)}
                     className="w-100"
                     id="Twitter"
                     label="Twitter Url"
                     variant="standard"
+                    {...field}
+                  />
+                    )}
                   />
                 </div>
                 <div>
+                  <Controller
+                    control={control}
+                    name="linkedin"
+                    render={({ field }) => (
+
                   <TextField
                     type="text"
-                    value={linkedInURL}
-                    onChange={(e) => setLinkedInURL(e.target.value)}
                     className="w-100"
                     id="linkedIN"
                     label="LinkedIn Url"
                     variant="standard"
+                    {...field}
                   />
+                    )}
+                  />
+
                 </div>
                 {/* <div className='col-md-6 px-1'>
                     <TextField type="number" className='w-100' id="mobile" label="*Mobile (*Add the country code format Ex: +1 232 3322" variant="standard" />
                     </div> */}
-                    <div>
-                      <Button variant="contained" className="round-border-button mt-2">Save user Profile</Button>
-
-                    </div>
+                <div>
+                  <Button
+                    variant="contained"
+                    onClick={handleSubmit(onSubmit)}
+                    className="round-border-button mt-2"
+                  >
+                    Save user Profile
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
-        </form>
-
-        <form>
-          <div>
+          <div className="col-md-5 ps-0">
             <h2>Language and time zone</h2>
-            <div className="border w-80 p-5">
+            <div className="border p-5 bg-fff">
               <div className="row px-0 mx-0">
                 <div className="col-12">
                   <FormControl fullWidth>
@@ -441,10 +682,15 @@ const MyProfile = () => {
               </div>
             </div>
           </div>
+          </div>
+          
+        </form>
 
+        {/* <form>
+        
           <div>
             <h2>Notifications</h2>
-            <div className="border w-80 p-5">
+            <div className="border w-80 p-5 bg-fff">
               <div className="row px-0 mx-0">
                 <div className="col-12">
                   <FormGroup>
@@ -455,7 +701,6 @@ const MyProfile = () => {
                       Receive booking requests by SMS on your verified phone
                       number.
                     </p>
-                    {/* <FormControlLabel control={}  /> */}
                     <Switch
                       checked={checked1}
                       onChange={() => setChecked1(!checked1)}
@@ -467,7 +712,6 @@ const MyProfile = () => {
                     <p>
                       <b>I want ot receive move-in reminders via email</b>
                     </p>
-                    {/* <FormControlLabel control={}  /> */}
                     <Switch
                       checked={checked2}
                       onChange={() => setChecked2(!checked2)}
@@ -475,25 +719,28 @@ const MyProfile = () => {
                   </FormGroup>
                 </div>
                 <div>
-                  <Button variant="contained" className="round-border-button mt-3">Save</Button>
-
+                  <Button
+                    variant="contained"
+                    className="round-border-button mt-3"
+                  >
+                    Save
+                  </Button>
                 </div>
               </div>
             </div>
           </div>
-        </form>
+        </form> */}
 
-        <form>
+        {/* <form>
           <div>
             <h2>Promotional communications</h2>
-            <div className="border w-80 p-5">
+            <div className="border w-80 p-5 bg-fff">
               <div className="row px-0 mx-0">
                 <div className="col-12">
                   <FormGroup>
                     <p>
                       <b>Email</b>
                     </p>
-                    {/* <FormControlLabel control={}  /> */}
                     <Switch
                       checked={checked3}
                       onChange={() => setChecked3(!checked3)}
@@ -505,7 +752,6 @@ const MyProfile = () => {
                     <p>
                       <b>SMS</b>
                     </p>
-                    {/* <FormControlLabel control={}  /> */}
                     <Switch
                       checked={checked4}
                       onChange={() => setChecked4(!checked4)}
@@ -517,7 +763,6 @@ const MyProfile = () => {
                     <p>
                       <b>Phone Call</b>
                     </p>
-                    {/* <FormControlLabel control={}  /> */}
                     <Switch
                       checked={checked5}
                       onChange={() => setChecked5(!checked5)}
@@ -527,11 +772,11 @@ const MyProfile = () => {
               </div>
             </div>
           </div>
-        </form>
+        </form> */}
         <form>
           <div>
             <h2>Delete account</h2>
-            <div className="border w-80 p-5">
+            <div className="border w-80 p-5 bg-fff">
               <div className="row px-0 mx-0">
                 <div className="col-12">
                   <p className="fontsmall">
@@ -540,7 +785,12 @@ const MyProfile = () => {
                   </p>
                 </div>
                 <div>
-                  <Button variant="contained" className="round-border-button mt-3">Delete account</Button>
+                  <Button
+                    variant="contained"
+                    className="round-border-button mt-3"
+                  >
+                    Delete account
+                  </Button>
                 </div>
               </div>
             </div>
@@ -548,7 +798,8 @@ const MyProfile = () => {
         </form>
       </div>
     </ProfileLayout>
-  );
+  )
+    );
 };
 
 export default MyProfile;

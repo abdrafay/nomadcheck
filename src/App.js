@@ -76,28 +76,7 @@ function App() {
     }
     getRoles();
   },[])
-  useEffect(() => {
-    const getUserData = async () => {
-      try {
-        console.log(state.token)
-        const {data} = await Axios.get(`${state.apiEndPoint}/api/profiles?user_id=${state.user.id}`, {
-          headers: {
-            Authorization: `Bearer ${state.token}`
-        }
-        })
-        
-        if(data.success) {
-          dispatch({type: "UPDATE_USER", payload: data.user})
-          console.log("UPDATED", data.user)
-        }
-      }catch(err) {
-        console.log(err)
-      }
-    }
-    if(state.token) {
-      getUserData()
-    }
-  },[state.token])
+  
   useEffect(()  => {
     if(state.loggedIn) {
       localStorage.setItem("user", JSON.stringify(state.user));
