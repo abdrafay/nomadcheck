@@ -1,9 +1,13 @@
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import Axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { json, useNavigate, useParams } from "react-router";
+import CreateReviewForm from "../Components/CreateReviewForm";
+import UpdateReviewForm from "../Components/UpdateReviewForm";
 import DispatchContext from "../DispatchContext";
 import StateContext from "../StateContext";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const SingleListing = () => {
   const navigate = useNavigate();
@@ -12,6 +16,13 @@ const SingleListing = () => {
   const [sDate, setSDate] = useState("");
   const [eDate, setEDate] = useState("");
   const [room, setRoom] = useState({});
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
+  const [review, setReview] = useState({});
+  const [isUpdate, setIsUpdate] = useState(false);
+
   let { id } = useParams();
   const getRoomData = async () => {
     try {
@@ -26,6 +37,27 @@ const SingleListing = () => {
       if (data.success) {
         setRoom(data.room);
         console.log(data.room);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const getReviews = async () => {
+    try {
+      const { data } = await Axios.get(
+        `${appState.apiEndPoint}/api/reviews?room_id=${id}`,{
+          headers: {
+            Authorization: `Bearer ${appState.token}`,
+          },
+        }
+        
+      );
+      console.log(data, "reviews");
+      setLoading(false)
+      if (data.success) {
+        setReviews(data.reviews);
+        setIsUpdate(false);
+        
       }
     } catch (error) {
       console.log(error);
@@ -67,22 +99,41 @@ const SingleListing = () => {
       console.log(error);
     }
   };
-
-
-  useEffect(() => {
-    if (room.start_date) {
-      const d = new Date(room.start_date);
-      console.log(d);
-      console.log(d.getMonth());
-      
+  
+  const handleReviewDelete = async (e, id) => {
+    e.preventDefault();
+    try {
+      const { data } = await Axios.delete(
+        `${appState.apiEndPoint}/api/reviews/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${appState.token}`,
+          },
+        }
+      );
+      if (data.success) {
+        alert("Review Deleted");
+        getReviews();
+      }
+    } catch (error) {
+      console.log(error);
     }
-  }, [room]);
+  };
 
+
+  const handleReviewEdit = (e,review) => {
+    console.log(review,"edit");
+    e.preventDefault();
+    setReview(review);
+    setIsUpdate(true);
+  }
   useEffect(() => {
     getRoomData();
+    getReviews();
   }, []);
 
   return (
+    loading ? <h1>Loading</h1> : (
     <div>
       <h1 className="title">{room.listing_name}</h1>
 
@@ -102,7 +153,33 @@ const SingleListing = () => {
           <Button variant="contained" onClick={reserve}>Reserve</Button>
         </form>
       )}
+
+      <div>
+        <h2>Reviews</h2>
+        {reviews.map((review) => (
+          <div key={review.id} className="d-flex align-items-center">
+            <p className="m-0">{review.comment}</p>
+            <p className="m-0 ms-4">Rating: {review.star}</p>
+            <IconButton onClick={(e) => handleReviewEdit(e,review)}>
+              <EditIcon />
+            </IconButton>
+            <IconButton onClick={(e) => handleReviewDelete(e,review.id)}>
+              <DeleteOutlineIcon />
+            </IconButton>
+          </div>
+        ))}
+        <div>
+          <h4>Add a review</h4>
+          {!isUpdate ? (
+            <CreateReviewForm getReviews={getReviews} roomId={id} />
+          ) : (
+            <UpdateReviewForm getReviews={getReviews} roomId={id} review={review} />
+          )}
+
+        </div>
+      </div>
     </div>
+    )
   );
 };
 
