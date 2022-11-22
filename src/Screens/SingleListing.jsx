@@ -158,14 +158,25 @@ const SingleListing = () => {
         <h2>Reviews</h2>
         {reviews.map((review) => (
           <div key={review.id} className="d-flex align-items-center">
+            <div>
+              <h4>{review.user.first_name} {review.user.last_name}</h4>
+            </div>
             <p className="m-0">{review.comment}</p>
             <p className="m-0 ms-4">Rating: {review.star}</p>
-            <IconButton onClick={(e) => handleReviewEdit(e,review)}>
+            {
+              appState.user.id === review.user.id && (
+                
+                <>
+                <IconButton onClick={(e) => handleReviewEdit(e,review)}>
               <EditIcon />
             </IconButton>
             <IconButton onClick={(e) => handleReviewDelete(e,review.id)}>
               <DeleteOutlineIcon />
             </IconButton>
+            </>
+              )
+            }
+            
           </div>
         ))}
         <div>

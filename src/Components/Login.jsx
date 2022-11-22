@@ -53,14 +53,14 @@ const Login = ({setAlert, setOpen}) => {
 
                         
                             <Box sx={{ textAlign: "center" }}>
-                                <input value={loginData.loginEmail} onChange={(e) => setLoginData({ ...loginData, email: e.target.value })} id='model-inp' placeholder='Email' />
+                                <input value={loginData.loginEmail} className="ms-0 w-100" onChange={(e) => setLoginData({ ...loginData, email: e.target.value })} id='model-inp' placeholder='Email' />
                             </Box>
                             <Box sx={{ textAlign: "center" }}>
-                                <input value={loginData.loginPassword} onChange={(e) => setLoginData({ ...loginData, password: e.target.value })} id='model-2inp' type="password" placeholder='Password' />
+                                <input value={loginData.loginPassword} className="ms-0 w-100" onChange={(e) => setLoginData({ ...loginData, password: e.target.value })} id='model-2inp' type="password" placeholder='Password' />
                             </Box>
 
                             <Box >
-                                <SMbuttons label="Login" type="submit" id="Login-btan" />
+                                <SMbuttons label="Login" type="submit" className="ms-0 w-100" id="Login-btan" />
                             </Box>
                         </form>
   )

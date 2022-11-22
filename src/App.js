@@ -19,6 +19,8 @@ import Otherlisting from './Screens/OtherListing';
 import OtherlistingMap from './Screens/OtherListingMap';
 import AccountVerification from './Screens/AccountVerification';
 import SingleListing from './Screens/SingleListing';
+import TenantReservations from './Screens/TenantReservations';
+import HostReservations from './Screens/HostReservations';
 
 
 function App() {
@@ -103,6 +105,8 @@ function App() {
         <Route path="/properties/:id" element={<SingleListing />} />
         {state.loggedIn ? ( 
         <>
+              <Route path="/reservations" element={<HostReservations />} />
+              <Route path="/my-reservations" element={<TenantReservations />} />
               <Route path="/property/add" element={<NewProperty />} />
               <Route path='/profile/my-properties' element={<MyProperties />}/>
               <Route path="/other-listing-map" element={<OtherlistingMap />} />

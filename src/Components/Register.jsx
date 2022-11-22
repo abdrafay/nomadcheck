@@ -17,7 +17,7 @@ const Register = ({role, setOpen, setAlert}) => {
             role_id: role
         })
         e.preventDefault();
-        if (signupData.email && signupData.password && signupData.username) {
+        if (signupData.email && signupData.password && signupData.first_name && signupData.last_name) {
         //   if (password === confirmPassword) {
             // setLoading(true);
             try {
@@ -58,14 +58,26 @@ const Register = ({role, setOpen, setAlert}) => {
       };
   return (
     <form onSubmit={handleSubmit}>
-                            <Box sx={{ textAlign: "center", marginRight: "10px" }}>
-                                <input value={signupData.username} required id='model-inp' onChange={(e) => setSignupData({ ...signupData, username: e.target.value })} placeholder='UserName' />
+                            <Box className="row m-0">
+                                <div className="col-md-6 px-1">
+                                  <input value={signupData.first_name} className="ms-0" required id='model-inp' onChange={(e) => setSignupData({ ...signupData, first_name: e.target.value })} placeholder='First Name' />
+                                </div>
+                                <div className="col-md-6 px-1">
+                                  <input value={signupData.last_name} className="ms-0" required id='model-inp' onChange={(e) => setSignupData({ ...signupData, last_name: e.target.value })} placeholder='Last Name' />
+                                </div>
                             </Box>
-                            <Box sx={{ textAlign: "center", marginRight: "10px" }}>
-                                <input value={signupData.email} required onChange={(e) => setSignupData({ ...signupData, email: e.target.value })} id='model-2inp' placeholder='Email' />
+
+                            {/* <Box sx={{ textAlign: "center" }}>
+                                <input value={signupData.username} className="ms-0" required id='model-inp' onChange={(e) => setSignupData({ ...signupData, username: e.target.value })} placeholder='UserName' />
+                            </Box> */}
+                            <Box sx={{ textAlign: "center" }}>
+                                <input value={signupData.email} className="ms-0" required onChange={(e) => setSignupData({ ...signupData, email: e.target.value })} id='model-2inp' placeholder='Email' />
                             </Box>
-                            <Box sx={{ textAlign: "center", marginRight: "10px" }}>
-                                <input value={signupData.password} type="password" onChange={(e) => setSignupData({ ...signupData, password: e.target.value })} required id='model-2inp' placeholder='Password' />
+                            <Box sx={{ textAlign: "center" }}>
+                                <input value={signupData.phone_number} className="ms-0" required onChange={(e) => setSignupData({ ...signupData, phone_number: e.target.value })} id='model-2inp' placeholder='Phone No' />
+                            </Box>
+                            <Box sx={{ textAlign: "center" }}>
+                                <input value={signupData.password} className="ms-0" type="password" onChange={(e) => setSignupData({ ...signupData, password: e.target.value })} required id='model-2inp' placeholder='Password' />
                             </Box>
                             <Box style={{ display: "flex" }}>
                                 <input required type="checkbox" style={{ marginRight: "5px", marginLeft: "15px" }} name="Terms" value="I agree withterms & conditions" /> <p style={{ fontFamily: "poppins", fontSize: "11px", marginTop: "14px" }} id="color-issue">  I agree withterms & conditions</p>

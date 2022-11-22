@@ -121,6 +121,15 @@ const ProfileLayout =({children}) => {
                 <Link to="/profile/my-properties">My Properties</Link>
               </ListItemButton>
             </ListItem>
+            <ListItem  disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <HomeIcon /> 
+                </ListItemIcon>
+                <Link to="/reservations">Reservations</Link>
+              </ListItemButton>
+            </ListItem>
+            
             
               <ListItem disablePadding>
               <ListItemButton>
@@ -131,6 +140,16 @@ const ProfileLayout =({children}) => {
               </ListItemButton>
             </ListItem>
             </>
+              )}
+              {appState.user.role === "Tenant" && (
+                <ListItem  disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <HomeIcon /> 
+                  </ListItemIcon>
+                  <Link to="/my-reservations">My Reservations</Link>
+                </ListItemButton>
+              </ListItem>
               )}
             <ListItem disablePadding>
               <ListItemButton>
