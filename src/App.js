@@ -21,6 +21,7 @@ import AccountVerification from './Screens/AccountVerification';
 import SingleListing from './Screens/SingleListing';
 import TenantReservations from './Screens/TenantReservations';
 import HostReservations from './Screens/HostReservations';
+import MyBookings from './Screens/MyBookings';
 
 
 function App() {
@@ -105,6 +106,7 @@ function App() {
         <Route path="/properties/:id" element={<SingleListing />} />
         {state.loggedIn ? ( 
         <>
+              <Route path="/my-bookings" element={<MyBookings />} />
               <Route path="/reservations" element={<HostReservations />} />
               <Route path="/my-reservations" element={<TenantReservations />} />
               <Route path="/property/add" element={<NewProperty />} />

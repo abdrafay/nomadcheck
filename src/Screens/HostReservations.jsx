@@ -10,7 +10,7 @@ const HostReservations = () => {
 
   const getReservations = async () => {
     try {
-        const {data} = await Axios.get(`${appState.apiEndPoint}/api/reservations/my_reservations`, {
+        const {data} = await Axios.get(`${appState.apiEndPoint}/api/reservations/my_reservations`,{
             headers: {
                 Authorization: `Bearer ${appState.token}`
             }

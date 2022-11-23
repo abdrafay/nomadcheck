@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar from '@mui/material/AppBar';
+
+import Image from "../images/logo.jpg";
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
@@ -26,6 +28,7 @@ import AddHomeIcon from '@mui/icons-material/AddHome';
 import DispatchContext from '../DispatchContext';
 import StateContext from '../StateContext';
 import LogoutIcon from "@mui/icons-material/Logout";
+import { Navbar } from 'react-bootstrap';
 
 const drawerWidth = 240;
 
@@ -95,11 +98,22 @@ const ProfileLayout =({children}) => {
         anchor="left"
         open={open}
       >
-        {/* <DrawerHeader>
-          <IconButton onClick={handleDrawer}>
+        <DrawerHeader className='mx-auto'>
+          {/* <IconButton onClick={handleDrawer}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
-        </DrawerHeader> */}
+          </IconButton> */}
+          <div className='text-center'>
+          <Navbar.Brand href="/" className='text-center'>
+              <img
+                className="logo"
+                src={Image}
+                width={120}
+                height={92}
+                alt="Compnay-logo"
+              />
+            </Navbar.Brand>
+          </div>
+        </DrawerHeader>
         <Divider />
         <List>
           {/* {navitems.map((item, index) => ( */}
