@@ -11,14 +11,22 @@ import {
   Popper,
 } from "@mui/material";
 import React, { useState } from "react";
+
 import ProfileLayout from "../Layout/ProfileLayout";
+import BookingTableCard from "../Components/BookingTableCard";
+
+import card from "../images/card-01.jpg";
 
 // Icons
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import ArchiveIcon from "@mui/icons-material/Archive";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import EditIcon from "@mui/icons-material/Edit";
+import CloseIcon from '@mui/icons-material/Close';
+import SearchIcon from "@mui/icons-material/Search";
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -68,19 +76,19 @@ const MyBookings = () => {
   const [value, setValue] = useState("Today");
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
-    console.log(event.currentTarget)
+    console.log(event.currentTarget);
     setAnchorEl(event.currentTarget);
   };
   const handleClose = (e) => {
-    console.log()
+    console.log();
     setValue(e.target.innerText);
     setAnchorEl(null);
   };
 
   return (
     <ProfileLayout>
-      <div className="d-flex justify-content-between align-items-center">
-        <h1>My Bookings</h1>
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h1><strong>My Bookings</strong></h1>
         <div>
           <Button
             id="basic-button"
@@ -108,6 +116,173 @@ const MyBookings = () => {
           </Menu>
         </div>
       </div>
+      <div className="row m-0 justify-content-between align-items-center">
+        <div className="w-20">
+          <div className="pr_info_card">
+            <div className="row m-0 align-items-center">
+              <div className="col-4 p-0">
+                <div className="pr_icon_bck">
+                  <AttachMoneyIcon />
+                </div>
+              </div>
+              <div className="col-8 p-0 ps-2">
+                <h5>Hotel Name</h5>
+                <p>Address</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/*  */}
+        <div className="w-20">
+          <div className="pr_info_card">
+            <div className="row m-0 align-items-center">
+              <div className="col-4 p-0">
+                <div className="pr_icon_bck">
+                  <CloseIcon />
+                </div>
+              </div>
+              <div className="col-8 p-0 ps-2">
+                <h5>Hotel Name</h5>
+                <p>Address</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/*  */}
+        <div className="w-20">
+          <div className="pr_info_card">
+            <div className="row m-0 align-items-center">
+              <div className="col-4 p-0">
+                <div className="pr_icon_bck">
+                  <AccessTimeIcon />
+                </div>
+              </div>
+              <div className="col-8 p-0 ps-2">
+                <h5>Hotel Name</h5>
+                <p>Address</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/*  */}
+        <div className="w-20">
+          <div className="pr_info_card">
+            <div className="row m-0 align-items-center">
+              <div className="col-4 p-0">
+                <div className="pr_icon_bck">
+                  <AttachMoneyIcon />
+                </div>
+              </div>
+              <div className="col-8 p-0 ps-2">
+                <h5>Hotel Name</h5>
+                <p>Address</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/*  */}
+        <div className="w-20">
+          <div className="pr_info_card">
+            <div className="row m-0 align-items-center">
+              <div className="col-4 p-0">
+                <div className="pr_icon_bck">
+                  <AttachMoneyIcon />
+                </div>
+              </div>
+              <div className="col-8 p-0 ps-2">
+                <h5>Hotel Name</h5>
+                <p>Address</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <section id="latest_requests" className="mt-4">
+        <div className="d-flex align-items-center justify-content-between">
+          <div>
+            <h5 className="m-0"><strong>Latest Requests</strong></h5>
+          </div>
+          <div className="src_bar">
+            <input type="search" placeholder="search" />
+            <SearchIcon />
+          </div>
+        </div>
+        <hr />
+        <div className="cst_table">
+          <div className="row m-0 m_row">
+            <div className="w-35 px-1">
+              <h5>Full Information</h5>
+            </div>
+            <div className="w-30 px-1">
+              <h5>Other Details</h5>
+            </div>
+            <div className="w-15 px-2">
+              <h5>Request No.</h5>
+            </div>
+            <div className="w-20 px-1">
+              <h5>Actions</h5>
+            </div>
+          </div>
+          <BookingTableCard />
+          <BookingTableCard />
+
+          {/* <div className="table-responsive">
+
+        
+        <table className="w-100 table">
+            <thead>
+              <tr>
+                <th style={{width: "40%"}}>Full Information</th>
+                <th style={{width: "35%"}}>OtherDetails</th>
+                <th style={{width: "10%"}}>Request No</th>
+                <th style={{width: "15%"}}>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                <div className="row m-0 align-items-center">
+                <div className="col-4 p-0">
+                    <img src={card} alt="" className="img-fluid round-border" />
+                </div>
+                <div className="col-8">
+                  <h4 className="m-0"><strong>Room 2 for rent in nice Apartment for students and young professors</strong></h4>
+                </div>
+              </div>
+                </td>
+                <td>
+                <table>
+                <tr>
+                  <th>Request By:</th>
+                  <td> Hanna</td>
+                </tr>
+                <tr>
+                  <th>Period</th>
+                  <td> Aug 15, 2022 to Oct 15, 2022</td>
+                </tr>
+                <tr>
+                  <th>Pay Amount</th>
+                  <td> USD 393.60</td>
+                </tr>
+                <tr>
+                  <th>Guests</th>
+                  <td> 1</td>
+                </tr>
+              </table>
+                </td>
+                <td>
+                <h4>27325</h4>
+                </td>
+                <td><div className="d-flex align-items-center">
+                <Button variant="contained">Accept</Button>
+                <Button variant="contained">Reject</Button>
+              </div></td>
+              </tr>
+            </tbody>
+        </table>
+        </div> */}
+        </div>
+      </section>
     </ProfileLayout>
   );
 };

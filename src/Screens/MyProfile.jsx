@@ -394,7 +394,7 @@ const MyProfile = () => {
         <form>
           <h2>Your details</h2>
 
-          <div className="border w-80 p-5 bg-fff">
+          <div className="border w-80 p-5 bg-gray">
             <div className="row px-0 mx-0 align-items-start">
               <div className="col-md-8">
                 <div>
@@ -515,7 +515,7 @@ const MyProfile = () => {
           <div className="row m-0">
               <div className="col-md-7 ps-0">
             <h2>Social Media Link</h2>
-            <div className="border p-5 bg-fff">
+            <div className="border p-5 bg-gray">
               <div className="row px-0 mx-0">
                 {appState.user.role === "Tenant" && (
                   <>
@@ -647,7 +647,7 @@ const MyProfile = () => {
           </div>
           <div className="col-md-5 ps-0">
             <h2>Language and time zone</h2>
-            <div className="border p-5 bg-fff">
+            <div className="border p-5 bg-gray">
               <div className="row px-0 mx-0">
                 <div className="col-12">
                   <FormControl fullWidth>
@@ -690,7 +690,7 @@ const MyProfile = () => {
         
           <div>
             <h2>Notifications</h2>
-            <div className="border w-80 p-5 bg-fff">
+            <div className="border w-80 p-5 bg-gray">
               <div className="row px-0 mx-0">
                 <div className="col-12">
                   <FormGroup>
@@ -734,7 +734,7 @@ const MyProfile = () => {
         {/* <form>
           <div>
             <h2>Promotional communications</h2>
-            <div className="border w-80 p-5 bg-fff">
+            <div className="border w-80 p-5 bg-gray">
               <div className="row px-0 mx-0">
                 <div className="col-12">
                   <FormGroup>
@@ -776,7 +776,7 @@ const MyProfile = () => {
         <form>
           <div>
             <h2>Delete account</h2>
-            <div className="border w-80 p-5 bg-fff">
+            <div className="border w-80 p-5 bg-gray">
               <div className="row px-0 mx-0">
                 <div className="col-12">
                   <p className="fontsmall">

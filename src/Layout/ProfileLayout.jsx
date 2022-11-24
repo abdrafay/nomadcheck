@@ -5,7 +5,7 @@ import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar from '@mui/material/AppBar';
 
-import Image from "../images/logo.jpg";
+import logoWhite from "../images/logoWhite.png";
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
@@ -105,16 +105,17 @@ const ProfileLayout =({children}) => {
           <div className='text-center'>
           <Navbar.Brand href="/" className='text-center'>
               <img
-                className="logo"
-                src={Image}
+                className="img-fluid"
+                src={logoWhite}
                 width={120}
-                height={92}
+                
+                // height={60}
                 alt="Compnay-logo"
               />
             </Navbar.Brand>
           </div>
         </DrawerHeader>
-        <Divider />
+        {/* <Divider /> */}
         <List>
           {/* {navitems.map((item, index) => ( */}
             <ListItem disablePadding>

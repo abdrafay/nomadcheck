@@ -80,7 +80,7 @@
 }
 
 .profilelayout {
-  background: #e7e7e7 !important;
+  background: #fff !important;
 }
 
 .profile-container .border {
@@ -111,4 +111,136 @@ input[type=number] {
 .btnFb {
   background: #3b5998 !important;
   padding: 10px 30px !important;
+}
+
+.w-20 {
+  @include min992 {
+    width: 20%;
+  }
+  padding: 0 5px !important;
+  width: 30%;
+}
+
+.pr_icon_bck {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  svg {
+    font-size: 30px;
+  }
+}
+.pr_info_card {
+  padding: 15px 20px;
+  background: #F3684A;
+  
+  border-radius: 12px;
+  h5,p {
+    color: #fff;
+    margin: 0;
+  }
+  h5 {
+    font-weight: bold;
+    font-size: 16px;
+  }
+  p {
+    font-size: 15px;
+  }
+}
+
+#latest_requests {
+  
+  padding: 30px;
+  border-radius: 15px;
+  border: 1px solid #000;
+  .src_bar {
+    position: relative;
+    svg {
+      position: absolute;
+      top: 10%;
+      right: 2%;
+    }
+    input[type=search] {
+      background-color: #fff;
+      border: 1px solid #000;
+      outline: none;
+      padding: 3px 15px;
+      border-radius: 8px;
+      min-width: 280px;
+    }
+  }
+  
+}
+
+.round-border {
+  border-radius: 13px;
+}
+
+.table {
+  th, td {
+    padding: 2px !important;
+  }
+} 
+
+.cst_table {
+  overflow-x: auto;
+  td {
+    padding-left: 6px;
+    color: #F3684A;
+  }
+  .m_row {
+    border-bottom: 1px solid #000;
+    // margin: 20px 0 !important;
+    padding: 10px 0;
+    &:last-child {
+      border-bottom: 0;  
+    }
+    &:first-child {
+      border-bottom: 0;
+    }
+    @include min992 {
+      width: 100% !important; 
+    }
+    width: 1000px !important;
+  }
+  h5 {
+    font-size: 15px;
+    font-weight: bold;
+  }
+  h4 {
+    font-size: 16px;
+  }
+  th,td {
+    font-size: 15px;
+  }
+  
+}
+$dangerBg: #ffdfdf;
+$dangerText: #be7575; 
+$successBg: #dfffe0;
+$successText: #67b56a;
+.accept-btn {
+    background-color: $successBg !important;
+    color: $successText !important;
+}
+.reject-btn {
+  background-color: $dangerBg !important;
+  color: $dangerText !important;
+}
+
+.status_btns {
+  margin: 0 5px !important;
+  text-transform: capitalize !important;
+  font-weight: 500 !important;
+  padding: 5px 10px !important;
+  min-width: 80px !important;
+  border-radius: 12px !important;
+}
+
+.MuiDrawer-paper {
+  background: #F3684A !important;
+  padding: 5px 15px !important;
 }
