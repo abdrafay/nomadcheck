@@ -564,7 +564,8 @@ h6{
     border-radius: 12px;
 }
 .profile-container label {
-    font-weight: bold!important;    background: #fff;
+    font-weight: bold!important;    
+	/* background: #fff; */
 }
 .MuiFormControl-root {
     margin: 10px 0!important;

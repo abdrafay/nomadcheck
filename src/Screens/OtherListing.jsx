@@ -18,7 +18,7 @@ import ManIcon from '@mui/icons-material/Man';
 import {Button, Slider, Typography} from '@mui/material';
 import {Box} from '@mui/system';
 import Cards from '../Components/Cards';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Axios from 'axios';
 import StateContext from '../StateContext';
 import DispatchContext from '../DispatchContext'
@@ -35,6 +35,7 @@ export default function Otherlisting() {
   }
   const appState = useContext(StateContext)
   const appDispatch = useContext(DispatchContext)
+  const {state} = useLocation()
   const [value,
     setValue] = useState([0, 0]);
 
@@ -57,7 +58,12 @@ export default function Otherlisting() {
         }
     }
     useEffect(() => {
-        getNewList();
+        console.log(state, 'list')
+        if(state === null) {
+          getNewList();
+        }else {
+          setNewList(state.rooms)
+        }
     },[])
     const handleSearchSubmit = async (e) => {
         e.preventDefault()

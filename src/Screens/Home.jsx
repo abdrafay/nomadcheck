@@ -1,5 +1,6 @@
 // React Router
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useContext, useState } from 'react';
 
 // React BootStrap
 import { Form, InputGroup } from 'react-bootstrap';
@@ -25,6 +26,8 @@ import Building from '../images/Buiding.png'
 import handSake from '../images/handshake.png'
 import Arrow from '../images/arrow.png'
 import applogo from '../images/flogoz.png'
+import Axios from 'axios'
+import StateContext from '../StateContext';
 
 // Icons
 import SearchIcon from '@mui/icons-material/Search';
@@ -33,6 +36,31 @@ import SearchIcon from '@mui/icons-material/Search';
 // import YouTubeIcon from '@mui/icons-material/YouTube';
 // import InstagramIcon from '@mui/icons-material/Instagram';
 const Home = () => {
+    const [date, setDate] = useState();
+    const [search, setSearch] = useState('');
+    const appState = useContext(StateContext)
+    const navigate = useNavigate()
+    const handleDate = (e) => {
+        setDate(e.target.value);
+    }
+    const handleSubmit = async () => {
+        console.log('submission')
+        try {
+            const {data} = await Axios.post(`${appState.apiEndPoint}/api/searches`, {
+                search: {
+                    text: search,
+                    start_date: '12/12/2022'
+                }
+            })
+            navigate('/properties', {
+                state:data
+            })
+            console.log(data)
+            
+        } catch (error) {
+            console.log(error)   
+        }
+    }
   return (
     
         <section id='Home'>
@@ -45,9 +73,12 @@ const Home = () => {
                         <InputGroup.Text className='backgroundColor' style={{ borderEndStartRadius: "33px", borderTopLeftRadius: "33px" }}>
                             <SearchIcon id="searchicooons" />
                             </InputGroup.Text>
-                        <Form.Control type='text' placeholder="Search by city, neighborhood or unversity" aria-label="Search" />
-                        <InputGroup.Text className='banner-search-btn fontSize fontWeight backgroundColor' style={{ borderTopRightRadius: "33px", borderEndEndRadius: "33px", cursor: "pointer" }}>Search</InputGroup.Text>
+                        <Form.Control onChange={e => setSearch(e.target.value)} value={search} type='text' placeholder="Search by city, neighborhood or unversity" aria-label="Search" />
+                        <InputGroup.Text onClick={handleSubmit} className='banner-search-btn fontSize fontWeight backgroundColor' style={{ borderTopRightRadius: "33px", borderEndEndRadius: "33px", cursor: "pointer" }}>Search</InputGroup.Text>
                     </InputGroup>
+                    <div>
+                        <input type="date" onChange={handleDate} value={date} />
+                    </div>
                 </div>
             </div>
             </div>
