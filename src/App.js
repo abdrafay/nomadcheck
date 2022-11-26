@@ -105,21 +105,21 @@ function App() {
         <Route exact path="/" element={<Home />} />        
         <Route path="/properties" element={<Otherlisting />} />
         <Route path="/properties/:id" element={<SingleListing />} />
-        {state.loggedIn ? ( 
+        {state.loggedIn && (
         <>
-              <Route path="/profile" element={<ProfileLayout />}>
-                <Route path="" element={<MyProfile />} />
-                <Route path="my-bookings" element={<MyBookings />} />
-                <Route path="reservations" element={<HostReservations />} />
-                <Route path="my-reservations" element={<TenantReservations />} />
-                <Route path='my-properties' element={<MyProperties />}/>
+          <Route path="/profile" element={<ProfileLayout />}>
+            <Route path="" element={<MyProfile />} />
+            <Route path="my-bookings" element={<MyBookings />} />
+            <Route path="reservations" element={<HostReservations />} />
+            <Route path="my-reservations" element={<TenantReservations />} />
+            <Route path='my-properties' element={<MyProperties />}/>
+            <Route path="add-property" element={<NewProperty />} />
+          </Route>
+          <Route path="/other-listing-map" element={<OtherlistingMap />} />
+          <Route path="/account-verification" element={<AccountVerification />} />
               
-              </Route>
-              <Route path="/property/add" element={<NewProperty />} />
-              <Route path="/other-listing-map" element={<OtherlistingMap />} />
-              <Route path="/account-verification" element={<AccountVerification />} />
-              {/* <Route  path="/properties/add" element={}/> */}
-              </>) : ''}
+          </>
+        )}
       </Routes>
     </BrowserRouter>
     </DispatchContext.Provider>

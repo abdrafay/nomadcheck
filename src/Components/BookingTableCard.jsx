@@ -1,9 +1,48 @@
 import { Button } from '@mui/material'
-import React from 'react'
+import { useContext, useState, useEffect } from 'react'
+import Axios from 'axios'
 
 import card from '../images/card-01.jpg'
+import StateContext from '../StateContext'
 
-const BookingTableCard = () => {
+const BookingTableCard = ({reservation}) => {
+  const appState = useContext(StateContext)
+  const [room, setRoom] = useState({})
+    const getRoom = async () => {
+        try {
+            const {data} = await Axios.get(`${appState.apiEndPoint}/api/rooms/${reservation.room_id}`,{
+              headers: {
+                'Authorization': `Bearer ${appState.token}`
+              }
+            })
+            console.log(data, 'data')
+              setRoom(data.room);
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    const handleReservation = async (status) => {
+      
+      try {
+        const {data} = await Axios.put(`${appState.apiEndPoint}/api/reservations/${reservation.id}`, {
+          reservation: {
+            booking_status: status
+          }
+        }, {
+          headers: {
+            'Authorization': `Bearer ${appState.token}`
+          },
+        })
+        console.log(data, 'data accept regjet')
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    useEffect(() => {
+      console.log('as')
+        getRoom();
+    },[])
   return (
     <div className="row m-0 m_row my-2 brd-down">
           <div className="w-35 px-1">
@@ -12,7 +51,7 @@ const BookingTableCard = () => {
                     <img src={card} alt="" className="img-fluid round-border" />
                 </div>
                 <div className="col-8">
-                  <h4 className="m-0"><strong>Room 2 for rent in nice Apartment for students and young professors</strong></h4>
+                  <h4 className="m-0"><strong>{room.listing_name}</strong></h4>
                 </div>
               </div>
           </div>
@@ -41,8 +80,8 @@ const BookingTableCard = () => {
           </div>
           <div className="w-20 px-1">
               <div className="d-flex align-items-center">
-                <Button variant="contained" className="accept-btn status_btns">Accept</Button>
-                <Button variant="contained" className="reject-btn status_btns">Reject</Button>
+                <Button variant="contained" onClick={() => handleReservation(2)} className="accept-btn status_btns">Accept</Button>
+                <Button variant="contained" onClick={() => handleReservation(1)} className="reject-btn status_btns">Reject</Button>
               </div>
           </div>
         </div>

@@ -78,7 +78,7 @@ const SingleListing = () => {
             start_date: `${d1.getFullYear()}-${d1.getMonth()}-${d1.getDate()}`,
             end_date: `${d2.getFullYear()}-${d2.getMonth()}-${d2.getDate()}`,
             price: 12.12,
-            owner_id: appState.user.id,
+            owner_id: room.user_id,
             total: 12.12,
             status: 1,
             booking_status: 0,

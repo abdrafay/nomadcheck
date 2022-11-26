@@ -24,39 +24,39 @@ const countryArr = Object.entries(countryObj).map(([key, value]) => {
   };
 });
 
-const ActionButtons = (props) => {
-  const handleBack = () => {
-    props.previousStep();
-  };
+// const ActionButtons = (props) => {
+//   const handleBack = () => {
+//     props.previousStep();
+//   };
 
-  const handleNext = () => {
-    props.nextStep();
-  };
+//   const handleNext = () => {
+//     props.nextStep();
+//   };
 
-  const handleFinish = () => {
-    props.lastStep();
-  };
+//   const handleFinish = () => {
+//     props.lastStep();
+//   };
 
-  return (
-    <div>
-      <Row>
-        {props.currentStep > 1 && (
-          <Col>
-            <Button onClick={handleBack}>Back</Button>
-          </Col>
-        )}
-        <Col>
-          {props.currentStep < props.totalSteps && (
-            <Button onClick={handleNext}>Next</Button>
-          )}
-          {props.currentStep === props.totalSteps && (
-            <Button onClick={handleFinish}>Finish</Button>
-          )}
-        </Col>
-      </Row>
-    </div>
-  );
-};
+//   return (
+//     <div>
+//       <Row>
+//         {props.currentStep > 1 && (
+//           <Col>
+//             <Button onClick={handleBack}>Back</Button>
+//           </Col>
+//         )}
+//         <Col>
+//           {props.currentStep < props.totalSteps && (
+//             <Button onClick={handleNext}>Next</Button>
+//           )}
+//           {props.currentStep === props.totalSteps && (
+//             <Button onClick={handleFinish}>Finish</Button>
+//           )}
+//         </Col>
+//       </Row>
+//     </div>
+//   );
+// };
 
 const One = (props) => {
   const [info1, setInfo1] = useState({});
@@ -233,12 +233,13 @@ const One = (props) => {
         </div>
       </FormGroup>
       <br />
-      <ActionButtons {...props} nextStep={validate} />
+      {/* <ActionButtons {...props} nextStep={validate} /> */}
     </div>
   );
 };
 
 const Two = (props) => {
+  console.log(props, 'props')
   const [info2, setInfo2] = useState({});
   const [error, setError] = useState("");
 
@@ -267,7 +268,7 @@ const Two = (props) => {
       <h1>This is step 2 content</h1>
       <FormGroup>
         <Label>
-          Welcome <b>{props.user.title || ""}</b>
+          {/* Welcome <b>{props.user.title || ""}</b> */}
         </Label>
       </FormGroup>
       <FormGroup>
@@ -280,7 +281,7 @@ const Two = (props) => {
         />
       </FormGroup>
       <br />
-      <ActionButtons {...props} nextStep={validate2} />
+      {/* <ActionButtons {...props} nextStep={validate2} /> */}
     </div>
   );
 };
@@ -297,41 +298,57 @@ const Three = (props) => {
   return (
     <div>
       <h2>Summary user detail</h2>
-      <p>Name: {props.user.name}</p>
-      <p>Age: {props.user.age}</p>
+      {/* <p>Name: {props.user.name}</p> */}
+      {/* <p>Age: {props.user.age}</p> */}
       <br />
-      <ActionButtons {...props} lastStep={handleLastStep} />
+      {/* <ActionButtons {...props} lastStep={handleLastStep} /> */}
     </div>
   );
 };
 
+const Frm = () => {
+  return (
+    <div>Hello</div>
+  )
+}
+
 const Sample = () => {
-  const [stepWizard, setStepWizard] = useState(null);
-  const [user, setUser] = useState({});
-  const [activeStep, setActiveStep] = useState(0);
+  const [steps, setSteps] = useState([
+    { key: 'firstStep', label: 'Description', isDone: true, component: One },
+    { key: 'secondStep', label: 'Price & Images', isDone: false, component: Two },
+    { key: 'thirdStep', label: 'Details & Location', isDone: false, component: Three },
+    { key: 'finalStep', label: 'Ameneties & Calendar', isDone: false, component: Three },
+  ]);
 
-  const assignStepWizard = (instance) => {
-    setStepWizard(instance);
-  };
+  const [activeStep, setActiveStep] = useState(steps[0]);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const assignUser = (val) => {
-    console.log("parent receive user callback");
-    console.log(val);
-    setUser((user) => ({
-      ...user,
-      ...val,
-    }));
-  };
+  const handleNext = () => {
+    if (steps[steps.length - 1].key === activeStep.key) {
+      alert('You have completed all steps.');
+      return;
+    }
 
-  const handleStepChange = (e) => {
-    console.log("step change");
-    console.log(e);
-    setActiveStep(e.activeStep - 1);
-  };
+    const index = steps.findIndex(x => x.key === activeStep.key);
+    setSteps(prevStep => prevStep.map(x => {
+      if (x.key === activeStep.key) x.isDone = true;
+      return x;
+    }))
+    setActiveIndex(index + 1);
+    setActiveStep(steps[index + 1]);
+  }
 
-  const handleComplete = () => {
-    alert("You r done.");
-  };
+  const handleBack = () => {
+    const index = steps.findIndex(x => x.key === activeStep.key);
+    if (index === 0) return;
+
+    setSteps(prevStep => prevStep.map(x => {
+      if (x.key === activeStep.key) x.isDone = false;
+      return x;
+    }))
+    setActiveIndex(index - 1);
+    setActiveStep(steps[index - 1]);
+  }
 
   return (
     <div>
@@ -344,13 +361,23 @@ const Sample = () => {
           </div>
           <div className="row ">
             <div className="col-12">
-              <Stepper activeStep={activeStep}>
-                {/* <Step label="Step 1" children={<MdDescription />} /> */}
-                <Step label="Personal Detail" />
+              {/* <Stepper activeStep={activeStep}>
+               
+                <Step label="Personal Detail"/>
                 <Step label="Confirmation" />
-              </Stepper>
+              </Stepper> */}
+              <div className="row m-0">
+                {steps.map((step, i) => {
+                  return <div key={i} className={`col-md-${12/steps.length} my-1`}>
+                      <div className={`wiz-steps ${activeStep.key === step.key ? 'active' : ''} ${step.isDone ? 'done' : ''}`}>
+                        <h4 className="m-0"><b>Step {i + 1}</b></h4>
+                        <p className="m-0">{step.label}</p>
+                      </div>
+                  </div>
+                })}
+              </div>
               {/* NOTE: IMPORTANT !! StepWizard must contains at least 2 children components, else got error */}
-              <StepWizard
+              {/* <StepWizard
                 className="bg-fff p-5 border"
                 instance={assignStepWizard}
                 onStepChange={handleStepChange}
@@ -358,7 +385,21 @@ const Sample = () => {
                 <One userCallback={assignUser} />
                 <Two user={user} userCallback={assignUser} />
                 <Three user={user} completeCallback={handleComplete} />
-              </StepWizard>
+              </StepWizard> */}
+              <div className="step-component py-4">
+                <div className="p-4 border">
+                    <h4><b>{activeStep.label}</b></h4>
+                    <hr />
+                    {activeIndex === 0 ? <One /> : activeIndex === 1 ? <Two /> : <Three />}
+                </div>
+          
+        </div>
+
+        <div className="btn-component">
+          <Button type="button" value="Back" onClick={handleBack} disabled={steps[0].key === activeStep.key}>Back</Button>
+          <Button type="button" onClick={handleNext}>{steps[steps.length - 1].key !== activeStep.key ? 'Next' : 'Submit'}</Button>
+        </div>
+
             </div>
           </div>
         </div>

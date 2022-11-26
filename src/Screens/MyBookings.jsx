@@ -4,7 +4,10 @@ import {
   Menu,
   MenuItem
 } from "@mui/material";
-import React, { useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import Axios from 'axios'
+import StateContext from "../StateContext";
+
 
 import BookingTableCard from "../Components/BookingTableCard";
 
@@ -64,6 +67,28 @@ const MyBookings = () => {
     setValue(e.target.innerText);
     setAnchorEl(null);
   };
+  const appState = useContext(StateContext)
+  const [reservations, setReservations] = useState([])
+
+  const getReservations = async () => {
+    try {
+        const {data} = await Axios.get(`${appState.apiEndPoint}/api/reservations/my_reservations`, {
+            headers: {
+                Authorization: `Bearer ${appState.token}`
+            }
+        })
+        console.log(data)
+        if(data.success) {
+            setReservations(data.reservations)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+  }
+  useEffect(() => {
+    console.log("useEffect");
+    getReservations();
+  },[])
 
   return (
     <div>
@@ -79,7 +104,7 @@ const MyBookings = () => {
             onClick={handleClick}
             endIcon={<KeyboardArrowDownIcon />}
           >
-            {value}
+            {value ? value : "Today"}
           </Button>
           <Menu
             id="basic-menu"
@@ -203,8 +228,8 @@ const MyBookings = () => {
               <h5>Actions</h5>
             </div>
           </div>
-          <BookingTableCard />
-          <BookingTableCard />
+          {reservations.map( (reservation, index) => <BookingTableCard key={index} reservation={reservation} />)}
+         
 
           {/* <div className="table-responsive">
 

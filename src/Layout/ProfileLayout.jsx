@@ -122,7 +122,7 @@ const ProfileLayout =({children}) => {
         <List>
           {/* {navitems.map((item, index) => ( */}
             <ListItem disablePadding>
-              <NavLink to="/profile" className={({isActive}) => isActive ? 'a': 'e'}>
+              <NavLink to="/profile" className={({isActive}) => isActive ? 'drawer_btn active-bar w-100': 'drawer_btn w-100'}>
               <ListItemButton>
                 {/* <ListItemIcon> */}
                   <PersonIcon className='me-2' /> 
@@ -134,7 +134,7 @@ const ProfileLayout =({children}) => {
             {appState.user.role === "Host" && (
               <>
             <ListItem  disablePadding>
-              <NavLink to="/profile/my-properties" className={({isActive}) => isActive ? 'a': 'e'}>
+              <NavLink to="/profile/my-properties" className={({isActive}) => isActive ? 'drawer_btn active-bar w-100': 'drawer_btn w-100'}>
               <ListItemButton>
                 <HomeIcon className='me-2' /> 
                 My Properties
@@ -142,7 +142,15 @@ const ProfileLayout =({children}) => {
               </NavLink>
             </ListItem>
             <ListItem  disablePadding>
-            <NavLink to="/reservations">
+              <NavLink to="/profile/my-bookings" className={({isActive}) => isActive ? 'drawer_btn active-bar w-100': 'drawer_btn w-100'}>
+              <ListItemButton>
+                <HomeIcon className='me-2' /> 
+                My Properties
+              </ListItemButton>
+              </NavLink>
+            </ListItem>
+            <ListItem  disablePadding>
+            <NavLink to="/profile/reservations" className={({isActive}) => isActive ? 'drawer_btn active-bar w-100': 'drawer_btn w-100'}>
               <ListItemButton>
                 <HomeIcon className='me-2' /> 
                 Reservations
@@ -152,7 +160,7 @@ const ProfileLayout =({children}) => {
             
             
               <ListItem disablePadding>
-              <NavLink to="/property/add">
+              <NavLink to="/property/add" className={({isActive}) => isActive ? 'drawer_btn active-bar w-100': 'drawer_btn w-100'}>
               <ListItemButton>
                   <AddHomeIcon className='me-2' /> 
                 Add Property
@@ -163,7 +171,7 @@ const ProfileLayout =({children}) => {
               )}
               {appState.user.role === "Tenant" && (
                 <ListItem  disablePadding>
-                <NavLink to="/my-reservations">
+                <NavLink to="/my-reservations" className={({isActive}) => isActive ? 'drawer_btn active-bar w-100': 'drawer_btn w-100'}>
                 <ListItemButton>
                     <HomeIcon className='me-2' /> 
                   My Reservations
@@ -172,7 +180,7 @@ const ProfileLayout =({children}) => {
               </ListItem>
               )}
             <ListItem disablePadding>
-            <NavLink to="/" onClick={handleLogout}>
+            <NavLink to="/" onClick={handleLogout} className={({isActive}) => isActive ? 'drawer_btn active-bar w-100': 'drawer_btn w-100'}>
               <ListItemButton>
                 <LogoutIcon className='me-2' />
                 Logout
