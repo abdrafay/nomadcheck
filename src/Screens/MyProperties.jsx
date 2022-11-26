@@ -3,9 +3,7 @@ import {useContext, useEffect, useState} from 'react'
 
 
 import SearchIcon from '@mui/icons-material/Search';
-import SMbuttons from '../Components/SMButton';
 import MyPropertyCard from '../Components/MyPropertyCard';
-import ProfileLayout from '../Layout/ProfileLayout';
 import StateContext from '../StateContext';
 import Axios from 'axios';
 import { Button } from '@mui/material';
@@ -32,8 +30,8 @@ const MyProperties = () => {
         getProperties();
     }, []);
   return (
-      <ProfileLayout>
-          <div className='row'>
+    <div>
+        <div className='row'>
               <div className='col-md-7 col-12'>
                   <div className='search-form-div'>
                     <SearchIcon id="color-mistake" />
@@ -54,7 +52,7 @@ const MyProperties = () => {
                 </div>}
               
           </div>
-      </ProfileLayout>
+    </div>
   )
 }
 

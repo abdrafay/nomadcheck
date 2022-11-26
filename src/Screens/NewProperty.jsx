@@ -10,7 +10,6 @@ import React, { useState } from "react";
 import { Stepper, Step } from "react-form-stepper";
 import StepWizard from "react-step-wizard";
 import { Row, Col, Button, FormGroup, Label, Input } from "reactstrap";
-import ProfileLayout from "../Layout/ProfileLayout";
 import countries from "i18n-iso-countries";
 import enLocale from "i18n-iso-countries/langs/en.json";
 
@@ -335,7 +334,7 @@ const Sample = () => {
   };
 
   return (
-    <ProfileLayout>
+    <div>
       <div className="content-add-new-property">
         <div className="container">
           <div className="row">
@@ -364,7 +363,7 @@ const Sample = () => {
           </div>
         </div>
       </div>
-    </ProfileLayout>
+    </div>
   );
 };
 

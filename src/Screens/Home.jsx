@@ -1,5 +1,5 @@
 // React Router
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useContext, useState } from 'react';
 
 // React BootStrap
@@ -31,10 +31,7 @@ import StateContext from '../StateContext';
 
 // Icons
 import SearchIcon from '@mui/icons-material/Search';
-// import FacebookIcon from '@mui/icons-material/Facebook';
-// import GoogleIcon from '@mui/icons-material/Google';
-// import YouTubeIcon from '@mui/icons-material/YouTube';
-// import InstagramIcon from '@mui/icons-material/Instagram';
+
 const Home = () => {
     const [date, setDate] = useState();
     const [search, setSearch] = useState('');

@@ -1,10 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
-// import {Form, InputGroup} from 'react-bootstrap'
 import SearchIcon from '@mui/icons-material/Search';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import SMbuttons from '../Components/SMButton';
-// import AirlineStopsIcon from '@mui/icons-material/AirlineStops';
-// import card from '../config/images/card-01.jpg'
 import BathroomIcon from '@mui/icons-material/Bathroom';
 import BedroomParentIcon from '@mui/icons-material/BedroomParent';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -13,7 +10,6 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
 import ManIcon from '@mui/icons-material/Man';
 import {Button, Slider, Typography} from '@mui/material';
 import {Box} from '@mui/system';

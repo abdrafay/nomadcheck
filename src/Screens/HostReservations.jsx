@@ -1,5 +1,4 @@
 import {useState, useEffect, useContext} from 'react'
-import ProfileLayout from '../Layout/ProfileLayout'
 import StateContext from '../StateContext'
 import Axios from 'axios'
 import MyReservation from '../Components/MyReservation'
@@ -27,10 +26,10 @@ const HostReservations = () => {
     getReservations();
   },[])
 return (
-    <ProfileLayout>
+    <div>
         <h1>My Reservations</h1>
         {reservations && reservations.map((item, ind) => <MyReservation item={item} key={ind} />)}
-    </ProfileLayout>
+    </div>
   )
 }
 

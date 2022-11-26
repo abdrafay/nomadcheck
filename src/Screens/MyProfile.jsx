@@ -4,42 +4,17 @@ import { styled, useTheme } from "@mui/material/styles";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import CssBaseline from "@mui/material/CssBaseline";
-import MuiAppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import {
-  Alert,
   Button,
   FormControl,
-  FormControlLabel,
-  FormGroup,
   InputLabel,
   MenuItem,
   Select,
-  Switch,
   TextField,
 } from "@mui/material";
-import ProfileLayout from "../Layout/ProfileLayout";
-import { useEffect } from "react";
-import { useContext } from "react";
+import { useEffect, useContext } from "react";
 import StateContext from "../StateContext";
 import Axios from "axios";
-import SMbuttons from "../Components/SMButton";
 import MyAlert from "../Components/MyAlert";
 import DispatchContext from "../DispatchContext";
 
@@ -369,7 +344,7 @@ const MyProfile = () => {
   },[])
   return (
     loading ? <h1>Loading..</h1> : (
-    <ProfileLayout>
+      <>
       <MyAlert
         open={alert.open}
         type={alert.type}
@@ -797,7 +772,7 @@ const MyProfile = () => {
           </div>
         </form>
       </div>
-    </ProfileLayout>
+      </>
   )
     );
 };

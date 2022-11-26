@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar from '@mui/material/AppBar';
-
+import avt from '../images/avt.webp'
 import logoWhite from "../images/logoWhite.png";
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
@@ -22,7 +22,7 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { Alert, Button, TextField } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate, Outlet  } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import AddHomeIcon from '@mui/icons-material/AddHome';
 import DispatchContext from '../DispatchContext';
@@ -115,64 +115,69 @@ const ProfileLayout =({children}) => {
             </Navbar.Brand>
           </div>
         </DrawerHeader>
+        <div className='text-center py-3'>
+            <img src={avt} alt="Avatar" className="img-fluid full-round avt-image" />
+        </div>
         {/* <Divider /> */}
         <List>
           {/* {navitems.map((item, index) => ( */}
             <ListItem disablePadding>
+              <NavLink to="/profile" className={({isActive}) => isActive ? 'a': 'e'}>
               <ListItemButton>
-                <ListItemIcon>
-                  <PersonIcon /> 
-                </ListItemIcon>
-                <Link to="/profile">Profile</Link>
+                {/* <ListItemIcon> */}
+                  <PersonIcon className='me-2' /> 
+                {/* </ListItemIcon> */}
+                Profile
               </ListItemButton>
+              </NavLink>
             </ListItem>
             {appState.user.role === "Host" && (
               <>
             <ListItem  disablePadding>
+              <NavLink to="/profile/my-properties" className={({isActive}) => isActive ? 'a': 'e'}>
               <ListItemButton>
-                <ListItemIcon>
-                  <HomeIcon /> 
-                </ListItemIcon>
-                <Link to="/profile/my-properties">My Properties</Link>
+                <HomeIcon className='me-2' /> 
+                My Properties
               </ListItemButton>
+              </NavLink>
             </ListItem>
             <ListItem  disablePadding>
+            <NavLink to="/reservations">
               <ListItemButton>
-                <ListItemIcon>
-                  <HomeIcon /> 
-                </ListItemIcon>
-                <Link to="/reservations">Reservations</Link>
+                <HomeIcon className='me-2' /> 
+                Reservations
               </ListItemButton>
+              </NavLink>
             </ListItem>
             
             
               <ListItem disablePadding>
+              <NavLink to="/property/add">
               <ListItemButton>
-                <ListItemIcon>
-                  <AddHomeIcon /> 
-                </ListItemIcon>
-                <Link to="/property/add">Add Property</Link>
+                  <AddHomeIcon className='me-2' /> 
+                Add Property
               </ListItemButton>
+              </NavLink>
             </ListItem>
             </>
               )}
               {appState.user.role === "Tenant" && (
                 <ListItem  disablePadding>
+                <NavLink to="/my-reservations">
                 <ListItemButton>
-                  <ListItemIcon>
-                    <HomeIcon /> 
-                  </ListItemIcon>
-                  <Link to="/my-reservations">My Reservations</Link>
+                    <HomeIcon className='me-2' /> 
+                  My Reservations
                 </ListItemButton>
+                </NavLink>
               </ListItem>
               )}
             <ListItem disablePadding>
+            <NavLink to="/" onClick={handleLogout}>
               <ListItemButton>
-                <ListItemIcon>
-                <LogoutIcon />
-                </ListItemIcon>
-                <Link to="/" onClick={handleLogout}>Logout</Link>
+                <LogoutIcon className='me-2' />
+                Logout
               </ListItemButton>
+              </NavLink>
             </ListItem>
         </List>
         
@@ -190,7 +195,8 @@ const ProfileLayout =({children}) => {
             <MenuIcon />
           </IconButton>
           
-            {children}
+            {/* {children} */}
+                <Outlet />
       </div>
       
         </Main>

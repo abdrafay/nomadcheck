@@ -22,6 +22,7 @@ import SingleListing from './Screens/SingleListing';
 import TenantReservations from './Screens/TenantReservations';
 import HostReservations from './Screens/HostReservations';
 import MyBookings from './Screens/MyBookings';
+import ProfileLayout from './Layout/ProfileLayout';
 
 
 function App() {
@@ -106,15 +107,18 @@ function App() {
         <Route path="/properties/:id" element={<SingleListing />} />
         {state.loggedIn ? ( 
         <>
-              <Route path="/my-bookings" element={<MyBookings />} />
-              <Route path="/reservations" element={<HostReservations />} />
-              <Route path="/my-reservations" element={<TenantReservations />} />
+              <Route path="/profile" element={<ProfileLayout />}>
+                <Route path="" element={<MyProfile />} />
+                <Route path="my-bookings" element={<MyBookings />} />
+                <Route path="reservations" element={<HostReservations />} />
+                <Route path="my-reservations" element={<TenantReservations />} />
+                <Route path='my-properties' element={<MyProperties />}/>
+              
+              </Route>
               <Route path="/property/add" element={<NewProperty />} />
-              <Route path='/profile/my-properties' element={<MyProperties />}/>
               <Route path="/other-listing-map" element={<OtherlistingMap />} />
               <Route path="/account-verification" element={<AccountVerification />} />
               {/* <Route  path="/properties/add" element={}/> */}
-              <Route path="/profile" element={<MyProfile />}/>
               </>) : ''}
       </Routes>
     </BrowserRouter>

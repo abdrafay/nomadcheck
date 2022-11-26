@@ -1,27 +1,15 @@
 import { styled, alpha } from "@mui/material/styles";
 import {
   Button,
-  ClickAwayListener,
-  Divider,
-  Grow,
   Menu,
-  MenuItem,
-  MenuList,
-  Paper,
-  Popper,
+  MenuItem
 } from "@mui/material";
 import React, { useState } from "react";
 
-import ProfileLayout from "../Layout/ProfileLayout";
 import BookingTableCard from "../Components/BookingTableCard";
-
-import card from "../images/card-01.jpg";
 
 // Icons
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import ArchiveIcon from "@mui/icons-material/Archive";
-import FileCopyIcon from "@mui/icons-material/FileCopy";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from '@mui/icons-material/Close';
@@ -31,14 +19,6 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 const StyledMenu = styled((props) => (
   <Menu
     elevation={0}
-    //   anchorOrigin={{
-    //     vertical: 'bottom',
-    //     horizontal: 'right',
-    //   }}
-    //   transformOrigin={{
-    //     vertical: 'top',
-    //     horizontal: 'right',
-    //   }}
     {...props}
   />
 ))(({ theme }) => ({
@@ -86,7 +66,7 @@ const MyBookings = () => {
   };
 
   return (
-    <ProfileLayout>
+    <div>
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1><strong>My Bookings</strong></h1>
         <div>
@@ -283,7 +263,7 @@ const MyBookings = () => {
         </div> */}
         </div>
       </section>
-    </ProfileLayout>
+    </div>
   );
 };
 
