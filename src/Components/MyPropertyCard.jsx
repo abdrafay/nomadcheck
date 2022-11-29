@@ -8,7 +8,7 @@ const MyPropertyCard = ({property}) => {
     <div className='propertiesz'>
     <div className='left'>
       <img src="" alt="" />
-      <h2><Link className='text-decoration-none' to={`/property/${property.id}`}>{property.listing_name}</Link></h2>
+      <h2><Link className='text-decoration-none' to={`/properties/${property.id}`}>{property.listing_name}</Link></h2>
       <p>Area: <b>{property.city}</b><br></br>
         Cancelation Policy: <b>{property.cancellation_policy}</b><br></br>
         Property Size: <b>{property.size_in_meter} meter</b><br></br>

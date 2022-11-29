@@ -15,7 +15,6 @@ const BookingTableCard = ({reservation}) => {
                 'Authorization': `Bearer ${appState.token}`
               }
             })
-            console.log(data, 'data')
               setRoom(data.room);
             
         } catch (error) {
@@ -34,13 +33,16 @@ const BookingTableCard = ({reservation}) => {
             'Authorization': `Bearer ${appState.token}`
           },
         })
-        console.log(data, 'data accept regjet')
+        if(status === 2 )
+          alert('Accepted')
+        else
+          alert('Rejected')
       } catch (error) {
+        alert("Error")
         console.log(error)
       }
     }
     useEffect(() => {
-      console.log('as')
         getRoom();
     },[])
   return (

@@ -354,13 +354,11 @@ const Sample = () => {
     <div>
       <div className="content-add-new-property">
         <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <h1>Add New Property</h1>
-            </div>
-          </div>
-          <div className="row ">
-            <div className="col-12">
+          
+          <h1 style={{color: "#000"}} className="mb-5"><strong>Add New Property</strong></h1>
+          
+          <div className="row mx-0">
+            <div className="col-12 px-0">
               {/* <Stepper activeStep={activeStep}>
                
                 <Step label="Personal Detail"/>

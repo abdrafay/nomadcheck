@@ -145,22 +145,22 @@ const ProfileLayout =({children}) => {
               <NavLink to="/profile/my-bookings" className={({isActive}) => isActive ? 'drawer_btn active-bar w-100': 'drawer_btn w-100'}>
               <ListItemButton>
                 <HomeIcon className='me-2' /> 
-                My Properties
+                My Reservations
               </ListItemButton>
               </NavLink>
             </ListItem>
-            <ListItem  disablePadding>
+            {/* <ListItem  disablePadding>
             <NavLink to="/profile/reservations" className={({isActive}) => isActive ? 'drawer_btn active-bar w-100': 'drawer_btn w-100'}>
               <ListItemButton>
                 <HomeIcon className='me-2' /> 
                 Reservations
               </ListItemButton>
               </NavLink>
-            </ListItem>
+            </ListItem> */}
             
             
               <ListItem disablePadding>
-              <NavLink to="/property/add" className={({isActive}) => isActive ? 'drawer_btn active-bar w-100': 'drawer_btn w-100'}>
+              <NavLink to="/profile/add-property" className={({isActive}) => isActive ? 'drawer_btn active-bar w-100': 'drawer_btn w-100'}>
               <ListItemButton>
                   <AddHomeIcon className='me-2' /> 
                 Add Property
