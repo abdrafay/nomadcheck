@@ -64,17 +64,18 @@ const Home = () => {
         <div className='rowz' id='main-containe'>
             <div className='container'>
             <div className='col-12' id='bear-pic' >
-                <h1 className='banner-heading white-color fontWeight textAlign marginTop75pxz'>Get to , live in our <br></br> Exclusvies Student Housing</h1>
+                <h1 className='banner-heading white-color fontWeight textAlign marginTop75pxz'>Get to live in our <br></br> Exclusives Student Housing</h1>
                 <div className='alignSelf withFull'>
                     <InputGroup id='inputss' >
                         <InputGroup.Text className='backgroundColor' style={{ borderEndStartRadius: "33px", borderTopLeftRadius: "33px" }}>
                             <SearchIcon id="searchicooons" />
-                            </InputGroup.Text>
-                        <Form.Control onChange={e => setSearch(e.target.value)} value={search} type='text' placeholder="Search by city, neighborhood or unversity" aria-label="Search" />
+                        </InputGroup.Text>
+                        <Form.Control onChange={e => setSearch(e.target.value)} value={search} type='text' placeholder="Search by city, neighborhood or university" aria-label="Search" />
+                        <input type="date" className="mainDateField" onChange={handleDate} value={date} />
                         <InputGroup.Text onClick={handleSubmit} className='banner-search-btn fontSize fontWeight backgroundColor' style={{ borderTopRightRadius: "33px", borderEndEndRadius: "33px", cursor: "pointer" }}>Search</InputGroup.Text>
                     </InputGroup>
                     <div>
-                        <input type="date" onChange={handleDate} value={date} />
+                        
                     </div>
                 </div>
             </div>
@@ -83,7 +84,7 @@ const Home = () => {
         <div className='rowz' id="wrow">
             <div className='container'>
             <div className='row' >
-                <div className='col-12' >
+                <div className='col-12 mb-4' >
                     <h2 className='bigfont fontWeight white-color'>Best co-living experience for your <br></br> exchange semester in south America</h2>
                 </div>
                 <div className='row' id="next-row">
@@ -151,7 +152,7 @@ const Home = () => {
                         </div>
                     </div>
                     <div className='col-md-4'>
-                        <div className='rowz new-bgcolor borderRaduis boxshaodow' style={{ marginTop: "50px" }}>
+                        <div className='rowz new-bgcolor borderRaduis boxshaodow'>
                             <div>
                                 <img src={Building}  />
                                 <div className='numbz'>
@@ -273,7 +274,7 @@ const Home = () => {
                             <div style={{ display: "flex" }}>
                                 <img src={Arrow} width="9%" height="12%" alt="arrow-icon" />
 
-                                <p style={{ color: "white", marginTop: "5px", fontSize: "89%", marginBottom: "0px" }}>Exclusvies</p>
+                                <p style={{ color: "white", marginTop: "5px", fontSize: "89%", marginBottom: "0px" }}>Exclusives</p>
                             </div>
                             <div style={{ display: "flex" }}>
                                 <img src={Arrow} width="9%" height="12%" alt="arrow-icon" />

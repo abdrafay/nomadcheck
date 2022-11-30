@@ -15,7 +15,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { useRef, useState } from "react";
 // import { Nav, NavLink } from "react-bootstrap";
 // import { FaBars, FaTimes } from "react-icons/fa";
-import Image from "../images/logo.jpg";
+import Image from "../images/LogoFinal.png";
 import AddIcon from "@mui/icons-material/Add";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import PersonIcon from "@mui/icons-material/Person";
@@ -37,14 +37,14 @@ export default function Navbarz() {
   const navigate = useNavigate();
   const navRef = useRef();
   console.log(appState);
-
+  const [modalForm, setModalForm] = useState("login");
   const showNavbar = () => {
     navRef.current.classList.toggle("responsive_nav");
   };
 
   const LoginUser = () => {
     setOpen(true);
-    setChnaage(false);
+  setModalForm("login");
   };
 
   const handleClose = () => {
@@ -52,10 +52,20 @@ export default function Navbarz() {
   };
 
   const SgnUpUser = () => {
-    setChnaage(true);
+    setModalForm("SignUp")
     setOpen(true);
   };
+  const ForgotpasswordOpen = () => {
+    setModalForm("Forgotpassword")
+    setOpen(true);
+  };
+  const handleFormOpen = (option) => {
+    setOpen(false);
+    setModalForm(option);
+    setOpen(true);
+    console.log('handleFormOpen', option)
 
+  };
   //Zain
   // const OtherListings = () => {
   //     navigate("/otherlisting")
@@ -111,13 +121,13 @@ export default function Navbarz() {
                 ) : (
                   <>
                     <li className="nav-item">
-                      <a className="nav-link" onClick={LoginUser}>
+                      <a className="nav-link" onClick={e => handleFormOpen('login')}>
                         <LockOpenIcon className="logoIcon" />
                         Login
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" onClick={SgnUpUser}>
+                      <a className="nav-link" onClick={e => handleFormOpen('signup')}>
                         <AddIcon className="logoIcon" />
                         Signup
                       </a>
@@ -135,7 +145,8 @@ export default function Navbarz() {
       <NavModal
         open={open}
         setOpen={setOpen}
-        chaange={chaange}
+        modalForm={modalForm}
+        handleFormOpen={handleFormOpen}
         handleClose={handleClose}
       />
     </>

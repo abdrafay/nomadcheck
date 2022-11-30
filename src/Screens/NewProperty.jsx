@@ -1,5 +1,7 @@
 import {
+  Checkbox,
   FormControl,
+  FormControlLabel,
   InputLabel,
   MenuItem,
   Select,
@@ -239,9 +241,33 @@ const One = (props) => {
 };
 
 const Two = (props) => {
-  console.log(props, 'props')
   const [info2, setInfo2] = useState({});
   const [error, setError] = useState("");
+
+
+  const [inputList, setInputList] = useState([{ exName: "", exValue: "", exsinglefee: "" }]);
+// handle input change
+const handleInputChange = (e, index) => {
+  const { name, value } = e.target;
+  const list = [...inputList];
+  list[index][name] = value;
+  setInputList(list);
+};
+
+// handle click event of the Remove button
+const handleRemoveClick = index => {
+  const list = [...inputList];
+  list.splice(index, 1);
+  setInputList(list);
+};
+
+// handle click event of the Add button
+const handleAddClick = () => {
+  setInputList([...inputList, { exName: "", exValue: "", exsinglefee: "" }]);
+};
+
+
+
 
   const onInputChanged = (event) => {
     const targetName = event.target.name;
@@ -249,37 +275,160 @@ const Two = (props) => {
 
     setInfo2((info2) => ({
       ...info2,
-      [targetName]: targetValue,
+      [targetName]: targetValue
     }));
   };
 
   const validate2 = () => {
-    if (!info2.age) setError("Age is mandatory field");
-    else {
+    // if (!info2.age) setError("Age is mandatory field");
+    // else {
       setError("");
       props.nextStep();
       props.userCallback(info2);
-    }
+    // }
   };
+  
 
   return (
     <div>
       <span style={{ color: "red" }}>{error}</span>
-      <h1>This is step 2 content</h1>
-      <FormGroup>
+      {/* <h1>This is step 2 content</h1> */}
+      {/* <FormGroup>
         <Label>
-          {/* Welcome <b>{props.user.title || ""}</b> */}
+          Welcome <b>{props.user.title || ""}</b>
         </Label>
-      </FormGroup>
-      <FormGroup>
-        <Label>Age: </Label>
-        <Input
-          type="text"
-          name="age"
-          placeholder="Enter your age"
-          onChange={onInputChanged}
-        />
-      </FormGroup>
+      </FormGroup> */}
+      {/* <FormGroup>
+        <Label>Price per month in USD<br></br><span>(Monthly price, only numbers)</span> </Label>
+        <TextField className='w-100' name="property_city_front" label="Price per month in" variant="outlined" />
+      </FormGroup> */}
+
+
+<InputLabel id="p-per-m"><b>Price per month in USD</b><br></br>(Monthly price, only numbers)</InputLabel>
+<FormControl fullWidth>
+  <TextField className='w-100' name="p-per-m" label="Price per month in" placeholder="320" variant="outlined" onChange={onInputChanged} />
+</FormControl>
+
+
+
+
+<InputLabel id="tax-in-percent"><b>Taxes in %</b> (taxes are considered included in the monthly price)</InputLabel>
+<FormControl fullWidth>
+  <TextField className='w-100' name="tax-in-percent" label="Value" placeholder="0" variant="outlined" onChange={onInputChanged} />
+</FormControl>
+
+
+
+<InputLabel id="cleaning-fee">Cleaning Fee</InputLabel>
+<FormControl fullWidth>
+  <TextField className='w-100' name="cleaning-fee" label="Cleaning Fee per month USD (only numbers)" variant="outlined" placeholder="0" onChange={onInputChanged} />
+</FormControl>
+
+
+
+
+<InputLabel id="city-fee-per-m"><b>City Fee per month:USD</b> (only numbers)</InputLabel>
+<FormControl fullWidth>
+  <TextField className='w-100' name="city-fee-per-m" label="City Fee per month:USD (only numbers)" variant="outlined" placeholder="320" onChange={onInputChanged} />
+</FormControl>
+
+<FormGroup>
+  <FormControlLabel control={<Checkbox  />} label="City Fee is a % of the Monthly fee" />
+</FormGroup>
+
+<InputLabel id="minimum-month-of-booking"><b>Minimum months of booking</b> (only numbers)</InputLabel>
+<FormControl fullWidth>
+  <TextField className='w-100' name="minimum-month-of-booking" label="Minimum months of booking (only numbers)" variant="outlined" placeholder="4.5" onChange={onInputChanged} />
+</FormControl>
+
+<InputLabel id="minimum-month-of-booking"><b>Security Deposit in USD</b> - will be refunded if no complaints are received from the owner</InputLabel>
+<FormControl fullWidth>
+  <TextField className='w-100' name="security-deposit" label="Security Deposit" variant="outlined" placeholder="0" onChange={onInputChanged} />
+</FormControl>
+
+
+<InputLabel id="early-bird-discount"><b>Early Bird Discount - in</b> % from the price per night</InputLabel>
+<FormControl fullWidth>
+  <TextField className='w-100' name="early-bird-discount" label="Value in %" variant="outlined" placeholder="0" onChange={onInputChanged} />
+</FormControl>
+
+
+<FormControl fullWidth>
+  <TextField className='w-100' name="no-of-days-in-advance" label="No of days in advance" variant="outlined" placeholder="0" onChange={onInputChanged} />
+</FormControl>
+
+
+<InputLabel id="extra-price-per-guest-per-month"><b>No of days in advance</b></InputLabel>
+<FormControl fullWidth>
+  <TextField className='w-100' name="extra-price-per-guest-per-month" label="Extra Price per guest per month USD" variant="outlined" placeholder="0" onChange={onInputChanged} />
+</FormControl>
+
+
+<FormGroup>
+  <FormControlLabel control={<Checkbox  />} label="Allow guests above capacity?" />
+</FormGroup>
+
+
+<div className="extra-option-box">
+<InputLabel id="ex-ops"><b>Extra Options</b></InputLabel>
+{inputList.map((x, i) => {
+        return (
+          <div className="box">
+            <div class="row m-0">
+              <div class="col-3">
+            <TextField className='w-100' name="exName" variant="outlined" placeholder="Name" value={x.exName} onChange={e => handleInputChange(e, i)} />
+              </div>
+              <div class="col-3">
+            <TextField className='w-100' name="exValue" variant="outlined" placeholder="Value" value={x.exValue} onChange={e => handleInputChange(e, i)} />
+              </div>
+              <div class="col-3">
+            <TextField className='w-100' name="exsinglefee" variant="outlined" placeholder="Single Fee" value={x.exsinglefee} onChange={e => handleInputChange(e, i)} />
+              </div>
+            <div class="col-3">
+            <div className="btn-box">
+              {inputList.length !== 1 && <button
+                className="mr10"
+                onClick={() => handleRemoveClick(i)}>Remove</button>}
+              {inputList.length - 1 === i && <button onClick={handleAddClick}>Add</button>}
+            </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+      </div>
+{/* <div style={{ marginTop: 20 }}>{JSON.stringify(inputList)}</div> */}
+
+
+<div class="row m-0">
+              <div class="col-3">
+<FormControl fullWidth>
+  <InputLabel id="video-from">Video from</InputLabel>
+  <Select
+    labelId="video-from"
+    id="video-from"
+    label="Video from"
+  >
+    <MenuItem value={'Vimeo'}>Vimeo</MenuItem>
+    <MenuItem value={'Youtube'}>Youtube</MenuItem>
+  </Select>
+</FormControl>
+              </div>
+              <div class="col-3">
+            <TextField className='w-100' name="video-id" variant="outlined" label="Video ID" placeholder="id" />
+              </div>
+              </div>
+
+
+        {/* <FormGroup>
+          <Label>Age: </Label>
+          <Input
+            type="text"
+            name="age"
+            placeholder="Enter your age"
+            onChange={onInputChanged}
+          />
+        </FormGroup> */}
       <br />
       {/* <ActionButtons {...props} nextStep={validate2} /> */}
     </div>
@@ -374,16 +523,7 @@ const Sample = () => {
                   </div>
                 })}
               </div>
-              {/* NOTE: IMPORTANT !! StepWizard must contains at least 2 children components, else got error */}
-              {/* <StepWizard
-                className="bg-fff p-5 border"
-                instance={assignStepWizard}
-                onStepChange={handleStepChange}
-              >
-                <One userCallback={assignUser} />
-                <Two user={user} userCallback={assignUser} />
-                <Three user={user} completeCallback={handleComplete} />
-              </StepWizard> */}
+              
               <div className="step-component py-4">
                 <div className="p-4 border">
                     <h4><b>{activeStep.label}</b></h4>

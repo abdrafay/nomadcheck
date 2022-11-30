@@ -353,12 +353,17 @@ a.dropdown-item {
 }
 #next-row img {
     margin: 20px;
-    height: 120px;
+    /* height: 120px; */
 }
 #how-works img {
-    width: 48%;
+	width: 100px;
+	
     position: relative;
-    top: 0px;
+}
+@media screen and (min-width: 992px) {
+	#how-works img {
+		width: 150px;
+	}
 }
 
 
@@ -550,8 +555,7 @@ h6{
 	color: #f3684a;
 }
 .blackback {
-    background-color: black;
-    opacity: .7;
+    background-color: rgba(0,0,0,.7);
 }
 /* 
 .profile-container {
@@ -564,8 +568,7 @@ h6{
     border-radius: 12px;
 }
 .profile-container label {
-    font-weight: bold!important;    
-	/* background: #fff; */
+    font-weight: bold!important;
 }
 .MuiFormControl-root {
     margin: 10px 0!important;
@@ -1016,7 +1019,7 @@ option:hover {
 }
 
 .boxshaodow {
-	box-shadow: 1px 1px 7px black;
+	box-shadow: 1px 1px 12px 0px #666;
 }
 
 .with-24 {

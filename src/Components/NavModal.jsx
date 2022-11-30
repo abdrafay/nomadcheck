@@ -1,4 +1,4 @@
-import {useState, useEffect, useContext} from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import SMbuttons from './SMButton'
@@ -16,6 +16,7 @@ import MyAlert from './MyAlert';
 import Register from './Register';
 import Login from './Login';
 import { Button, Dialog, DialogContent, DialogTitle } from '@mui/material';
+import ForgotPassword from './ForgotPassword';
 
 
 const style = {
@@ -33,16 +34,16 @@ const style = {
     borderRadius: "20px",
 };
 
-export default function NavModal({open, handleClose, setOpen, chaange}) {
+export default function NavModal({ open, handleClose, setOpen, modalForm, handleFormOpen }) {
     const navigate = useNavigate()
     const appState = useContext(StateContext)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    
+
     const [loginEmail, setLoginEmail] = useState("")
     const [loginPassword, setLoginPassword] = useState("")
     const [value, setValue] = useState(1);
-    const [alert, setAlert]= useState({
+    const [alert, setAlert] = useState({
         open: false,
         message: "",
         type: "success"
@@ -50,91 +51,78 @@ export default function NavModal({open, handleClose, setOpen, chaange}) {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-      
+
     const setAlertOpen = val => {
-    setAlert({...alert, open: val})
+        setAlert({ ...alert, open: val })
     }
     return (
-        
+
         <div>
             <MyAlert open={alert.open} type={alert.type} message={alert.message} setOpen={setAlertOpen} />
             <Modal open={open}
-                
-                onClose={handleClose}  sx={{ borderRadius: "30px" }}>
-                    
-                    {chaange ?
+                className="mdl-cls"
+                onClose={handleClose} sx={{ borderRadius: "30px" }}>
 
-<Box sx={style}>
-    {/* <CloseIcon onClick={CloseModal} id="cutIcon" color="black" /> */}
+                {modalForm === 'signup' ?
 
-    <Box sx={{ marginRight: "7px" }}>
-        <h4 style={{ fontWeight: "bold", textAlign: "center", marginTop: "7px" }}>Sign Up</h4>
-        <p style={{ textAlign: "center", marginBottom: "0PX" }}>Please fill the registeration form</p>
-        {/* <h4 style={{ textAlign: "center", marginTop: "10px", marginBottom:"-20px" }}>Sign Up</h4> */}
-    </Box>
-    
-    <Box sx={{ width: '100%', marginRight: "7px", marginTop: "15px" }}>
-        <Tabs
-            value={value}
-            onChange={handleChange}
-            TabIndicatorProps={{ sx: { backgroundColor: '#F3684A', height: 3, width: "100%" } }}
-            textColor="inherit"
-        >
-            {appState.roles.map((item, ind) => <Tab key={ind} value={item.id} sx={{ color: "black", margin: "auto", textTransform: "capitalize", fontSize: "19px", fontFamily: "poppins" }} label={item.name} /> )}
-        </Tabs>
-    </Box>
+                    <Box sx={style}>
+                        {/* <CloseIcon onClick={CloseModal} id="cutIcon" color="black" /> */}
 
-    <Box>
-    <Button className="text-center round-border-button w-100 btnFb mt-2 py-4" variant="contained"><i className="fa-brands fa-facebook-f me-2"></i> Login with Facebook</Button>
-        <Button className="text-center round-border-button w-100 btnGoogle mt-2" variant="contained"><i className="fa-brands fa-google me-2"></i> Login with Google</Button>
-    </Box>
-    {/* <Box sx={{ marginRight: "7px", position:"relative" }} >
-        <img id='bt-faccc' src={Icon} alt="facebook-icon" />
-        <SMbuttons label="Login with Facebook" id="modal-faceee" />
-    </Box>
+                        <Box sx={{ marginRight: "7px" }}>
+                            <h4 style={{ fontWeight: "bold", textAlign: "center", marginTop: "7px" }}>Sign Up</h4>
+                            <p style={{ textAlign: "center", marginBottom: "0PX" }}>Please fill the registeration form</p>
+                            {/* <h4 style={{ textAlign: "center", marginTop: "10px", marginBottom:"-20px" }}>Sign Up</h4> */}
+                        </Box>
 
-    <Box style={{ marginTop: "10px", marginRight: "7px",  position:"relative" }}>
-        <img id='bt-goooo' src={SecondGoogle} alt="facebook-icon" />
-        <SMbuttons label="Login with Google" id="modal-facaa" />
-    </Box> */}
-    <Register setAlert={setAlert} setOpen={setOpen} role={value} />
+                        <Box sx={{ width: '100%', marginRight: "7px", marginTop: "15px" }}>
+                            <Tabs
+                                value={value}
+                                onChange={handleChange}
+                                TabIndicatorProps={{ sx: { backgroundColor: '#F3684A', height: 3, width: "100%" } }}
+                                textColor="inherit"
+                            >
+                                {appState.roles.map((item, ind) => <Tab key={ind} value={item.id} sx={{ color: "black", margin: "auto", textTransform: "capitalize", fontSize: "19px", fontFamily: "poppins" }} label={item.name} />)}
+                            </Tabs>
+                        </Box>
+                        <Box>
+                            <Button className="text-center round-border-button w-100 btnFb mt-2 py-4" variant="contained"><i className="fa-brands fa-facebook-f me-2"></i> Login with Facebook</Button>
+                            <Button className="text-center round-border-button w-100 btnGoogle mt-2" variant="contained"><i className="fa-brands fa-google me-2"></i> Login with Google</Button>
+                        </Box>
+                        <Register setAlert={setAlert} setOpen={setOpen} role={value} />
 
-    <Box >
-        <h5 style={{ fontFamily: "poppins", fontSize: "10px", textAlign: "center", marginTop: "20px" }} id="color-issue">*A Password will be-e-maled to you</h5>
-    </Box>
+                        <Box >
+                            <h5 style={{ fontFamily: "poppins", fontSize: "10px", textAlign: "center", marginTop: "20px" }} id="color-issue">*A Password will be-e-maled to you</h5>
+                        </Box>
 
-</Box>
+                    </Box>
 
-:
+                    : modalForm === 'login' ?
 
-<Box sx={style}>
-    {/* <CloseIcon onClick={CloseModal} id="cutIcon" color="black" /> */}
+                    <Box sx={style}>
+                        <Box>
+                            <h4 style={{ fontWeight: "bold", textAlign: "center", marginTop: "10px" }}>Login</h4>
+                            <p style={{ textAlign: "center" }}>Please fill the login form</p>
+                        </Box>
+                        <Box >
+                            <Button className="text-center round-border-button w-100 btnFb mt-2 py-4" variant="contained"><i className="fa-brands fa-facebook-f me-2"></i> Login with Facebook</Button>
+                            <Button className="text-center round-border-button w-100 btnGoogle mt-2" variant="contained"><i className="fa-brands fa-google me-2"></i> Login with Google</Button>
+                        </Box>
+                        <Login setAlert={setAlert} setOpen={setOpen} />
+                        <Box >
+                        <a><h5 style={{ fontFamily: "poppins", fontSize: "10px", textAlign: "center", marginTop: "20px" }} id="color-issue"> <span onClick={e => handleFormOpen('signup') }>Dont't have an account?</span> | <span onClick={e => handleFormOpen('forgot') }>Forgot Password</span></h5></a>
+                        </Box>
+                    </Box>
 
-    <Box>
-        <h4 style={{ fontWeight: "bold", textAlign: "center", marginTop: "10px" }}>Login</h4>
-        <p style={{ textAlign: "center" }}>Please fill the login form</p>
-    </Box>
-    <Box >
-        <Button className="text-center round-border-button w-100 btnFb mt-2 py-4" variant="contained"><i className="fa-brands fa-facebook-f me-2"></i> Login with Facebook</Button>
-        <Button className="text-center round-border-button w-100 btnGoogle mt-2" variant="contained"><i className="fa-brands fa-google me-2"></i> Login with Google</Button>
-        {/* <img id='bt-fac' src={Icon} alt="facebook-icon" />
-        <SMbuttons label="Login with Facebook" id="modal-face" className="m-0" /> */}
-    </Box>
-
-    {/* <Box style={{ marginTop: "10px" }}>
-        <img id='bt-googl' src={SecondGoogle} alt="facebook-icon" />
-
-        <SMbuttons label="Login with Google" id="modal-facaa" className="m-0" />
-    </Box> */}
-    <Login setAlert={setAlert} setOpen={setOpen} />
-
-    <Box >
-        <Link to="/" onClick={handleClose}><h5 style={{ fontFamily: "poppins", fontSize: "10px", textAlign: "center", marginTop: "20px" }} id="color-issue">Dont't have an account? | Forgot Password</h5></Link>
-    </Box>
-
-</Box>
-
-}
+                : modalForm === 'forgot' ?
+                <Box sx={style}>
+                        <Box>
+                            <h4 style={{ fontWeight: "bold", textAlign: "center", marginTop: "10px" }}>Forgot Password</h4>
+                            <p style={{ textAlign: "center" }}>Please enter the email of your account</p>
+                        </Box>
+                        <ForgotPassword setAlert={setAlert} setOpen={setOpen} />
+                        
+                    </Box>
+            : ''}
 
             </Modal>
             {/* <Modal
