@@ -531,7 +531,7 @@ const MyProfile = () => {
           <div className="rowz m-0">
               <div className="row col-md-12z ps-0">
             <h2>Social Media Link</h2>
-            <div className="col-6">
+            <div className="col-md-6">
               <div className="row px-0 mx-0">
               <Controller
                     control={control}
@@ -636,7 +636,7 @@ const MyProfile = () => {
                 </div>
               </div>
             </div>
-            <div class="col-6">
+            <div class="col-md-6">
             <Controller
                     control={control}
                     name="linkedin"
@@ -656,7 +656,7 @@ const MyProfile = () => {
           <div className="col-md-12z ps-0z row">
             <h2>Language and time zone</h2>
               <div className="row px-0 mx-0">
-                <div className="col-6">
+                <div className="col-md-6">
                   <FormControl fullWidth>
                     <InputLabel id="language">English</InputLabel>
                     <Select
@@ -671,7 +671,7 @@ const MyProfile = () => {
                     </Select>
                   </FormControl>
                 </div>
-                <div className="col-6">
+                <div className="col-md-6">
                   <FormControl fullWidth>
                     <InputLabel id="timezone">Time Zone</InputLabel>
                     <Select

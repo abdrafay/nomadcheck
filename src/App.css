@@ -616,6 +616,10 @@ option:hover {
 	background: #19c213!important;
     color: #fff!important;
     border-radius: 30px!important;
+	padding: 16px!important;
+}
+.p-5 {
+    padding: 0!important;
 }
 
 
