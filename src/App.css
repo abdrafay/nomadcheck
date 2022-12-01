@@ -587,6 +587,44 @@ option:hover {
 	background-color: #F3684A;
 }
 
+
+
+
+
+.extra-option-box {
+    background: #d7d7d7;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.btn-box {
+    padding: 10px 0;
+}
+.btn-box button{
+	padding: 12px;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+.css-1wc848c-MuiFormHelperText-root.Mui-error {
+    position: absolute;
+    bottom: 0px;
+}
+.red-bg{
+	background: #ff0000!important;
+}
+.change-pass{
+	background: #19c213!important;
+    color: #fff!important;
+    border-radius: 30px!important;
+}
+
+
+
+
+
+
+
+
 #modal-face {
 	text-align: center;
 	background-color: #395899;

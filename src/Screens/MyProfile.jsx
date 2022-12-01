@@ -10,6 +10,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  TextareaAutosize,
   TextField,
 } from "@mui/material";
 import { useEffect, useContext } from "react";
@@ -17,6 +18,21 @@ import StateContext from "../StateContext";
 import Axios from "axios";
 import MyAlert from "../Components/MyAlert";
 import DispatchContext from "../DispatchContext";
+import countries from "i18n-iso-countries";
+import enLocale from "i18n-iso-countries/langs/en.json";
+
+countries.registerLocale(enLocale);
+
+const countryObj = countries.getNames("en", { select: "official" });
+
+const countryArr = Object.entries(countryObj).map(([key, value]) => {
+  return {
+    label: value,
+    value: key,
+  };
+});
+
+
 
 const drawerWidth = 240;
 
@@ -369,10 +385,9 @@ const MyProfile = () => {
         <form>
           <h2>Your details</h2>
 
-          <div className="border w-80 p-5 bg-gray">
+          <div className="border w-80z p-5 bg-grayz">
             <div className="row px-0 mx-0 align-items-start">
-              <div className="col-md-8">
-                <div>
+              <div className="col-md-5">            
                   <Controller
                     control={control}
                     name="fname"
@@ -380,35 +395,14 @@ const MyProfile = () => {
                       <TextField
                         className="w-100"
                         label="First Name"
-                        variant="standard"
+                        variant="outlined"
                         error={errors.fname}
                         helperText={errors.fname?.message}
                         {...field}
                       />
                     )}
-                  />
-                </div>
-                <div>
-                  <Controller 
-                  name="lname"
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                    id="last-name"
-                    className="w-100"
-                    label="Last Name"
-                    variant="standard"
-                    error={errors.lname}
-                    helperText={errors.lname?.message}
-                    {...field}
-                  />
-                  )}
-                  />
-                  
-                </div>
-                <div>
+                  />  
                   <Controller
-
                     control={control}
                     name="email"
                     render={({ field }) => (
@@ -419,35 +413,61 @@ const MyProfile = () => {
                     className="w-100"
                     id="email"
                     label="Email"
-                    variant="standard"
+                    variant="outlined"
                     {...field}
                   />
-                      
                     )}
                   />
-
-                  {/* {error.email ?? <p className="error">{error.email}</p>} */}
-                </div>
+        <FormControl fullWidth>
+          <InputLabel id="profile_country">Country</InputLabel>
+          <Select labelId="profile_country" id="profile_country" label="Country">
+            {!!countryArr?.length &&
+              countryArr.map(({ label, value }) => (
+                <MenuItem value={value}>{label}</MenuItem>
+              ))}
+          </Select>
+        </FormControl>
+{/* {error.email ?? <p className="error">{error.email}</p>} */}
                 <div className="row px-0 mx-0 align-items-center">
-                  <div className="col-md-6 px-1">
-                    
-
-                    <TextField
-                      type="password"
-                      disabled
-                      className="w-100"
-                      id="password"
-                      label="Password"
-                      variant="standard"
-                      
-                    />
-                    
-                  </div>
-                  <div className="col-md-6 px-1">
-                    <Button variant="text">Change Password</Button>
-                  </div>
+                      <div className="col-md-6 px-1">
+                        <TextField
+                          type="password"
+                          disabled
+                          className="w-100"
+                          id="password"
+                          label="Password"
+                          variant="outlined"               
+                        />
+                      </div>
+                      <div className="col-md-6 px-1">
+                        <Button className="change-pass" variant="text">Change Password</Button>
+                      </div>
                 </div>
                 <div className="col-md-6 px-1">
+                  
+                </div>
+
+
+
+
+                  
+                </div>
+                <div className="col-md-5">
+                  <Controller 
+                  name="lname"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                    id="last-name"
+                    className="w-100"
+                    label="Last Name"
+                    variant="outlined"
+                    error={errors.lname}
+                    helperText={errors.lname?.message}
+                    {...field}
+                  />
+                  )}
+                  />
                   <Controller
                     control={control}
                     name="phone"
@@ -459,14 +479,27 @@ const MyProfile = () => {
                     className="w-100"
                     id="mobile"
                     label="*Mobile"
-                    variant="standard"
+                    variant="outlined"
                     {...field}
                   />
                     )}
                   />
-                </div>
+                <Controller
+                    control={control}
+                    name="profession"
+                    render={({ field }) => (
+                      <TextField
+                        className="w-100"
+                        label="Profession" placeholder="Type here"
+                        variant="outlined"
+                        error={errors.profession}
+                        helperText={errors.profession?.message}
+                        {...field}
+                      />
+                    )}
+                  />
               </div>
-              <div className="col-md-4 text-center ">
+              <div className="col-md-2 text-center ">
                 <img src={imageURL} width={100} height={100} alt="" />
                 <div className="mt-2">
                   <Button
@@ -484,17 +517,39 @@ const MyProfile = () => {
                   </Button>
                 </div>
               </div>
+              <div className="col-md-10">
+              <FormControl fullWidth>
+                <TextareaAutosize aria-label="about_me" minRows={3} placeholder="About me" label="About me" style={{ padding: "10px" }} />
+            </FormControl>
+              </div>
+
+
+
             </div>
           </div>
           {/*  */}
-          <div className="row m-0">
-              <div className="col-md-7 ps-0">
+          <div className="rowz m-0">
+              <div className="row col-md-12z ps-0">
             <h2>Social Media Link</h2>
-            <div className="border p-5 bg-gray">
+            <div className="col-6">
               <div className="row px-0 mx-0">
+              <Controller
+                    control={control}
+                    name="twitter"
+                    render={({ field }) => ( 
+                  <TextField
+                    type="text"
+                    className="w-100"
+                    id="Twitter"
+                    label="Twitter Url"
+                    variant="outlined"
+                    {...field}
+                  />
+                    )}
+                  />
                 {appState.user.role === "Tenant" && (
                   <>
-                    <div>
+                    
                   <Controller
                     control={control}
                     name="current_university"
@@ -505,13 +560,12 @@ const MyProfile = () => {
                     helperText={errors.current_university?.message}
                     className="w-100"
                     label="Current University"
-                    variant="standard"
+                    variant="outlined"
                       {...field}
                   />
                     )}
                   />
-                </div>
-                <div>
+                
                   <Controller
                     control={control}
                     name="aborad_university"
@@ -522,17 +576,15 @@ const MyProfile = () => {
                     helperText={errors.aborad_university?.message}
                     className="w-100"
                     label="Abroad University"
-                    variant="standard"
+                    variant="outlined"
                     {...field}
-
                   />
                     )}
                   />
-                </div>
+                
                   </>
                   ) }
                 
-                <div>
                   <Controller
                     control={control}
                     name="country"
@@ -543,14 +595,14 @@ const MyProfile = () => {
                     helperText={errors.country?.message}
                     className="w-100"
                     label="Country"
-                    variant="standard"
+                    variant="outlined"
                     {...field}
                   />
                     )}
                   />
-                </div>
+                
                 {appState.user.role === "Tenant" && (
-                  <div>
+                 
                   <Controller
                     control={control}
                     name="education_major"
@@ -561,52 +613,17 @@ const MyProfile = () => {
                     error={errors.education_major}
                     helperText={errors.education_major?.message}
                     label="Education Major"
-                    variant="standard"
+                    variant="outlined"
                     {...field}
                   />
                     )}
                   />
-                </div>
                 )  
                 }
                 
-                <div>
-                  <Controller
-                    control={control}
-                    name="twitter"
-                    render={({ field }) => ( 
-
-                  <TextField
-                    type="text"
-                    className="w-100"
-                    id="Twitter"
-                    label="Twitter Url"
-                    variant="standard"
-                    {...field}
-                  />
-                    )}
-                  />
-                </div>
-                <div>
-                  <Controller
-                    control={control}
-                    name="linkedin"
-                    render={({ field }) => (
-
-                  <TextField
-                    type="text"
-                    className="w-100"
-                    id="linkedIN"
-                    label="LinkedIn Url"
-                    variant="standard"
-                    {...field}
-                  />
-                    )}
-                  />
-
-                </div>
+                
                 {/* <div className='col-md-6 px-1'>
-                    <TextField type="number" className='w-100' id="mobile" label="*Mobile (*Add the country code format Ex: +1 232 3322" variant="standard" />
+                    <TextField type="number" className='w-100' id="mobile" label="*Mobile (*Add the country code format Ex: +1 232 3322" variant="outlined" />
                     </div> */}
                 <div>
                   <Button
@@ -619,12 +636,27 @@ const MyProfile = () => {
                 </div>
               </div>
             </div>
+            <div class="col-6">
+            <Controller
+                    control={control}
+                    name="linkedin"
+                    render={({ field }) => (
+                  <TextField
+                    type="text"
+                    className="w-100"
+                    id="linkedIN"
+                    label="LinkedIn Url"
+                    variant="outlined"
+                    {...field}
+                  />
+                    )}
+                  />
+            </div>
           </div>
-          <div className="col-md-5 ps-0">
+          <div className="col-md-12z ps-0z row">
             <h2>Language and time zone</h2>
-            <div className="border p-5 bg-gray">
               <div className="row px-0 mx-0">
-                <div className="col-12">
+                <div className="col-6">
                   <FormControl fullWidth>
                     <InputLabel id="language">English</InputLabel>
                     <Select
@@ -639,7 +671,7 @@ const MyProfile = () => {
                     </Select>
                   </FormControl>
                 </div>
-                <div>
+                <div className="col-6">
                   <FormControl fullWidth>
                     <InputLabel id="timezone">Time Zone</InputLabel>
                     <Select
@@ -655,7 +687,7 @@ const MyProfile = () => {
                   </FormControl>
                 </div>
               </div>
-            </div>
+            
           </div>
           </div>
           
@@ -751,7 +783,7 @@ const MyProfile = () => {
         <form>
           <div>
             <h2>Delete account</h2>
-            <div className="border w-80 p-5 bg-gray">
+            <div className="borderz w-80z p-5z bg-grayz">
               <div className="row px-0 mx-0">
                 <div className="col-12">
                   <p className="fontsmall">
@@ -762,7 +794,7 @@ const MyProfile = () => {
                 <div>
                   <Button
                     variant="contained"
-                    className="round-border-button mt-3"
+                    className="round-border-button mt-3 red-bg  "
                   >
                     Delete account
                   </Button>
