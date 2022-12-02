@@ -14,6 +14,7 @@ import StepWizard from "react-step-wizard";
 import { Row, Col, Button, FormGroup, Label, Input } from "reactstrap";
 import countries from "i18n-iso-countries";
 import enLocale from "i18n-iso-countries/langs/en.json";
+import { CheckBox } from "@mui/icons-material";
 
 countries.registerLocale(enLocale);
 
@@ -91,19 +92,20 @@ const One = (props) => {
       <FormGroup>
       <div className="row m-0">
         
-        <div className="col-md-6">
+        <div className="col-md-12">
           <span style={{ color: "red" }}>{error}</span>
           <TextField
             id="first-name"
             className="w-100"
             name="title"
             label="*Title (mandatory)"
-            variant="standard"
+            placeholder="Enter full title here"
+            variant="outlined"
             onChange={onInputChanged}
           />
         </div>
-        <div className="col-md-6">
-        <FormControl fullWidth variant="standard">
+        <div className="col-md-4">
+        <FormControl fullWidth variant="outlined">
           <InputLabel id="category">*Category (mandatory)</InputLabel>
           <Select labelId="category" id="category" label="category">
             <MenuItem value={"none"}>None</MenuItem>
@@ -120,7 +122,7 @@ const One = (props) => {
         </FormControl>
         </div>
 
-        <div className="col-md-6">
+        <div className="col-md-4">
         <FormControl fullWidth>
           <InputLabel id="prop_action_category">
             *Listed In/Room Type (mandatory)
@@ -138,7 +140,7 @@ const One = (props) => {
         </FormControl>
         </div>
 
-        <div className="col-md-6">
+        <div className="col-md-4">
         <FormControl fullWidth>
           <InputLabel id="guest_no">*Guest No (mandatory)</InputLabel>
           <Select labelId="guest_no" id="guest_no" label="guest_no">
@@ -161,28 +163,28 @@ const One = (props) => {
         </FormControl>
         </div>
 
-        <div className="col-md-6">
+        <div className="col-md-4">
         <TextField
           className="w-100"
           name="property_city_front"
           label="*City (mandatory)"
           placeholder="Type the city name"
-          variant="standard"
+          variant="outlined"
           onChange={onInputChanged}
         />
         </div>
-        <div className="col-md-6">
+        <div className="col-md-4">
         <TextField
           className="w-100"
           name="property_city_front"
           label="District/Area"
           placeholder="Type the District/Area name"
-          variant="standard"
+          variant="outlined"
           onChange={onInputChanged}
         />
         </div>
 
-        <div className="col-md-6">
+        <div className="col-md-4">
         <FormControl fullWidth>
           <InputLabel id="property_country">Country</InputLabel>
           <Select
@@ -209,7 +211,44 @@ const One = (props) => {
         </FormControl>
         </div>
 
+
         <div className="col-md-6">
+        <FormControl fullWidth>
+          <TextareaAutosize
+            aria-label="property_description"
+            minRows={3}
+            placeholder="Describe your property"
+            style={{ padding: "10px" }}
+          />
+        </FormControl>
+        </div>
+
+
+        <div className="col-md-6">
+        <FormControl fullWidth>
+          <TextareaAutosize
+            aria-label="property_description"
+            minRows={3}
+            placeholder="Describe your property"
+            style={{ padding: "10px" }}
+          />
+        </FormControl>
+        </div>
+
+
+
+        <div className="col-md-6">
+        <FormControl fullWidth>
+          <TextareaAutosize
+            aria-label="property_description"
+            minRows={3}
+            placeholder="Describe your property"
+            style={{ padding: "10px" }}
+          />
+        </FormControl>
+        </div>
+
+        <div className="col-md-12">
         <FormControl fullWidth>
           <InputLabel id="cancellation_policy">Cancellation Policy</InputLabel>
           <Select
@@ -222,6 +261,17 @@ const One = (props) => {
             <MenuItem value={"Flexible"}>Flexible</MenuItem>
           </Select>
         </FormControl>
+
+
+
+      {/* <FormControlLabel control={<CheckBox />} label="Label" /> */}
+       {/* <Checkbox
+          checked={checked}
+          onChange={handleChange}
+          inputProps={{ 'aria-label': 'controlled' }}
+        /> */}
+        {/* <FormControlLabel control={<CheckBox />} label="Allow instant booking? If checked, you will not have the option to reject a booking request." /> */}
+        Allow instant booking? If checked, you will not have the option to reject a booking request.
         </div>
 
         {/* <Label>Name: </Label>
@@ -290,7 +340,7 @@ const handleAddClick = () => {
   
 
   return (
-    <div>
+    <div className="row">
       <span style={{ color: "red" }}>{error}</span>
       {/* <h1>This is step 2 content</h1> */}
       {/* <FormGroup>
@@ -303,71 +353,81 @@ const handleAddClick = () => {
         <TextField className='w-100' name="property_city_front" label="Price per month in" variant="outlined" />
       </FormGroup> */}
 
-
-<InputLabel id="p-per-m"><b>Price per month in USD</b><br></br>(Monthly price, only numbers)</InputLabel>
+<div className="col-md-6">
+<InputLabel id="p-per-m"><b>Price per month in USD</b> (Monthly price, only numbers)</InputLabel>
 <FormControl fullWidth>
-  <TextField className='w-100' name="p-per-m" label="Price per month in" placeholder="320" variant="outlined" onChange={onInputChanged} />
+  <TextField className='w-100' name="p-per-m"  placeholder="320" variant="outlined" onChange={onInputChanged} />
 </FormControl>
+</div>
 
 
-
-
+<div className="col-md-6">
 <InputLabel id="tax-in-percent"><b>Taxes in %</b> (taxes are considered included in the monthly price)</InputLabel>
 <FormControl fullWidth>
-  <TextField className='w-100' name="tax-in-percent" label="Value" placeholder="0" variant="outlined" onChange={onInputChanged} />
+  <TextField className='w-100' name="tax-in-percent"  placeholder="0" variant="outlined" onChange={onInputChanged} />
 </FormControl>
+</div>
 
-
-
+<div className="col-md-6">
 <InputLabel id="cleaning-fee">Cleaning Fee</InputLabel>
 <FormControl fullWidth>
-  <TextField className='w-100' name="cleaning-fee" label="Cleaning Fee per month USD (only numbers)" variant="outlined" placeholder="0" onChange={onInputChanged} />
+  <TextField className='w-100' name="cleaning-fee" variant="outlined" placeholder="0" onChange={onInputChanged} />
 </FormControl>
+</div>
 
 
 
+<div className="col-md-6">
 
 <InputLabel id="city-fee-per-m"><b>City Fee per month:USD</b> (only numbers)</InputLabel>
 <FormControl fullWidth>
-  <TextField className='w-100' name="city-fee-per-m" label="City Fee per month:USD (only numbers)" variant="outlined" placeholder="320" onChange={onInputChanged} />
+  <TextField className='w-100' name="city-fee-per-m"  variant="outlined" placeholder="320" onChange={onInputChanged} />
 </FormControl>
+</div>
 
-<FormGroup>
-  <FormControlLabel control={<Checkbox  />} label="City Fee is a % of the Monthly fee" />
-</FormGroup>
-
+<div className="col-md-6">
 <InputLabel id="minimum-month-of-booking"><b>Minimum months of booking</b> (only numbers)</InputLabel>
 <FormControl fullWidth>
-  <TextField className='w-100' name="minimum-month-of-booking" label="Minimum months of booking (only numbers)" variant="outlined" placeholder="4.5" onChange={onInputChanged} />
+  <TextField className='w-100' name="minimum-month-of-booking"  variant="outlined" placeholder="4.5" onChange={onInputChanged} />
 </FormControl>
+</div>
 
+<div className="col-md-6">
 <InputLabel id="minimum-month-of-booking"><b>Security Deposit in USD</b> - will be refunded if no complaints are received from the owner</InputLabel>
 <FormControl fullWidth>
-  <TextField className='w-100' name="security-deposit" label="Security Deposit" variant="outlined" placeholder="0" onChange={onInputChanged} />
+  <TextField className='w-100' name="security-deposit" variant="outlined" placeholder="0" onChange={onInputChanged} />
 </FormControl>
+</div>
 
-
+<div className="col-md-6">
 <InputLabel id="early-bird-discount"><b>Early Bird Discount - in</b> % from the price per night</InputLabel>
 <FormControl fullWidth>
-  <TextField className='w-100' name="early-bird-discount" label="Value in %" variant="outlined" placeholder="0" onChange={onInputChanged} />
+  <TextField className='w-100' name="early-bird-discount"  variant="outlined" placeholder="0" onChange={onInputChanged} />
 </FormControl>
+</div>
 
-
-<FormControl fullWidth>
-  <TextField className='w-100' name="no-of-days-in-advance" label="No of days in advance" variant="outlined" placeholder="0" onChange={onInputChanged} />
-</FormControl>
-
-
+<div className="col-md-6">
 <InputLabel id="extra-price-per-guest-per-month"><b>No of days in advance</b></InputLabel>
 <FormControl fullWidth>
-  <TextField className='w-100' name="extra-price-per-guest-per-month" label="Extra Price per guest per month USD" variant="outlined" placeholder="0" onChange={onInputChanged} />
+  <TextField className='w-100' name="no-of-days-in-advance"  variant="outlined" placeholder="0" onChange={onInputChanged} />
 </FormControl>
+</div>
 
+<div className="col-md-6">
+<InputLabel id="extra-price-per-guest-per-month"><b>Extra Price per guest per month USD</b></InputLabel>
+<FormControl fullWidth>
+  <TextField className='w-100' name="extra-price-per-guest-per-month"  variant="outlined" placeholder="0" onChange={onInputChanged} />
+</FormControl>
+</div>
 
+<div className="col-md-6">
 <FormGroup>
   <FormControlLabel control={<Checkbox  />} label="Allow guests above capacity?" />
 </FormGroup>
-
+{/* <FormGroup>
+  <FormControlLabel control={<Checkbox  />} label="City Fee is a % of the Monthly fee" />
+</FormGroup> */}
+</div>
 
 <div className="extra-option-box">
 <InputLabel id="ex-ops"><b>Extra Options</b></InputLabel>
@@ -375,22 +435,23 @@ const handleAddClick = () => {
         return (
           <div className="box">
             <div class="row m-0">
-              <div class="col-3">
+              <div class="col-4">
             <TextField className='w-100' name="exName" variant="outlined" placeholder="Name" value={x.exName} onChange={e => handleInputChange(e, i)} />
-              </div>
-              <div class="col-3">
-            <TextField className='w-100' name="exValue" variant="outlined" placeholder="Value" value={x.exValue} onChange={e => handleInputChange(e, i)} />
-              </div>
-              <div class="col-3">
-            <TextField className='w-100' name="exsinglefee" variant="outlined" placeholder="Single Fee" value={x.exsinglefee} onChange={e => handleInputChange(e, i)} />
-              </div>
-            <div class="col-3">
             <div className="btn-box">
               {inputList.length !== 1 && <button
                 className="mr10"
                 onClick={() => handleRemoveClick(i)}>Remove</button>}
-              {inputList.length - 1 === i && <button onClick={handleAddClick}>Add</button>}
+              {inputList.length - 1 === i && <button className="add-extra" onClick={handleAddClick}>Add Option</button>}
             </div>
+              </div>
+              <div class="col-4">
+            <TextField className='w-100' name="exValue" variant="outlined" placeholder="Value" value={x.exValue} onChange={e => handleInputChange(e, i)} />
+              </div>
+              <div class="col-4">
+            <TextField className='w-100' name="exsinglefee" variant="outlined" placeholder="Single Fee" value={x.exsinglefee} onChange={e => handleInputChange(e, i)} />
+              </div>
+            <div class="col-3">
+            
               </div>
             </div>
           </div>
@@ -401,6 +462,11 @@ const handleAddClick = () => {
 
 
 <div class="row m-0">
+  <div className="col-md-12">
+  <h4><b>Listing Media</b></h4>
+                    <hr />
+  
+  </div>
               <div class="col-3">
 <FormControl fullWidth>
   <InputLabel id="video-from">Video from</InputLabel>

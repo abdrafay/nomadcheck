@@ -385,7 +385,7 @@ const MyProfile = () => {
         <form>
           <h2>Your details</h2>
 
-          <div className="border w-80z p-5 bg-grayz">
+          <div className="p-5">
             <div className="row px-0 mx-0 align-items-start">
               <div className="col-md-5">            
                   <Controller
@@ -499,12 +499,12 @@ const MyProfile = () => {
                     )}
                   />
               </div>
-              <div className="col-md-2 text-center ">
-                <img src={imageURL} width={100} height={100} alt="" />
+              <div className="col-md-2 text-center relative">
+                <img src={imageURL} className="profile-image" width={100} height={100} alt="" />
                 <div className="mt-2">
                   <Button
                     variant="contained"
-                    className="uploadButton"
+                    className="profile-upload-Button"
                     component="label"
                   >
                     Upload Image
@@ -515,6 +515,11 @@ const MyProfile = () => {
                       type="file"
                     />
                   </Button>
+                    <div className="notice">
+                      <h4><span>!</span> UNVERIFIED</h4>
+                      <p>Your account is unverified. Please verify it today.</p>
+                      <a href="#">Click Here To Verify</a>
+                    </div>
                 </div>
               </div>
               <div className="col-md-10">
